@@ -5,3 +5,5 @@
 - ruhan dutta
 
 - shritan thirunagari
+
+- Sid Patel
