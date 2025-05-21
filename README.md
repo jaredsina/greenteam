@@ -1,3 +1,9 @@
-# greenteam
+# StudyHacker
 
-# ruhan dutta
+## Team:
+
+- ruhan dutta
+
+- shritan thirunagari
+
+- Sid Patel
