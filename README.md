@@ -2,6 +2,4 @@
 
 ## Team:
 
-- ruhan dutta
-
 - shritan thirunagari
