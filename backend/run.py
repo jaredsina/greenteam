@@ -1,14 +1,15 @@
-from flask import Flask
+from app import create_app
 
-app = Flask("Application")
+print("Starting server")
 
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
+if __name__=="__main__":
+  app = create_app()
+  app.run(port=4000,debug=True)
 
-app.run(port=4000,debug=True)
 
-print("Hello")
+
+
+
 
 
 
