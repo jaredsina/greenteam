@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'pages/schedule.dart';
 
+import 'pages/study_tools.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -38,6 +40,7 @@ class MyApp extends StatelessWidget {
       routes: {
         // ADD YOUR ROUTES HERE
         '/schedule': (context) => const Schedule(),
+        '/study': (context) => const Study(),
       },
     );
   }
@@ -119,6 +122,14 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               child: const Text('Schedule'),
             ),
+
+          FilledButton(
+            onPressed: () {
+              // Navigate to the second screen using a named route.
+              Navigator.pushNamed(context, '/study');
+            },
+            child: const Text('Study'),
+          ),
           ],
         ),
       ),
