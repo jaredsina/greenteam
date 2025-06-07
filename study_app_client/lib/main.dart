@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       ),
       home: const MyHomePage(title: 'Study App'),
       routes: {
-        // When navigating to the "/second" route, build the Schedule widget.
+        // ADD YOUR ROUTES HERE
         '/schedule': (context) => const Schedule(),
       },
     );
