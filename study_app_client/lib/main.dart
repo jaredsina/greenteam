@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:study_app_client/Pages/notes.dart';
+//import 'package:study_app_client/Pages/notes.dart';
 
-import 'pages/schedule.dart';
+import 'Pages/schedule.dart';
 
-import 'pages/study_tools.dart';
+import 'Pages/study_tools.dart';
 
-import 'pages/notes.dart';
+import 'Pages/notes.dart';
 
 void main() {
   runApp(const MyApp());
