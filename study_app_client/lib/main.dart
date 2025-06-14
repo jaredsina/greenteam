@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:study_app_client/Pages/notes.dart';
 
 import 'pages/schedule.dart';
 
 import 'pages/study_tools.dart';
+
+import 'pages/notes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -41,6 +44,7 @@ class MyApp extends StatelessWidget {
         // ADD YOUR ROUTES HERE
         '/schedule': (context) => const Schedule(),
         '/study': (context) => const Study(),
+        '/notes': (context) => const Notes()
       },
     );
   }
@@ -129,9 +133,16 @@ class _MyHomePageState extends State<MyHomePage> {
               Navigator.pushNamed(context, '/study');
             },
             child: const Text('Study'),
+          
+            FilledButton(
+              onPressed: () {
+                Navigator.pushNamed(context,'/notes');
+              },
+              child: const Text('Notes')
+            ),
+            ),
+            ],
           ),
-          ],
-        ),
       ),
     );
   }
