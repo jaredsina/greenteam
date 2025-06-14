@@ -132,15 +132,14 @@ class _MyHomePageState extends State<MyHomePage> {
               // Navigate to the second screen using a named route.
               Navigator.pushNamed(context, '/study');
             },
-            child: const Text('Study'),
+            child: const Text('Study')),
           
             FilledButton(
               onPressed: () {
                 Navigator.pushNamed(context,'/notes');
               },
-              child: const Text('Notes')
-            ),
-            ),
+              child: const Text('Notes')),
+            
             ],
           ),
       ),
