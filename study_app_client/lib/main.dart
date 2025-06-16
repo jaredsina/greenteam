@@ -4,6 +4,12 @@ import 'pages/schedule.dart';
 
 import 'pages/study_tools.dart';
 
+import 'pages/quiz.dart';
+
+import 'pages/flashcard.dart';
+
+import 'pages/match.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -41,6 +47,9 @@ class MyApp extends StatelessWidget {
         // ADD YOUR ROUTES HERE
         '/schedule': (context) => const Schedule(),
         '/study': (context) => const Study(),
+        '/study/quiz':(context)=> const Quiz(),
+        '/study/flashcard':(context)=> const Flashcard(),
+        '/study/match':(context)=> const Match(),
       },
     );
   }
@@ -128,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
               // Navigate to the second screen using a named route.
               Navigator.pushNamed(context, '/study');
             },
-            child: const Text('Study'),
+            child: const Text('Study Tools'),
           ),
           ],
         ),
