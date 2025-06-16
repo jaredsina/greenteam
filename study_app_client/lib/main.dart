@@ -32,10 +32,10 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(100, 106, 173, 249),
-        ),
+
+        // colorScheme: ColorScheme.fromSeed(
+        //   seedColor: const Color.fromARGB(100, 106, 173, 249),
+        // ),
       ),
       home: const MyHomePage(title: 'Study App'),
       routes: {
@@ -46,8 +46,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -116,8 +114,18 @@ class _MyHomePageState extends State<MyHomePage> {
           // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
           // action in the IDE, or press "p" in the console), to see the
           // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
+            Text(
+              "Hello, Nico \n Welcome to your personal Study App where you input all of your courses and tests coming, and I generate a unique schedule just for based on your courses and your rigor, and your expertise, and your priorites, and yeah that is it, enjoy",
+              style: TextStyle(fontSize: 50),
+            ),
+            SearchBar(
+              leading: const Icon(Icons.search),
+              padding: const WidgetStatePropertyAll(
+                EdgeInsets.symmetric(horizontal: 16),
+              ),
+            ),
             FilledButton(
               onPressed: () {
                 // Navigate to the second screen using a named route.
@@ -126,12 +134,14 @@ class _MyHomePageState extends State<MyHomePage> {
               child: const Text('Schedule'),
             ),
 
-          FilledButton(
+            FilledButton(
               // Navigate to the second screen using a named route.
-              Navigator.pushNamed(context, '/study');
-            },
-            child: const Text('Study'),
-          ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/study');
+              },
+
+              child: const Text('Study'),
+            ),
           ],
         ),
       ),
