@@ -32,8 +32,9 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
+        
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(100, 44, 153, 237),
+          seedColor: const Color.fromARGB(100, 106, 173, 249),
         ),
       ),
       home: const MyHomePage(title: 'Study App'),
@@ -45,6 +46,8 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -124,7 +127,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
 
           FilledButton(
-            onPressed: () {
               // Navigate to the second screen using a named route.
               Navigator.pushNamed(context, '/study');
             },
