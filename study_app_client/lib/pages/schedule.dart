@@ -18,11 +18,22 @@ class _ScheduleState extends State<Schedule> {
 
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[],
-        ),
+      body: Column(
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('Schedule', style: TextStyle(fontSize: 32)),
+              FilledButton(onPressed: () {}, child: const Text('Export')),
+            ],
+          ),
+
+          CarouselView(
+            scrollDirection: Axis.vertical,
+            itemExtent: double.infinity,
+            children: [],
+          ),
+        ],
       ),
     );
   }
