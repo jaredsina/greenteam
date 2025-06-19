@@ -21,14 +21,42 @@ class _NotesState extends State<Notes> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
+        centerTitle: true,
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[],
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Center(
+              child: Text(
+                'Notes',
+                style: TextStyle(fontSize: 36, fontStyle: FontStyle.italic),
+              ),
+            ),
+            const SizedBox(height: 10,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                FilledButton.tonal(
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: const Size(150, 60),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    backgroundColor: const Color.fromARGB(255, 103, 181, 250),
+                  ),
+                  onPressed: () {},
+                  child: const Text(
+                    'Create+',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
-        
-      ),  
-     );
+      ),
+    );
   }
 }
