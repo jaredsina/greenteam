@@ -1,26 +1,18 @@
-// ignore_for_file: dead_code
 
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
-import 'package:study_app_client/Pages/Catagorys/math.dart';
-import 'package:study_app_client/Pages/Catagorys/spanish.dart';
-import 'Catagorys/literature.dart';
-import 'Catagorys/history.dart';
-import 'Catagorys/science.dart';
 
 
-class Notes extends StatefulWidget {
-  final String title = 'Notes';
+class Math extends StatefulWidget {
+  final String title = 'Math';
 
-  const Notes({super.key});
+  const Math({super.key});
 
   @override
-  _NotesState createState() => _NotesState();
+  _MathState createState() => _MathState();
 }
-
-class _NotesState extends State<Notes> {
+class _MathState extends State<Math> {
   @override
-
   Widget build(BuildContext context) {
     final quill.QuillController controller = quill.QuillController.basic();
     return Scaffold(
@@ -37,7 +29,7 @@ class _NotesState extends State<Notes> {
           children: [
             Center(
               child: Text(
-                'Notes',
+                'Math',
                 style: TextStyle(fontSize: 36, fontStyle: FontStyle.italic),
               ),
             ),
@@ -65,7 +57,7 @@ class _NotesState extends State<Notes> {
             ),
             const SizedBox(height: 20),
             const Text(
-                  'Courses:',
+                  'Topics:',
                   style: TextStyle(fontSize: 30, fontStyle: FontStyle.normal, color: Colors.black),
                 ),
            const SizedBox(height: 10),
@@ -80,11 +72,9 @@ class _NotesState extends State<Notes> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {
-                  Navigator.pushNamed(context, '/Science');
-                },
+                onPressed: () {},
                 child: const Text(
-                  'Science',
+                  'Algebra',
                   style: TextStyle(fontSize: 20),
                 ),
                 ),
@@ -101,11 +91,9 @@ class _NotesState extends State<Notes> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {
-                  Navigator.pushNamed(context,'/literature');
-                },
+                onPressed: () {},
                 child: const Text(
-                  'Literature',
+                  'Geometry',
                   style: TextStyle(fontSize: 20),
                 ),
                 ),
@@ -122,11 +110,9 @@ class _NotesState extends State<Notes> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {
-                 Navigator.pushNamed(context,'/history');
-                },
+                onPressed: () {},
                 child: const Text(
-                  'History',
+                  'Calculus',
                   style: TextStyle(fontSize: 20),
                 ),
                 ),
@@ -143,11 +129,9 @@ class _NotesState extends State<Notes> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {
-                  Navigator.pushNamed(context, '/math');
-                },
+                onPressed: () {},
                 child: const Text(
-                  'Math',
+                  'Pre Calculus',
                   style: TextStyle(fontSize: 20),
                 ),
                 ),
@@ -164,11 +148,9 @@ class _NotesState extends State<Notes> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {
-                  Navigator.pushNamed(context, '/spanish');
-                },
+                onPressed: () {},
                 child: const Text(
-                  'Spanish',
+                  'Statistics',
                   style: TextStyle(fontSize: 20),
                 ),
                 ),
@@ -178,17 +160,6 @@ class _NotesState extends State<Notes> {
           ),
        )
     );
-    return MaterialApp(
-      routes: { 
-        
-      
-        '/literature': (context) => const Literature(),
-        '/history': (context) => const History(),
-        '/math': (context) => const Math(),
-        '/science': (context) => const Science(),
-        '/spanish': (context) => const Spanish(),
-      },
-  );
    
   }
 }

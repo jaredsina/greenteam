@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-//import 'package:study_app_client/Pages/notes.dart';
-
+import 'package:flutter_quill/flutter_quill.dart';
+import 'package:study_app_client/Pages/notes.dart';
 import 'Pages/schedule.dart';
-
+import 'package:study_app_client/Pages/Catagorys/literature.dart';
+import 'package:study_app_client/Pages/Catagorys/history.dart';
+import 'package:study_app_client/Pages/Catagorys/math.dart';
+import 'package:study_app_client/Pages/Catagorys/science.dart';
+import 'package:study_app_client/Pages/Catagorys/spanish.dart';
 import 'Pages/study_tools.dart';
 
-import 'Pages/notes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,6 +22,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      localizationsDelegates: const [
+        FlutterQuillLocalizations.delegate
+      ],
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -44,7 +50,12 @@ class MyApp extends StatelessWidget {
         // ADD YOUR ROUTES HERE
         '/schedule': (context) => const Schedule(),
         '/study': (context) => const Study(),
-        '/notes': (context) => const Notes()
+        '/notes': (context) => const Notes(),
+        '/literature': (context) => const Literature(),
+        '/history': (context) => const History(),
+        '/math': (context) => const Math(),
+        '/science': (context) => const Science(),
+        '/spanish': (context) => const Spanish()
       },
     );
   }
