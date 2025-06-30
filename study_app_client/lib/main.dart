@@ -92,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // TRY THIS: Try changing the color here to a specific color (to
         // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
         // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Color.fromARGB(255, 44, 153, 237),
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
@@ -116,31 +116,127 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Text(
-              "Hello, Nico \n Welcome to your personal Study App where you input all of your courses and tests coming, and I generate a unique schedule just for based on your courses and your rigor, and your expertise, and your priorites, and yeah that is it, enjoy",
-              style: TextStyle(fontSize: 50),
-            ),
+            Text("Hello, \n Nico", style: TextStyle(fontSize: 50)),
             SearchBar(
               leading: const Icon(Icons.search),
               padding: const WidgetStatePropertyAll(
                 EdgeInsets.symmetric(horizontal: 16),
               ),
             ),
-            FilledButton(
-              onPressed: () {
-                // Navigate to the second screen using a named route.
-                Navigator.pushNamed(context, '/schedule');
-              },
-              child: const Text('Schedule'),
+            SizedBox(height: 20),
+
+            // Topic Buttons
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                FilledButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/study');
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.all(
+                      Color.fromARGB(255, 38, 0, 255),
+                    ),
+                    minimumSize: WidgetStateProperty.all(Size(150, 150)),
+                    shape: WidgetStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                  ),
+                  child: const Text('Free Hours'),
+                ),
+
+                FilledButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/study');
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.all(
+                      Color.fromARGB(255, 18, 12, 96),
+                    ),
+                    minimumSize: WidgetStateProperty.all(Size(150, 150)),
+                    shape: WidgetStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                  ),
+                  child: const Text('Notes'),
+                ),
+              ],
             ),
 
-            FilledButton(
-              // Navigate to the second screen using a named route.
-              onPressed: () {
-                Navigator.pushNamed(context, '/study');
-              },
+            SizedBox(height: 20),
+            SizedBox(width: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                FilledButton(
+                  // Study Tools Button
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/study');
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.all(
+                      Color.fromARGB(255, 106, 173, 249),
+                    ),
+                    minimumSize: WidgetStateProperty.all(Size(150, 150)),
+                    shape: WidgetStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                  ),
 
-              child: const Text('Study'),
+                  child: const Text('Study Tools'),
+                ),
+
+                FilledButton(
+                  // AI Helper Button
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/study');
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.all(
+                      Color.fromARGB(255, 0, 103, 182),
+                    ),
+                    minimumSize: WidgetStateProperty.all(Size(150, 150)),
+                    shape: WidgetStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                  ),
+
+                  child: const Text('AI Helper'),
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            SizedBox(width: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                FilledButton(
+                  // Schedule Button
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/schedule');
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.all(
+                      Color.fromARGB(255, 0, 166, 237),
+                    ),
+                    minimumSize: WidgetStateProperty.all(Size(320, 60)),
+                    shape: WidgetStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                  ),
+                  child: const Text('Schedule'),
+                ),
+              ],
             ),
           ],
         ),
