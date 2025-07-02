@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         //   seedColor: const Color.fromARGB(100, 106, 173, 249),
         // ),
       ),
-      home: const MyHomePage(title: 'Study App'),
+      home: const MyHomePage(title: 'StudyHackAI'),
       routes: {
         // ADD YOUR ROUTES HERE
         '/schedule': (context) => const Schedule(),
@@ -207,7 +207,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Column(
                       spacing: 12,
                       children: [
-                        Text('Study Tools', style: TextStyle(fontSize: 20)),
+                        Text('Study Tools', style: TextStyle(fontSize: 16)),
                         const Icon(Icons.design_services, size: 28),
                       ],
                     ),
