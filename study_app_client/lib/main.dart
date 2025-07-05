@@ -47,9 +47,9 @@ class MyApp extends StatelessWidget {
         // ADD YOUR ROUTES HERE
         '/schedule': (context) => const Schedule(),
         '/study': (context) => const Study(),
-        '/study/quiz':(context)=> const Quiz(),
-        '/study/flashcard':(context)=> const Flashcard(),
-        '/study/match':(context)=> const Match(),
+        '/study/quiz': (context) => const Quiz(),
+        '/study/flashcard': (context) => const Flashcard(),
+        '/study/match': (context) => const Match(),
       },
     );
   }
@@ -132,13 +132,13 @@ class _MyHomePageState extends State<MyHomePage> {
               child: const Text('Schedule'),
             ),
 
-          FilledButton(
-            onPressed: () {
-              // Navigate to the second screen using a named route.
-              Navigator.pushNamed(context, '/study');
-            },
-            child: const Text('Study Tools'),
-          ),
+            FilledButton(
+              onPressed: () {
+                // Navigate to the second screen using a named route.
+                Navigator.pushNamed(context, '/study');
+              },
+              child: const Text('Study Tools'),
+            ),
           ],
         ),
       ),
