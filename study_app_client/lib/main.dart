@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:study_app_client/pages/free_hours.dart';
 
 import 'pages/schedule.dart';
 
@@ -48,9 +49,10 @@ class MyApp extends StatelessWidget {
         // ADD YOUR ROUTES HERE
         '/schedule': (context) => const Schedule(),
         '/study': (context) => const Study(),
-        '/study/quiz':(context)=> const Quiz(),
-        '/study/flashcard':(context)=> const Flashcard(),
-        '/study/match':(context)=> const Match(),
+        '/study/quiz': (context) => const Quiz(),
+        '/study/flashcard': (context) => const Flashcard(),
+        '/study/match': (context) => const Match(),
+        '/free-hours': (context) => const FreeHours(),
       },
     );
   }
@@ -130,7 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   FilledButton(
                     // Free Hours Page
                     onPressed: () {
-                      Navigator.pushNamed(context, '/study');
+                      Navigator.pushNamed(context, '/free-hours');
                     },
                     style: ButtonStyle(
                       backgroundColor: WidgetStateProperty.all(
@@ -178,7 +180,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ],
               ),
-
               SizedBox(height: 20),
               SizedBox(width: 20),
               Row(
@@ -209,14 +210,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
 
-          FilledButton(
-            onPressed: () {
-              // Navigate to the second screen using a named route.
-              Navigator.pushNamed(context, '/study');
-            },
-            child: const Text('Study Tools'),
+                  FilledButton(
+                    onPressed: () {
+                      // Navigate to the second screen using a named route.
+                      Navigator.pushNamed(context, '/study');
+                    },
+                    child: const Text('Study Tools'),
+                  ),
+                ],
+              ),
+            ],
           ),
-          ],
         ),
       ),
     );
