@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:study_app_client/pages/flashcard.dart';
+import 'package:study_app_client/pages/match.dart';
+import 'package:study_app_client/pages/quiz.dart';
 
 import 'pages/schedule.dart';
 
@@ -44,7 +47,7 @@ class MyApp extends StatelessWidget {
         '/study': (context) => const Study(),
         '/study/quiz': (context) => const Quiz(),
         '/study/flashcard': (context) => const Flashcard(),
-        '/study/match': (context) => const Match(),
+        '/study/matching': (context) => const Matching(),
       },
     );
   }
