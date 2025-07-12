@@ -44,6 +44,7 @@ class _QuizState extends State<Quiz> {
                 padding: padding,
                 child: SearchBar(
                   leading: const Icon(Icons.search),
+                  hintText: "Type a Topic",
                   padding: const WidgetStatePropertyAll(
                     EdgeInsets.symmetric(horizontal: 16),
                   ),
