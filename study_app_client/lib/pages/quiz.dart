@@ -1,22 +1,18 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({Key? key}) : super(key: key);
-
-  final String title = 'Quiz';
-
+  final String title = "Quiz";
   @override
   _QuizState createState() => _QuizState();
 }
 
-String? selectedDifficulty;
-String? selectedLength;
-String? selectedType;
-
 class _QuizState extends State<Quiz> {
-  EdgeInsetsGeometry padding = EdgeInsets.all(20);
+  ButtonStyle style = ElevatedButton.styleFrom(
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+    padding: EdgeInsets.all(10)
+  );
+  EdgeInsetsGeometry padding = EdgeInsetsGeometry.all(10);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,143 +21,43 @@ class _QuizState extends State<Quiz> {
 
         title: Text(widget.title),
       ),
-
       body: Center(
-        child: Container(
-          width: double.infinity, // Makes Column take up full width
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center, // horizontal
-            children: <Widget>[
-              Text(
-                'Quiz/Test',
-                style: TextStyle(fontSize: 36, fontStyle: FontStyle.italic),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center, // horizontal
+          children: <Widget>[
+            Padding(padding: padding, child: Text(
+                '1. Which of the following statements about the Late Cretaceous theropod Troodon is most accurate, based on current paleontological evidence?',
+              ), ),
+            
+            Padding(padding: padding, child:OutlinedButton(
+              onPressed: () {},
+              style: style,
+              child: Text(
+                'A) Troodon had one of the smallest brain-to-body ratios among non-avian dinosaurs, indicating it relied mainly on instinct rather than learned behavior.',
               ),
-              Text(
-                'Type Topic',
-                style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic),
+            ),),
+            Padding(padding: padding, child: OutlinedButton(
+              onPressed: () {},
+              style: style,
+              child: Text(
+                'B) Fossilized nests attributed to Troodon suggest it laid a single egg per clutch, similar to most modern reptiles.',
               ),
-              Padding(
-                padding: padding,
-                child: SearchBar(
-                  leading: const Icon(Icons.search),
-                  hintText: "Type a Topic",
-                  padding: const WidgetStatePropertyAll(
-                    EdgeInsets.symmetric(horizontal: 16),
-                  ),
-                ),
+            ), ),
+            Padding(padding: padding, child: OutlinedButton(
+              onPressed: () {},
+              style: style,
+              child: Text(
+                'C) Troodon possessed serrated teeth and stereoscopic vision, indicating it was likely an omnivore or a predator with complex hunting strategies.',
               ),
-
-              // Difficulty Dropdown
-              Padding(
-                padding: padding,
-                child: DropdownButtonFormField<String>(
-                  value: selectedDifficulty,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.blue,
-                    hintText: 'Difficulty',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  dropdownColor: Colors.white,
-                  iconEnabledColor: Colors.white,
-                  style: TextStyle(color: const Color.fromARGB(255, 5, 5, 5)),
-                  onChanged: (value) =>
-                      setState(() => selectedDifficulty = value),
-                  items: ['Easy', 'Medium', 'Hard', 'Expert']
-                      .map((e) => DropdownMenuItem(value: e, child: Text(e)))
-                      .toList(),
-                ),
+            ), ),
+            Padding(padding: padding, child: OutlinedButton(
+              onPressed: () {},
+              style: style,
+              child: Text(
+                'D) The Troodon genus is now considered entirely invalid, with all fossils reclassified under the genus Velociraptor after DNA analysis.',
               ),
-
-              // Length Dropdown
-              Padding(
-                padding: padding,
-                child: DropdownButtonFormField<String>(
-                  value: selectedLength,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.blue,
-                    hintText: 'Length',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  dropdownColor: Colors.white,
-                  iconEnabledColor: Colors.white,
-                  style: TextStyle(color: const Color.fromARGB(255, 7, 7, 7)),
-                  onChanged: (value) => setState(() => selectedLength = value),
-                  items:
-                      [
-                            '5 questions',
-                            '10 questions',
-                            '15 questions',
-                            '20 questions',
-                          ]
-                          .map(
-                            (e) => DropdownMenuItem(value: e, child: Text(e)),
-                          )
-                          .toList(),
-                ),
-              ),
-
-              // Type Dropdown
-              Padding(
-                padding: padding,
-                child: DropdownButtonFormField<String>(
-                  value: selectedType,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.blue,
-                    hintText: 'Type',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  dropdownColor: Colors.white,
-                  iconEnabledColor: Colors.white,
-                  style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
-                  onChanged: (value) => setState(() => selectedType = value),
-                  items:
-                      [
-                            'True/False',
-                            'Matching',
-                            'Written Response',
-                            'Multiple Choice',
-                          ]
-                          .map(
-                            (e) => DropdownMenuItem(value: e, child: Text(e)),
-                          )
-                          .toList(),
-                ),
-              ),
-
-              Padding(
-                padding: padding,
-                child: ElevatedButton.icon(
-                  onPressed: () => {},
-                  label: Text('Create'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    foregroundColor: Colors.black,
-                  ),
-                  icon: Icon(Icons.add),
-                ),
-              ),
-
-              Padding(
-                padding: padding,
-                child: TextButton(
-                  onPressed: () => {},
-                  child: Text('Import'),
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.black,
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ), ),
+          ],
         ),
       ),
     );

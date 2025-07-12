@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:study_app_client/pages/flashcard.dart';
 import 'package:study_app_client/pages/match.dart';
 import 'package:study_app_client/pages/quiz.dart';
+import 'package:study_app_client/pages/quiz_create.dart';
 
 import 'pages/schedule.dart';
 
@@ -45,9 +46,10 @@ class MyApp extends StatelessWidget {
         // ADD YOUR ROUTES HERE
         '/schedule': (context) => const Schedule(),
         '/study': (context) => const Study(),
-        '/study/quiz': (context) => const Quiz(),
+        '/study/quiz/create': (context) => const CreateQuiz(),
         '/study/flashcard': (context) => const Flashcard(),
         '/study/matching': (context) => const Matching(),
+        '/study/quiz': (context) => const Quiz(),
       },
     );
   }
