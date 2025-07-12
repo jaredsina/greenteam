@@ -7,3 +7,5 @@
 - shritan thirunagari
 
 - Nicolas Braem
+
+- Sid Patel
