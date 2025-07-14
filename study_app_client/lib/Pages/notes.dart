@@ -20,9 +20,9 @@ class Notes extends StatefulWidget {
 
 class _NotesState extends State<Notes> {
   @override
+    final quill.QuillController controller = quill.QuillController.basic();
 
   Widget build(BuildContext context) {
-    final quill.QuillController controller = quill.QuillController.basic();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -54,7 +54,8 @@ class _NotesState extends State<Notes> {
                     backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                   ),
                   onPressed: () {
-                    
+                    _dialogBuilder(context);
+
                   },
                   child: const Text(
                     'Create+',
@@ -81,7 +82,7 @@ class _NotesState extends State<Notes> {
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, '/Science');
+                  Navigator.pushNamed(context, '/science');
                 },
                 child: const Text(
                   'Science',
@@ -180,15 +181,52 @@ class _NotesState extends State<Notes> {
     );
     return MaterialApp(
       routes: { 
-        
-      
         '/literature': (context) => const Literature(),
         '/history': (context) => const History(),
         '/math': (context) => const Math(),
-        '/science': (context) => const Science(),
         '/spanish': (context) => const Spanish(),
+        '/science': (context) => const Science()
       },
   );
    
   }
 }
+
+Future<void> _dialogBuilder(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Create Course Title'),
+          actions: <Widget>[
+            TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Type Here'
+              ),
+            ),
+           Row(
+            children: [
+            const SizedBox(height: 10,),
+            TextButton(
+              style: TextButton.styleFrom(textStyle: Theme.of(context).textTheme.labelLarge),
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              style: TextButton.styleFrom(textStyle: Theme.of(context).textTheme.labelLarge),
+              child: const Text('Enter'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            ]
+          )
+          ],
+        );
+      },
+    );
+  }
+

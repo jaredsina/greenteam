@@ -1,7 +1,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
-
+import 'package:study_app_client/Topics/character_development.dart';
+import 'package:study_app_client/Topics/conflict.dart';
+import 'package:study_app_client/Topics/figurative_language.dart';
+import 'package:study_app_client/Topics/setting.dart';
+import 'package:study_app_client/Topics/vocab.dart';
 
 class Literature extends StatefulWidget {
   final String title = 'Literature';
@@ -46,7 +50,7 @@ class _LiteratureState extends State<Literature> {
                     backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                   ),
                   onPressed: () {
-                    
+                    _dialogBuilder(context);
                   },
                   child: const Text(
                     'Create+',
@@ -72,9 +76,11 @@ class _LiteratureState extends State<Literature> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/conflict');
+                },
                 child: const Text(
-                  'Theme',
+                  'Conflict',
                   style: TextStyle(fontSize: 20),
                 ),
                 ),
@@ -91,7 +97,9 @@ class _LiteratureState extends State<Literature> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/character_development');
+                },
                 child: const Text(
                   'Character Development',
                   style: TextStyle(fontSize: 20),
@@ -110,7 +118,9 @@ class _LiteratureState extends State<Literature> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/setting');
+                },
                 child: const Text(
                   'Setting',
                   style: TextStyle(fontSize: 20),
@@ -129,7 +139,9 @@ class _LiteratureState extends State<Literature> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/vocab');
+                },
                 child: const Text(
                   'Vocab',
                   style: TextStyle(fontSize: 20),
@@ -148,7 +160,9 @@ class _LiteratureState extends State<Literature> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/figurative_language');
+                },
                 child: const Text(
                   'Figurative Language',
                   style: TextStyle(fontSize: 20),
@@ -163,3 +177,41 @@ class _LiteratureState extends State<Literature> {
    
   }
 }
+Future<void> _dialogBuilder(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Create Topic Title'),
+          actions: <Widget>[
+            TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Type Here'
+              ),
+            ),
+           Row(
+            children: [
+            const SizedBox(height: 10,),
+            TextButton(
+              style: TextButton.styleFrom(textStyle: Theme.of(context).textTheme.labelLarge),
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              style: TextButton.styleFrom(textStyle: Theme.of(context).textTheme.labelLarge),
+              child: const Text('Enter'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            ]
+          )
+          ],
+        );
+      },
+    );
+  }
+

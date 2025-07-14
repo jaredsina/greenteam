@@ -1,13 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
-import 'package:study_app_client/Pages/notes.dart';
+import 'Topics/ancient_civilizations.dart';
+import 'Pages/notes.dart';
+import 'Topics/algebra.dart';
+import 'Topics/calculus.dart';
+import 'Topics/european_history.dart';
 import 'Pages/schedule.dart';
-import 'package:study_app_client/Pages/Catagorys/literature.dart';
-import 'package:study_app_client/Pages/Catagorys/history.dart';
-import 'package:study_app_client/Pages/Catagorys/math.dart';
-import 'package:study_app_client/Pages/Catagorys/science.dart';
-import 'package:study_app_client/Pages/Catagorys/spanish.dart';
+import 'Pages/Catagorys/literature.dart';
+import 'Pages/Catagorys/history.dart';
+import 'Pages/Catagorys/math.dart';
+import 'Pages/Catagorys/science.dart';
+import 'Pages/Catagorys/spanish.dart';
 import 'Pages/study_tools.dart';
+import 'Topics/american_history.dart';
+import 'Topics/character_development.dart';
+import 'Topics/cold_war.dart';
+import 'Topics/conflict.dart';
+import 'Topics/figurative_language.dart';
+import 'Topics/geometry.dart';
+import 'Topics/pre_calculus.dart';
+import 'Topics/setting.dart';
+import 'Topics/vocab.dart';
+import 'Topics/world_wars.dart';
+import 'Topics/statistics.dart';
+import 'Topics/biology.dart';
+import 'Topics/chemistry.dart';
+import 'Topics/physics.dart';
+import 'Topics/astronomy.dart';
+import 'Topics/earth_science.dart';
+import 'Topics/food.dart';
+import 'Topics/places.dart';
+import 'Topics/directions.dart';
+import 'Topics/clothing.dart';
+import 'Topics/verbs.dart';
 
 
 void main() {
@@ -54,8 +79,33 @@ class MyApp extends StatelessWidget {
         '/literature': (context) => const Literature(),
         '/history': (context) => const History(),
         '/math': (context) => const Math(),
+        '/spanish': (context) => const Spanish(),
         '/science': (context) => const Science(),
-        '/spanish': (context) => const Spanish()
+        '/algebra': (context) => const Algebra(),
+        '/american_history': (context) => AmericanHistory(),
+        '/calculus': (context) => Calculus(),
+        '/character_development': (context) => CharacterDevelopment(),
+        '/cold_war': (context) => ColdWar(),
+        '/european_history': (context) => EuropeanHistory(),
+        '/conflict': (context) => Conflict(),
+        '/figurative_language': (context) => FigurativeLanguage(),
+        '/geometry': (context) => Geometry(),
+        '/pre_calculus': (context) => PreCalculus(),
+        '/setting': (context) => Setting(),
+        '/vocab': (context) => Vocab(),
+        '/world_wars': (context) => WorldWars(),
+        '/ancient_civilizations': (context) => AncientCivilizations(),
+        '/statistics': (context) => Statistics(),
+        '/biology' : (context) => Biology(),
+        '/chemistry' : (context) => Chemistry(),
+        '/physics' : (context) => Physics(),
+        '/astronomy' : (context) => Astronomy(),
+        '/earth_science' : (context) => EarthScience(),
+        '/food' : (context) => Food(),
+        '/places' : (context) => Places(),
+        '/directions' : (context) => Directions(),
+        '/clothing' : (context) => Clothing(),
+        '/verbs' : (context) => Verbs(),
       },
     );
   }
@@ -150,7 +200,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.pushNamed(context,'/notes');
               },
               child: const Text('Notes')),
-            
             ],
           ),
       ),

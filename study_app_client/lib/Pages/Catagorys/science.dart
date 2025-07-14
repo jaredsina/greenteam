@@ -1,6 +1,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
+import 'package:study_app_client/Topics/biology.dart';
+import 'package:study_app_client/Topics/chemistry.dart';
+import 'package:study_app_client/Topics/physics.dart';
+import 'package:study_app_client/Topics/astronomy.dart';
+import 'package:study_app_client/Topics/earth_science.dart';
 
 
 class Science extends StatefulWidget {
@@ -46,7 +51,7 @@ class _ScienceState extends State<Science> {
                     backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                   ),
                   onPressed: () {
-                    
+                    _dialogBuilder(context);
                   },
                   child: const Text(
                     'Create+',
@@ -72,7 +77,9 @@ class _ScienceState extends State<Science> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/biology');
+                },
                 child: const Text(
                   'Biology',
                   style: TextStyle(fontSize: 20),
@@ -91,7 +98,9 @@ class _ScienceState extends State<Science> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/chemistry');
+                },
                 child: const Text(
                   'Chemistry',
                   style: TextStyle(fontSize: 20),
@@ -110,7 +119,9 @@ class _ScienceState extends State<Science> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/physics');
+                },
                 child: const Text(
                   'Physics',
                   style: TextStyle(fontSize: 20),
@@ -129,7 +140,9 @@ class _ScienceState extends State<Science> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/astronomy');
+                },
                 child: const Text(
                   'Astronomy',
                   style: TextStyle(fontSize: 20),
@@ -148,7 +161,9 @@ class _ScienceState extends State<Science> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/earth_science');
+                },
                 child: const Text(
                   'Earth Science',
                   style: TextStyle(fontSize: 20),
@@ -163,3 +178,41 @@ class _ScienceState extends State<Science> {
    
   }
 }
+Future<void> _dialogBuilder(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Create Topic Title'),
+          actions: <Widget>[
+            TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Type Here'
+              ),
+            ),
+           Row(
+            children: [
+            const SizedBox(height: 10,),
+            TextButton(
+              style: TextButton.styleFrom(textStyle: Theme.of(context).textTheme.labelLarge),
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              style: TextButton.styleFrom(textStyle: Theme.of(context).textTheme.labelLarge),
+              child: const Text('Enter'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            ]
+          )
+          ],
+        );
+      },
+    );
+  }
+

@@ -1,7 +1,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
-
+import 'package:study_app_client/Topics/algebra.dart';
+import 'package:study_app_client/Topics/calculus.dart';
+import 'package:study_app_client/Topics/geometry.dart';
+import 'package:study_app_client/Topics/pre_calculus.dart';
+import 'package:study_app_client/Topics/statistics.dart';
 
 class Math extends StatefulWidget {
   final String title = 'Math';
@@ -46,7 +50,7 @@ class _MathState extends State<Math> {
                     backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                   ),
                   onPressed: () {
-                    
+                    _dialogBuilder(context);
                   },
                   child: const Text(
                     'Create+',
@@ -72,7 +76,9 @@ class _MathState extends State<Math> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/algebra');
+                },
                 child: const Text(
                   'Algebra',
                   style: TextStyle(fontSize: 20),
@@ -91,7 +97,9 @@ class _MathState extends State<Math> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/geometry');
+                },
                 child: const Text(
                   'Geometry',
                   style: TextStyle(fontSize: 20),
@@ -110,7 +118,9 @@ class _MathState extends State<Math> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/calculus');
+                },
                 child: const Text(
                   'Calculus',
                   style: TextStyle(fontSize: 20),
@@ -129,7 +139,9 @@ class _MathState extends State<Math> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/pre_calculus');
+                },
                 child: const Text(
                   'Pre Calculus',
                   style: TextStyle(fontSize: 20),
@@ -148,7 +160,9 @@ class _MathState extends State<Math> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/statistics');
+                },
                 child: const Text(
                   'Statistics',
                   style: TextStyle(fontSize: 20),
@@ -163,3 +177,41 @@ class _MathState extends State<Math> {
    
   }
 }
+Future<void> _dialogBuilder(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Create Topic Title'),
+          actions: <Widget>[
+            TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Type Here'
+              ),
+            ),
+           Row(
+            children: [
+            const SizedBox(height: 10,),
+            TextButton(
+              style: TextButton.styleFrom(textStyle: Theme.of(context).textTheme.labelLarge),
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              style: TextButton.styleFrom(textStyle: Theme.of(context).textTheme.labelLarge),
+              child: const Text('Enter'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            ]
+          )
+          ],
+        );
+      },
+    );
+  }
+

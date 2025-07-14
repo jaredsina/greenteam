@@ -1,7 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
-
+import 'package:study_app_client/Topics/american_history.dart';
+import 'package:study_app_client/Topics/cold_war.dart';
+import 'package:study_app_client/Topics/european_history.dart';
+import 'package:study_app_client/Topics/world_wars.dart';
 
 class History extends StatefulWidget {
   final String title = 'History';
@@ -46,7 +49,7 @@ class _HistoryState extends State<History> {
                     backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                   ),
                   onPressed: () {
-                    
+                    _dialogBuilder(context);
                   },
                   child: const Text(
                     'Create+',
@@ -72,7 +75,9 @@ class _HistoryState extends State<History> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/ancient_civilizations');
+                },
                 child: const Text(
                   'Ancient Civilizations',
                   style: TextStyle(fontSize: 20),
@@ -91,7 +96,9 @@ class _HistoryState extends State<History> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/european_history');
+                },
                 child: const Text(
                   'European History',
                   style: TextStyle(fontSize: 20),
@@ -110,7 +117,9 @@ class _HistoryState extends State<History> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/american_history');
+                },
                 child: const Text(
                   'Amerian History',
                   style: TextStyle(fontSize: 20),
@@ -129,7 +138,9 @@ class _HistoryState extends State<History> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/world_wars');
+                },
                 child: const Text(
                   'World Wars',
                   style: TextStyle(fontSize: 20),
@@ -148,7 +159,9 @@ class _HistoryState extends State<History> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/cold_war');
+                },
                 child: const Text(
                   'Cold War',
                   style: TextStyle(fontSize: 20),
@@ -163,3 +176,43 @@ class _HistoryState extends State<History> {
    
   }
 }
+
+Future<void> _dialogBuilder(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Create Topic Title'),
+          actions: <Widget>[
+            TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Type Here'
+              ),
+            ),
+           Row(
+            children: [
+            const SizedBox(height: 10,),
+            TextButton(
+              style: TextButton.styleFrom(textStyle: Theme.of(context).textTheme.labelLarge),
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              style: TextButton.styleFrom(textStyle: Theme.of(context).textTheme.labelLarge),
+              child: const Text('Enter'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            ]
+          )
+          ],
+        );
+      },
+    );
+  }
+
+

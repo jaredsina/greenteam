@@ -1,6 +1,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
+import 'package:study_app_client/Topics/food.dart';
+import 'package:study_app_client/Topics/places.dart';
+import 'package:study_app_client/Topics/directions.dart';
+import 'package:study_app_client/Topics/clothing.dart';
+import 'package:study_app_client/Topics/verbs.dart';
 
 
 class Spanish extends StatefulWidget {
@@ -46,7 +51,7 @@ class _SpanishState extends State<Spanish> {
                     backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                   ),
                   onPressed: () {
-                    
+                    _dialogBuilder(context);
                   },
                   child: const Text(
                     'Create+',
@@ -72,7 +77,9 @@ class _SpanishState extends State<Spanish> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/food');
+                },
                 child: const Text(
                   'Food',
                   style: TextStyle(fontSize: 20),
@@ -91,7 +98,9 @@ class _SpanishState extends State<Spanish> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/places');
+                },
                 child: const Text(
                   'Places',
                   style: TextStyle(fontSize: 20),
@@ -110,7 +119,9 @@ class _SpanishState extends State<Spanish> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/directions');
+                },
                 child: const Text(
                   'Directions',
                   style: TextStyle(fontSize: 20),
@@ -129,7 +140,9 @@ class _SpanishState extends State<Spanish> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/clothing');
+                },
                 child: const Text(
                   'Clothing',
                   style: TextStyle(fontSize: 20),
@@ -148,7 +161,9 @@ class _SpanishState extends State<Spanish> {
                   ),
                   backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/verbs');
+                },
                 child: const Text(
                   'Verbs',
                   style: TextStyle(fontSize: 20),
@@ -163,3 +178,41 @@ class _SpanishState extends State<Spanish> {
    
   }
 }
+Future<void> _dialogBuilder(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Create Topic Title'),
+          actions: <Widget>[
+            TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Type Here'
+              ),
+            ),
+           Row(
+            children: [
+            const SizedBox(height: 10,),
+            TextButton(
+              style: TextButton.styleFrom(textStyle: Theme.of(context).textTheme.labelLarge),
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              style: TextButton.styleFrom(textStyle: Theme.of(context).textTheme.labelLarge),
+              child: const Text('Enter'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            ]
+          )
+          ],
+        );
+      },
+    );
+  }
+
