@@ -1,4 +1,6 @@
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
 
@@ -57,21 +59,64 @@ class _AlgebraState extends State<Algebra> {
             ), 
             ),
           ),
+          ), 
+        const SizedBox(height: 20,),
+          Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+        FilledButton.tonal(
+        style: ElevatedButton.styleFrom(
+          fixedSize: const Size(180,60),
+        alignment: Alignment.bottomRight,
+        shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+        backgroundColor: const Color.fromARGB(255, 103, 181, 250),
+                ),
+        onPressed: () {
+                },
+       child:  Center(
+        child: const Text(
+                  'Add Image+',
+                  style: TextStyle(fontSize: 20),
+                  textAlign: TextAlign.center ,
+                ),
+       )
+                ),
+      const SizedBox(width: 20,),
+       Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+        FilledButton.tonal(
+        style: ElevatedButton.styleFrom(
+          fixedSize: const Size(180,60),
+        alignment: Alignment.bottomLeft,
+        shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+        backgroundColor: const Color.fromARGB(255, 103, 181, 250),
+                ),
+        onPressed: () {
+                },
+       child:  Center(
+        child: const Text(
+                  'Save',
+                  style: TextStyle(fontSize: 20),
+                  textAlign: TextAlign.center ,
+                ),
+       )
+                ),
+              
+      ]
+        
           ),
       ]
-          )
+          ),
+    
+    ]
+    
     ),
   // ignore: dead_code
-  floatingActionButton: SizedBox(
-    width: 160,
-    height: 60,
-    child: FloatingActionButton(
-      onPressed: () {},
-      child: const Text(
-        'Add Image+',
-        style: TextStyle(fontSize: 20) ,
-      )
-    )
   )
     );
 }
