@@ -43,3 +43,46 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+# Flutter related
+.dart_tool/
+.flutter-plugins
+.packages
+.pub-cache/
+.pub/
+build/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+
+# Web-related
+web/build/
+
+# Android related
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+
+# Xcode
+*.xcworkspace
+*.xcodeproj
+*.xcuserstate
+
+# VS Code
+.vscode/
+
+# Others
+*.log
+*.lock
+*.tmp
+*.swp
+*.bak
+*.class
+*.apk
+*.aab
+*.jar
+*.war
+*.db
+*.sqlite
+*.sublime-workspace
+*.sublime-project
