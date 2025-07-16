@@ -1,8 +1,43 @@
 
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
+import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
+import 'dart:convert'; 
+
+
+
+Future<void> createPost(BuildContext context, catagory, String notes) async {
+  //blank until api link provided
+  final url = Uri.parse('');
+  final response = await http.post(
+    url,
+    headers: {'Content-Type': 'application/json'},
+    body: jsonEncode({
+      'Catagory': catagory,
+      'Notes' : notes,
+      // placeholder
+      'userId': 1,
+    }
+    )
+  );
+
+  if (response.statusCode == 201) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Note created and saved.')),
+    );
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Failed to save.'))
+    );
+  }
+
+}
+
+
+
+
 
 
 class Algebra extends StatefulWidget {

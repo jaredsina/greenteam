@@ -33,31 +33,87 @@ class _ChemistryState extends State<Chemistry> {
           ),
         ),
         const SizedBox(height: 40),
-        const Padding(
-          padding: EdgeInsets.only(left: 16.0),
-          child: Text(
-            'Type Here:',
-            style: TextStyle(
-              fontSize: 30,
-              fontStyle: FontStyle.normal,
-              color: Colors.black,
+          quill.QuillSimpleToolbar(
+            controller: controller
+          ),
+          Container(
+            decoration: const BoxDecoration(
+            border: Border(
+             top: BorderSide(color: Color(0xFF000000)),
+             bottom: BorderSide(color: Colors.black),
+             left: BorderSide(color: Colors.black),
+             right: BorderSide(color: Colors.black)
+             ),
+            ),
+          child: SizedBox(
+            height: 200,
+            child:quill.QuillEditor(
+            focusNode: FocusNode(), 
+            scrollController: ScrollController(), 
+            controller: controller,
+            config: quill.QuillEditorConfig(
+              placeholder: 'write words',
+    
+            ), 
             ),
           ),
-        ),
-      ],
-    ),
-  ),
-  floatingActionButton: SizedBox(
-    width: 160,
-    height: 60,
-    child: FloatingActionButton(
-      onPressed: () {},
-      child: const Text(
-        'Add Image+',
-        style: TextStyle(fontSize: 20) ,
-      )
+          ),
+      const SizedBox(height: 20,),
+          Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+        FilledButton.tonal(
+        style: ElevatedButton.styleFrom(
+          fixedSize: const Size(180,60),
+        alignment: Alignment.bottomRight,
+        shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+        backgroundColor: const Color.fromARGB(255, 103, 181, 250),
+                ),
+        onPressed: () {
+                },
+       child:  Center(
+        child: const Text(
+                  'Add Image+',
+                  style: TextStyle(fontSize: 20),
+                  textAlign: TextAlign.center ,
+                ),
+       )
+                ),
+      const SizedBox(width: 20,),
+       Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+        FilledButton.tonal(
+        style: ElevatedButton.styleFrom(
+          fixedSize: const Size(180,60),
+        alignment: Alignment.bottomLeft,
+        shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+        backgroundColor: const Color.fromARGB(255, 103, 181, 250),
+                ),
+        onPressed: () {
+                },
+       child:  Center(
+        child: const Text(
+                  'Save',
+                  style: TextStyle(fontSize: 20),
+                  textAlign: TextAlign.center ,
+                ),
+       )
+        )
+          ]
+       )
+          ]
+          )
+          
+      ] 
+       )
+          
     )
-  ),
-);
-}
-}
+      
+  );
+  }
+  }
