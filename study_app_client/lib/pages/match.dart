@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class Match extends StatefulWidget {
-  const Match({Key? key}) : super(key: key);
+class Matching extends StatefulWidget {
+  const Matching({Key? key}) : super(key: key);
 
-  final String title = 'Match';
+  final String title = 'Matching';
 
   @override
-  _MatchState createState() => _MatchState();
+  _MatchingState createState() => _MatchingState();
 }
 
-class _MatchState extends State<Match> {
+class _MatchingState extends State<Matching> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

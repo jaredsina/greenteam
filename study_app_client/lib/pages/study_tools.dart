@@ -32,7 +32,7 @@ class _StudyState extends State<Study> {
                   backgroundColor: Color.fromARGB(255, 103, 181, 250)
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context,'/study/quiz');
+                  Navigator.pushNamed(context,'/study/quiz/create');
                 },
                 child: Text('Quiz/Test', style: TextStyle(fontSize: 35),),
               ),
