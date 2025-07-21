@@ -9,54 +9,58 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Auth Buttons',
-      home: const AuthPage(),
-      debugShowCheckedModeBanner: false,
-    );
+    return MaterialApp(debugShowCheckedModeBanner: false);
   }
 }
 
-class AuthPage extends StatelessWidget {
-  const AuthPage({super.key});
+class SignLog extends StatelessWidget {
+  const SignLog({super.key, required String title});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              FilledButton(
-                onPressed: () {
-                  // TODO: Handle Sign Up
-                },
-                style: FilledButton.styleFrom(
-                  backgroundColor: Colors.deepPurple,
-                  minimumSize: const Size(double.infinity, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+              Text("StudyHackerAI", style: TextStyle(fontSize: 30)),
+              SizedBox(height: 20),
+              Padding(
+                padding: EdgeInsets.all(25),
+                child: FilledButton.tonal(
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: const Size(150, 90),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    backgroundColor: Color.fromARGB(255, 100, 148, 237),
                   ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/study/quiz');
+                  },
+                  child: Text('Sign Up', style: TextStyle(fontSize: 25)),
                 ),
-                child: const Text('Sign Up', style: TextStyle(fontSize: 18)),
               ),
-              const SizedBox(height: 16),
-              OutlinedButton(
-                onPressed: () {
-                  // TODO: Handle Log In
-                },
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: Colors.deepPurple,
-                  side: const BorderSide(color: Colors.deepPurple),
-                  minimumSize: const Size(double.infinity, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+              Padding(
+                padding: EdgeInsets.all(25),
+                child: FilledButton.tonal(
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: const Size(150, 90),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    backgroundColor: Color.fromARGB(255, 103, 181, 250),
                   ),
+
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/study/flashcard');
+                  },
+                  child: Text('Log In', style: TextStyle(fontSize: 25)),
                 ),
-                child: const Text('Log In', style: TextStyle(fontSize: 18)),
               ),
             ],
           ),

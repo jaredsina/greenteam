@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'pages/schedule.dart';
 
 import 'pages/study_tools.dart';
+import 'pages/signup_login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
         //   seedColor: const Color.fromARGB(100, 106, 173, 249),
         // ),
       ),
-      home: const MyHomePage(title: 'StudyHackAI'),
+      home: const SignLog(title: 'StudyHackAI'),
       routes: {
         // ADD YOUR ROUTES HERE
         '/schedule': (context) => const Schedule(),
