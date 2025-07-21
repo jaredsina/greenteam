@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:study_app_client/pages/flashcard.dart';
+import 'package:study_app_client/pages/match.dart';
+import 'package:study_app_client/pages/quiz.dart';
+import 'package:study_app_client/pages/quiz_create.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'Topics/ancient_civilizations.dart';
 import 'Pages/notes.dart';
@@ -66,11 +70,12 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(100, 44, 153, 237),
-        ),
+
+        // colorScheme: ColorScheme.fromSeed(
+        //   seedColor: const Color.fromARGB(100, 106, 173, 249),
+        // ),
       ),
-      home: const MyHomePage(title: 'Study App'),
+      home: const MyHomePage(title: 'StudyHackAI'),
       routes: {
         // ADD YOUR ROUTES HERE
         '/schedule': (context) => const Schedule(),
@@ -106,6 +111,10 @@ class MyApp extends StatelessWidget {
         '/directions' : (context) => Directions(),
         '/clothing' : (context) => Clothing(),
         '/verbs' : (context) => Verbs(),
+        '/study/quiz/create': (context) => const CreateQuiz(),
+        '/study/flashcard': (context) => const Flashcard(),
+        '/study/matching': (context) => const Matching(),
+        '/study/quiz': (context) => const Quiz(),
       },
     );
   }
@@ -156,52 +165,187 @@ class _MyHomePageState extends State<MyHomePage> {
         // TRY THIS: Try changing the color here to a specific color (to
         // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
         // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Color.fromARGB(255, 44, 153, 237),
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            FilledButton(
-              onPressed: () {
-                // Navigate to the second screen using a named route.
-                Navigator.pushNamed(context, '/schedule');
-              },
-              child: const Text('Schedule'),
-            ),
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          // Center is a layout widget. It takes a single child and positions it
+          // in the middle of the parent.
+          child: Column(
+            // Column is also a layout widget. It takes a list of children and
+            // arranges them vertically. By default, it sizes itself to fit its
+            // children horizontally, and tries to be as tall as its parent.
+            //
+            // Column has various properties to control how it sizes itself and
+            // how it positions its children. Here we use mainAxisAlignment to
+            // center the children vertically; the main axis here is the vertical
+            // axis because Columns are vertical (the cross axis would be
+            // horizontal).
+            //
+            // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
+            // action in the IDE, or press "p" in the console), to see the
+            // wireframe for each widget.
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Text("Hello, \n Nico!", style: TextStyle(fontSize: 50)),
+              SearchBar(
+                leading: const Icon(Icons.search),
+                padding: const WidgetStatePropertyAll(
+                  EdgeInsets.symmetric(horizontal: 16),
+                ),
+              ),
+              SizedBox(height: 20),
 
-          FilledButton(
-            onPressed: () {
-              // Navigate to the second screen using a named route.
-              Navigator.pushNamed(context, '/study');
-            },
-            child: const Text('Study')),
-          
-            FilledButton(
-              onPressed: () {
-                Navigator.pushNamed(context,'/notes');
-              },
-              child: const Text('Notes')),
+              // Topic Buttons
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  FilledButton(
+                    // Free Hours Page
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/study');
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.all(
+                        Color.fromARGB(255, 38, 0, 255),
+                      ),
+                      minimumSize: WidgetStateProperty.all(Size(150, 150)),
+                      shape: WidgetStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                    ),
+                    child: Column(
+                      spacing: 12,
+                      children: [
+                        Text('Free Hours', style: TextStyle(fontSize: 20)),
+                        const Icon(Icons.schedule, size: 28),
+                      ],
+                    ),
+                  ),
+
+                  FilledButton(
+                    // Notes Page
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/study');
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.all(
+                        Color.fromARGB(255, 18, 12, 96),
+                      ),
+                      minimumSize: WidgetStateProperty.all(Size(150, 150)),
+                      shape: WidgetStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                    ),
+                    child: Column(
+                      spacing: 12,
+                      children: [
+                        Text('Notes', style: TextStyle(fontSize: 25)),
+                        const Icon(Icons.auto_stories, size: 28),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+
+              SizedBox(height: 20),
+              SizedBox(width: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  FilledButton(
+                    // Study Tools Button
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/study');
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.all(
+                        Color.fromARGB(255, 0, 166, 237),
+                      ),
+                      minimumSize: WidgetStateProperty.all(Size(150, 150)),
+                      shape: WidgetStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                    ),
+                    child: Column(
+                      spacing: 12,
+                      children: [
+                        Text('Study Tools', style: TextStyle(fontSize: 16)),
+                        const Icon(Icons.design_services, size: 28),
+                      ],
+                    ),
+                  ),
+
+                  FilledButton(
+                    // AI Helper Button
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/study');
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.all(
+                        Color.fromARGB(255, 0, 103, 182),
+                      ),
+                      minimumSize: WidgetStateProperty.all(Size(150, 150)),
+                      shape: WidgetStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                    ),
+                    child: Column(
+                      spacing: 12,
+                      children: [
+                        Text('AI Helper', style: TextStyle(fontSize: 25)),
+                        const Icon(Icons.smart_toy, size: 28),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 20),
+              SizedBox(width: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  FilledButton(
+                    // Schedule Button
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/schedule');
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.all(
+                        Color.fromARGB(255, 106, 173, 249),
+                      ),
+                      minimumSize: WidgetStateProperty.all(Size(320, 60)),
+                      shape: WidgetStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                    ),
+                    child: Row(
+                      spacing: 16,
+                      children: [
+                        Text('Schedule', style: TextStyle(fontSize: 25)),
+                        const Icon(Icons.calendar_month, size: 28),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
+        ),
       ),
     );
   }
