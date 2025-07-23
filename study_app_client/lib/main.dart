@@ -118,14 +118,15 @@ class _MyHomePageState extends State<MyHomePage> {
             // wireframe for each widget.
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Text("Hello, \n Nico!", style: TextStyle(fontSize: 50)),
+              Text("Hello,\nJanav!", style: TextStyle(fontSize: 50)),
+              SizedBox(height: 20),
               SearchBar(
                 leading: const Icon(Icons.search),
                 padding: const WidgetStatePropertyAll(
                   EdgeInsets.symmetric(horizontal: 16),
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 60),
 
               // Topic Buttons
               Row(
@@ -134,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   FilledButton(
                     // Free Hours Page
                     onPressed: () {
-                      Navigator.pushNamed(context, '/study');
+                      Navigator.pushNamed(context, '/schedule');
                     },
                     style: ButtonStyle(
                       backgroundColor: WidgetStateProperty.all(
@@ -150,7 +151,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Column(
                       spacing: 12,
                       children: [
-                        Text('Free Hours', style: TextStyle(fontSize: 20)),
+                        Text('Schedule', style: TextStyle(fontSize: 20)),
                         const Icon(Icons.schedule, size: 28),
                       ],
                     ),
@@ -159,7 +160,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   FilledButton(
                     // Notes Page
                     onPressed: () {
-                      Navigator.pushNamed(context, '/study');
+                      Navigator.pushNamed(context, '/notes');
                     },
                     style: ButtonStyle(
                       backgroundColor: WidgetStateProperty.all(
@@ -234,37 +235,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       children: [
                         Text('AI Helper', style: TextStyle(fontSize: 25)),
                         const Icon(Icons.smart_toy, size: 28),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 20),
-              SizedBox(width: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  FilledButton(
-                    // Schedule Button
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/schedule');
-                    },
-                    style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(
-                        Color.fromARGB(255, 106, 173, 249),
-                      ),
-                      minimumSize: WidgetStateProperty.all(Size(320, 60)),
-                      shape: WidgetStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                      ),
-                    ),
-                    child: Row(
-                      spacing: 16,
-                      children: [
-                        Text('Schedule', style: TextStyle(fontSize: 25)),
-                        const Icon(Icons.calendar_month, size: 28),
                       ],
                     ),
                   ),
