@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'pages/schedule.dart';
-
 import 'pages/study_tools.dart';
 import 'pages/signup_login.dart';
+import 'pages/signup.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Home',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -38,11 +37,12 @@ class MyApp extends StatelessWidget {
         //   seedColor: const Color.fromARGB(100, 106, 173, 249),
         // ),
       ),
-      home: const SignLog(title: 'StudyHackAI'),
+      home: const SignLog(),
       routes: {
         // ADD YOUR ROUTES HERE
         '/schedule': (context) => const Schedule(),
         '/study': (context) => const Study(),
+        '/signup': (context) => const SignUp(),
       },
     );
   }
