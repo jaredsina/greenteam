@@ -5,11 +5,11 @@ import 'pages/signup_login.dart';
 import 'pages/signup.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const Home());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Home extends StatelessWidget {
+  const Home({super.key});
 
   // This widget is the root of your application.
   @override
@@ -42,7 +42,9 @@ class MyApp extends StatelessWidget {
         // ADD YOUR ROUTES HERE
         '/schedule': (context) => const Schedule(),
         '/study': (context) => const Study(),
-        '/signup': (context) => const SignUp(),
+        '/signlog': (context) => const SignLog(),
+        '/signup': (context) => const SignUp(title: 'SignUp'),
+        '/home': (context) => const Home(),
       },
     );
   }
