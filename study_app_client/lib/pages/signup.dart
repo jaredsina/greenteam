@@ -56,50 +56,55 @@ class SignUp extends StatelessWidget {
                 ),
                 hintText: "Reenter password",
               ),
+
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(25),
+                    child: FilledButton.tonal(
+                      style: ElevatedButton.styleFrom(
+                        fixedSize: const Size(80, 30),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        backgroundColor: Color.fromARGB(255, 0, 174, 255),
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/home');
+                      },
+                      child: Row(
+                        spacing: 5,
+                        children: [
+                          Text('Submit', style: TextStyle(fontSize: 16)),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(25),
+                    child: FilledButton.tonal(
+                      style: ElevatedButton.styleFrom(
+                        fixedSize: const Size(80, 30),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/signlog');
+                      },
+                      child: Row(
+                        spacing: 5,
+                        children: [
+                          Text('Cancel', style: TextStyle(fontSize: 16)),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
-        ),
-        Row(
-          children: [
-            Padding(
-              padding: EdgeInsets.all(25),
-              child: FilledButton.tonal(
-                style: ElevatedButton.styleFrom(
-                  fixedSize: const Size(80, 30),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  backgroundColor: Color.fromARGB(255, 0, 174, 255),
-                ),
-                onPressed: () {
-                  Navigator.pushNamed(context, '/home');
-                },
-                child: Row(
-                  spacing: 5,
-                  children: [Text('Submit', style: TextStyle(fontSize: 16))],
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(25),
-              child: FilledButton.tonal(
-                style: ElevatedButton.styleFrom(
-                  fixedSize: const Size(80, 30),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  backgroundColor: Color.fromARGB(255, 255, 255, 255),
-                ),
-                onPressed: () {
-                  Navigator.pushNamed(context, '/signlog');
-                },
-                child: Row(
-                  spacing: 5,
-                  children: [Text('Cancel', style: TextStyle(fontSize: 16))],
-                ),
-              ),
-            ),
-          ],
         ),
       ),
     );
