@@ -12,6 +12,166 @@ class Schedule extends StatefulWidget {
 }
 
 class _ScheduleState extends State<Schedule> {
+  final CalendarController _calendarController = CalendarController();
+  DateTime? startDate;
+  DateTime? endDate;
+  int? _startHour = 0;
+  int? _endHour = 1;
+  String? _errorTextStart;
+  String? _errorTextEnd;
+  CalendarDataSource<Object?>? _events;
+  final _formKey = GlobalKey<FormState>();
+
+  Future<void> _dialogBuilder(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Enter your free hours'),
+          actions: <Widget>[
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  DropdownButtonFormField(
+                    onChanged: (int? i) {
+                      setState(() {
+                        _startHour = i;
+                      });
+                    },
+                    value: _startHour,
+                    items: [
+                      for (var i = 0; i <= 24; i++)
+                        DropdownMenuItem(value: i, child: Text("$i")),
+                    ],
+                    validator: (int? value) {
+                      if (value == null) {
+                        return "Select a start hour";
+                      } else if (value > _endHour!) {
+                        return "Start hour must come before end hour.";
+                      } else {
+                        return null;
+                      }
+                    },
+                  ),
+
+                  Text('to', style: TextStyle(fontSize: 18)),
+
+                  DropdownButtonFormField(
+                    onChanged: (int? i) {
+                      setState(() {
+                        _endHour = i;
+                      });
+                    },
+                    value: _endHour,
+                    items: [
+                      for (var i = 0; i <= 24; i++)
+                        DropdownMenuItem(value: i, child: Text("$i")),
+                    ],
+                    validator: (int? value) {
+                      if (value == null) {
+                        return "Select an end hour";
+                      } else if (value < _startHour!) {
+                        print("end hour bad");
+                        return "End hour must come after start hour";
+                      } else {
+                        return null;
+                      }
+                    },
+                  ),
+                  Row(
+                    children: [
+                      const SizedBox(height: 10),
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          textStyle: Theme.of(context).textTheme.labelLarge,
+                        ),
+                        child: const Text('Cancel'),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          textStyle: Theme.of(context).textTheme.labelLarge,
+                        ),
+                        child: const Text('Enter'),
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            print("Form is valid");
+                          } else {
+                            print("Form is invalid");
+                          }
+
+                          if (_startHour == null) {
+                            setState(() {
+                              _errorTextStart = "Pick a start hour.";
+                            });
+                            print("Pick a start hour.");
+                            return;
+                          }
+
+                          if (_endHour == null) {
+                            setState(() {
+                              _errorTextEnd = "Pick an end hour.";
+                            });
+                            print("Pick a end hour.");
+                            return;
+                          }
+
+                          if (startDate == null || endDate == null) {
+                            setState(() {
+                              _errorTextStart = "Pick a date.";
+                              _errorTextEnd = "Pick a date.";
+                            });
+                            print("Pick a date.");
+                            return;
+                          }
+
+                          setState(() {
+                            startDate = _calendarController.selectedDate;
+                            endDate = _calendarController.selectedDate;
+                          });
+
+                          if ((_endHour ?? 0) <= (_startHour ?? 0)) {
+                            _errorTextStart =
+                                "Start hour must be before the end hour.";
+                            _errorTextEnd =
+                                "End hour must be after the start hour.";
+                            return;
+                          }
+
+                          DateTime? startTime = startDate?.copyWith(
+                            hour: _startHour,
+                          );
+                          DateTime? endTime = endDate?.copyWith(hour: _endHour);
+
+                          final Appointment session = Appointment(
+                            startTime: startTime ?? DateTime.now(),
+                            endTime: endTime ?? DateTime.now(),
+                            subject: 'Add Appointment',
+                            color: Colors.blue,
+                          );
+                          _events?.appointments!.add(session);
+                          _events?.notifyListeners(
+                            CalendarDataSourceAction.add,
+                            <Appointment>[session],
+                          );
+
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,6 +180,7 @@ class _ScheduleState extends State<Schedule> {
 
         title: Text(widget.title),
       ),
+
       body: Column(
         children: <Widget>[
           Padding(
@@ -28,21 +189,29 @@ class _ScheduleState extends State<Schedule> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('Schedule', style: TextStyle(fontSize: 28)),
-                FilledButton(onPressed: () {}, child: const Text('Export')),
+                Row(
+                  children: [
+                    FilledButton(
+                      onPressed: () {
+                        _dialogBuilder(context);
+                      },
+                      child: Text("Free Hours"),
+                    ),
+
+                    FilledButton(onPressed: () {}, child: const Text('Export')),
+                  ],
+                ),
               ],
             ),
           ),
 
-          Expanded(
-            child: SfCalendar(
-              view: CalendarView.week,
-              showNavigationArrow: true,
-              firstDayOfWeek: 1,
-              timeSlotViewSettings: TimeSlotViewSettings(
-                nonWorkingDays: <int>[DateTime.friday, DateTime.saturday],
-                numberOfDaysInView: 3,
-              ),
-            ),
+          SfCalendar(
+            view: CalendarView.month,
+            controller: _calendarController,
+            showNavigationArrow: true,
+            firstDayOfWeek: 1,
+            monthViewSettings: MonthViewSettings(numberOfWeeksInView: 1),
+            dataSource: _events,
           ),
         ],
       ),

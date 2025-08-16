@@ -24,14 +24,10 @@ class _FreeHoursState extends State<FreeHours> {
           Text('Select study day(s):'),
           Expanded(
             child: SfCalendar(
-              view: CalendarView.week,
+              view: CalendarView.month,
               showNavigationArrow: true,
               firstDayOfWeek: 1,
-              timeSlotViewSettings: TimeSlotViewSettings(
-                nonWorkingDays: <int>[DateTime.friday, DateTime.saturday],
-                numberOfDaysInView: 5,
-                timeIntervalHeight: 0,
-              ),
+              monthViewSettings: MonthViewSettings(numberOfWeeksInView: 1),
             ),
           ),
         ],
