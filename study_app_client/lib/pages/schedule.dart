@@ -17,8 +17,6 @@ class _ScheduleState extends State<Schedule> {
   DateTime? endDate;
   int? _startHour = 0;
   int? _endHour = 1;
-  String? _errorTextStart;
-  String? _errorTextEnd;
   CalendarDataSource<Object?>? _events;
   final _formKey = GlobalKey<FormState>();
 
@@ -103,41 +101,14 @@ class _ScheduleState extends State<Schedule> {
                             print("Form is invalid");
                           }
 
-                          if (_startHour == null) {
-                            setState(() {
-                              _errorTextStart = "Pick a start hour.";
-                            });
-                            print("Pick a start hour.");
-                            return;
-                          }
-
-                          if (_endHour == null) {
-                            setState(() {
-                              _errorTextEnd = "Pick an end hour.";
-                            });
-                            print("Pick a end hour.");
-                            return;
-                          }
-
-                          if (startDate == null || endDate == null) {
-                            setState(() {
-                              _errorTextStart = "Pick a date.";
-                              _errorTextEnd = "Pick a date.";
-                            });
-                            print("Pick a date.");
-                            return;
-                          }
-
                           setState(() {
                             startDate = _calendarController.selectedDate;
                             endDate = _calendarController.selectedDate;
                           });
 
-                          if ((_endHour ?? 0) <= (_startHour ?? 0)) {
-                            _errorTextStart =
-                                "Start hour must be before the end hour.";
-                            _errorTextEnd =
-                                "End hour must be after the start hour.";
+                          if (startDate == null || endDate == null) {
+                            // TODO: Display this error somewhere
+                            print("Pick a date.");
                             return;
                           }
 
@@ -209,6 +180,9 @@ class _ScheduleState extends State<Schedule> {
             view: CalendarView.month,
             controller: _calendarController,
             showNavigationArrow: true,
+            onSelectionChanged: (calendarSelectionDetails) {
+              print(calendarSelectionDetails);
+            },
             firstDayOfWeek: 1,
             monthViewSettings: MonthViewSettings(numberOfWeeksInView: 1),
             dataSource: _events,
