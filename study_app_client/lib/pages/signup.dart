@@ -56,14 +56,14 @@ class SignUp extends StatelessWidget {
                 ),
                 hintText: "Reenter password",
               ),
-
+              SizedBox(height: 40),
               Row(
                 children: [
                   Padding(
-                    padding: EdgeInsets.all(25),
+                    padding: EdgeInsets.all(15),
                     child: FilledButton.tonal(
                       style: ElevatedButton.styleFrom(
-                        fixedSize: const Size(80, 30),
+                        fixedSize: const Size(100, 40),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
@@ -84,7 +84,7 @@ class SignUp extends StatelessWidget {
                     padding: EdgeInsets.all(25),
                     child: FilledButton.tonal(
                       style: ElevatedButton.styleFrom(
-                        fixedSize: const Size(80, 30),
+                        fixedSize: const Size(100, 40),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
