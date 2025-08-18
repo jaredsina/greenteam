@@ -4,6 +4,7 @@ import 'pages/schedule.dart';
 import 'pages/study_tools.dart';
 import 'pages/signup_login.dart';
 import 'pages/signup.dart';
+import 'pages/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
         '/signlog': (context) => const SignLog(),
         '/signup': (context) => const SignUp(title: 'SignUp'),
         '/home': (context) => const Home(),
+        '/login': (context) => const LogIn(title: 'LogIn'),
       },
     );
   }

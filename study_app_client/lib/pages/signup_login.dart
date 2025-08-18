@@ -51,7 +51,7 @@ class _SignLogState extends State<SignLog> {
                   ),
 
                   onPressed: () {
-                    Navigator.pushNamed(context, '/study/flashcard');
+                    Navigator.pushNamed(context, '/login');
                   },
                   child: Text('Log In', style: TextStyle(fontSize: 25)),
                 ),
