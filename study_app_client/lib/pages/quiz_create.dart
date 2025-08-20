@@ -1,45 +1,47 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class CreateQuiz extends StatefulWidget {
   const CreateQuiz({Key? key}) : super(key: key);
 
-  final String title = 'Create CreateQuiz';
+  final String title = 'Create Quiz';
 
   @override
   _CreateQuizState createState() => _CreateQuizState();
 }
 
+// Store dropdown selections as nullable Strings
 String? selectedDifficulty;
 String? selectedLength;
 String? selectedType;
 
 class _CreateQuizState extends State<CreateQuiz> {
-  EdgeInsetsGeometry padding = EdgeInsets.all(20);
+  EdgeInsetsGeometry padding = const EdgeInsets.all(20);
+  String topic = ""; // Store search topic text
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-
         title: Text(widget.title),
       ),
-
       body: Center(
         child: Container(
-          width: double.infinity, // Makes Column take up full width
+          width: double.infinity,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center, // horizontal
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Text(
-                'CreateQuiz/Test',
+              const Text(
+                'Create Quiz/Test',
                 style: TextStyle(fontSize: 36, fontStyle: FontStyle.italic),
               ),
-              Text(
+              const Text(
                 'Type Topic',
                 style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic),
               ),
+
+              // Search Bar for topic
               Padding(
                 padding: padding,
                 child: SearchBar(
@@ -48,6 +50,11 @@ class _CreateQuizState extends State<CreateQuiz> {
                   padding: const WidgetStatePropertyAll(
                     EdgeInsets.symmetric(horizontal: 16),
                   ),
+                  onChanged: (value) {
+                    setState(() {
+                      topic = value;
+                    });
+                  },
                 ),
               ),
 
@@ -66,7 +73,7 @@ class _CreateQuizState extends State<CreateQuiz> {
                   ),
                   dropdownColor: Colors.white,
                   iconEnabledColor: Colors.white,
-                  style: TextStyle(color: const Color.fromARGB(255, 5, 5, 5)),
+                  style: const TextStyle(color: Colors.black),
                   onChanged: (value) =>
                       setState(() => selectedDifficulty = value),
                   items: ['Easy', 'Medium', 'Hard', 'Expert']
@@ -90,7 +97,7 @@ class _CreateQuizState extends State<CreateQuiz> {
                   ),
                   dropdownColor: Colors.white,
                   iconEnabledColor: Colors.white,
-                  style: TextStyle(color: const Color.fromARGB(255, 7, 7, 7)),
+                  style: const TextStyle(color: Colors.black),
                   onChanged: (value) => setState(() => selectedLength = value),
                   items:
                       [
@@ -121,7 +128,7 @@ class _CreateQuizState extends State<CreateQuiz> {
                   ),
                   dropdownColor: Colors.white,
                   iconEnabledColor: Colors.white,
-                  style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
+                  style: const TextStyle(color: Colors.black),
                   onChanged: (value) => setState(() => selectedType = value),
                   items:
                       [
@@ -137,29 +144,29 @@ class _CreateQuizState extends State<CreateQuiz> {
                 ),
               ),
 
+              // Create button
               Padding(
                 padding: padding,
                 child: ElevatedButton.icon(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/study/quiz');
+                    // Pass a simple map as arguments to avoid type issues
+                    Navigator.pushNamed(
+                      context,
+                      '/study/quiz',
+                      arguments: {
+                        'selectedDifficulty': selectedDifficulty,
+                        'selectedLength': selectedLength,
+                        'selectedType': selectedType,
+                        'topic': topic,
+                      },
+                    );
                   },
-                  label: Text('Create'),
+                  label: const Text('Create'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
                     foregroundColor: Colors.black,
                   ),
-                  icon: Icon(Icons.add),
-                ),
-              ),
-
-              Padding(
-                padding: padding,
-                child: TextButton(
-                  onPressed: () => {},
-                  child: Text('Import'),
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.black,
-                  ),
+                  icon: const Icon(Icons.add),
                 ),
               ),
             ],

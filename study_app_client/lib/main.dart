@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:study_app_client/pages/flashcard.dart';
 import 'package:study_app_client/pages/match.dart';
 import 'package:study_app_client/pages/quiz.dart';
+import 'package:study_app_client/pages/quiz2.dart';
+import 'package:study_app_client/pages/quiz3.dart';
+import 'package:study_app_client/pages/quiz4.dart';
+import 'package:study_app_client/pages/quiz5.dart';
 import 'package:study_app_client/pages/quiz_create.dart';
 
 import 'pages/schedule.dart';
@@ -50,6 +54,11 @@ class MyApp extends StatelessWidget {
         '/study/flashcard': (context) => const Flashcard(),
         '/study/matching': (context) => const Matching(),
         '/study/quiz': (context) => const Quiz(),
+        '/study/quiz2': (context) => const Quiz2(),
+        '/study/quiz3': (context) => const Quiz3(),
+        '/study/quiz4': (context) => const Quiz4(),
+        '/study/quiz5': (context) => const Quiz5(),
+
       },
     );
   }
