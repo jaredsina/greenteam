@@ -1,5 +1,14 @@
 import 'package:flutter/material.dart';
 
+class QuizArguments {
+  final String selectedDifficulty;
+  final String selectedLength;
+  final String selectedType;
+  final String topic;
+
+  QuizArguments(this.selectedDifficulty, this.selectedLength, this.topic, this.selectedType);
+}
+
 class Quiz extends StatefulWidget {
   final dynamic topic;
 
@@ -18,11 +27,11 @@ class _QuizState extends State<Quiz> {
 
   @override
   Widget build(BuildContext context) {
-    final String? data = ModalRoute.of(context)?.settings.arguments as String?;
+    final QuizArguments data = ModalRoute.of(context)?.settings.arguments as QuizArguments;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.topic?.toString() ?? data ?? 'Quiz'),
+        title: Text(widget.topic?.toString() ?? 'Quiz'),
       ),
       body: Center(
         child: Column(
@@ -33,9 +42,8 @@ class _QuizState extends State<Quiz> {
     );
   }
 
-  List<Widget> makeMultipleChoice(String? data) {
+  List<Widget> makeMultipleChoice(QuizArguments data) {
     return <Widget>[
-      Padding(padding: padding, child: Text(data ?? 'no data received')),
       Padding(
         padding: padding,
         child: OutlinedButton(
@@ -85,9 +93,8 @@ class _QuizState extends State<Quiz> {
     ];
   }
 
-  List<Widget> makeTF(String? data) {
+  List<Widget> makeTF(QuizArguments data) {
     return <Widget>[
-      Padding(padding: padding, child: Text(data ?? 'no data received')),
       Padding(
         padding: padding,
         child: OutlinedButton(
@@ -117,9 +124,8 @@ class _QuizState extends State<Quiz> {
     ];
   }
 
-  List<Widget> makeWR(String? data) {
+  List<Widget> makeWR(QuizArguments data) {
     return <Widget>[
-      Padding(padding: padding, child: Text(data ?? 'no data received')),
       Padding(
         padding: padding,
         child: const TextField(
@@ -138,9 +144,8 @@ class _QuizState extends State<Quiz> {
     ];
   }
 
-  List<Widget> makeMatch(String? data) {
+  List<Widget> makeMatch(QuizArguments data) {
     return <Widget>[
-      Padding(padding: padding, child: Text(data ?? 'no data received')),
       Padding(
         padding: padding,
         child: Row(
@@ -222,12 +227,6 @@ class _QuizState extends State<Quiz> {
             ),
           ],
         ),
-      ),
-      ElevatedButton(
-        onPressed: () {
-          Navigator.pushNamed(context, '/study/quiz2');
-        },
-        child: const Text('Next'),
       ),
     ];
   }

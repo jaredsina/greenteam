@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:study_app_client/pages/quiz.dart';
 
 class CreateQuiz extends StatefulWidget {
   const CreateQuiz({Key? key}) : super(key: key);
@@ -10,14 +11,14 @@ class CreateQuiz extends StatefulWidget {
   _CreateQuizState createState() => _CreateQuizState();
 }
 
-// Store dropdown selections as nullable Strings
-String? selectedDifficulty;
-String? selectedLength;
-String? selectedType;
-
 class _CreateQuizState extends State<CreateQuiz> {
   EdgeInsetsGeometry padding = const EdgeInsets.all(20);
   String topic = ""; // Store search topic text
+
+  // Store dropdown selections as nullable Strings
+  String? selectedDifficulty;
+  String? selectedLength;
+  String? selectedType;
 
   @override
   Widget build(BuildContext context) {
@@ -149,16 +150,22 @@ class _CreateQuizState extends State<CreateQuiz> {
                 padding: padding,
                 child: ElevatedButton.icon(
                   onPressed: () {
+                    if (selectedDifficulty == null ||
+                        selectedLength == null ||
+                        selectedType == null) {
+                      return;
+                    }
+
                     // Pass a simple map as arguments to avoid type issues
                     Navigator.pushNamed(
                       context,
                       '/study/quiz',
-                      arguments: {
-                        'selectedDifficulty': selectedDifficulty,
-                        'selectedLength': selectedLength,
-                        'selectedType': selectedType,
-                        'topic': topic,
-                      },
+                      arguments: QuizArguments(
+                        selectedDifficulty!,
+                        selectedLength!,
+                        topic,
+                        selectedType!,
+                      ),
                     );
                   },
                   label: const Text('Create'),
