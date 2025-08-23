@@ -6,7 +6,45 @@ class QuizArguments {
   final String selectedType;
   final String topic;
 
-  QuizArguments(this.selectedDifficulty, this.selectedLength, this.topic, this.selectedType);
+  QuizArguments(
+    this.selectedDifficulty,
+    this.selectedLength,
+    this.topic,
+    this.selectedType,
+  );
+}
+
+class QuestionTrueFalse {
+  final String question;
+  final bool answer;
+
+  QuestionTrueFalse(this.question, this.answer);
+}
+
+class QuestionMatching {
+  final List<Map<String, String>> pairs;
+
+  QuestionMatching(this.pairs);
+}
+
+class QuestionWrittenResponse {
+  final String question;
+
+  QuestionWrittenResponse(this.question);
+}
+
+class QuestionMultipleChoice {
+  final String question;
+  final List<MultipleChoiceOption> options;
+
+  QuestionMultipleChoice(this.question, this.options);
+}
+
+class MultipleChoiceOption {
+  final String value;
+  final bool isCorrect;
+
+  MultipleChoiceOption(this.value, this.isCorrect);
 }
 
 class Quiz extends StatefulWidget {
@@ -22,32 +60,31 @@ class _QuizState extends State<Quiz> {
   final ButtonStyle style = ElevatedButton.styleFrom(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     padding: const EdgeInsets.all(10),
+    fixedSize: Size(200, 100),
   );
   final EdgeInsets padding = const EdgeInsets.all(10);
+  int currentQuestion = 0;
 
-  List<Widget> getQuizType(QuizArguments arguments){
+  List<Widget> getQuizType(QuizArguments arguments) {
     String quizType = arguments.selectedType;
 
-    if(quizType=="True/False"){
+    if (quizType == "True/False") {
       return makeTF(arguments);
-    }
-    else if(quizType=="Matching"){
+    } else if (quizType == "Matching") {
       return makeMatch(arguments);
-    }
-    else if(quizType=="Written Response"){
+    } else if (quizType == "Written Response") {
       return makeWR(arguments);
-    }
-    else if(quizType=="Multiple Choice"){
+    } else if (quizType == "Multiple Choice") {
       return makeMultipleChoice(arguments);
-    }
-    else {
+    } else {
       throw Error();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final QuizArguments data = ModalRoute.of(context)?.settings.arguments as QuizArguments;
+    final QuizArguments data =
+        ModalRoute.of(context)?.settings.arguments as QuizArguments;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -114,15 +151,50 @@ class _QuizState extends State<Quiz> {
   }
 
   List<Widget> makeTF(QuizArguments data) {
+    List<QuestionTrueFalse> questions = [
+      QuestionTrueFalse('The capital of Australia is Sydney.', false),
+      QuestionTrueFalse('Humans have more than five senses.', true),
+      QuestionTrueFalse('Water boils at 100°C at sea level.', true),
+      QuestionTrueFalse('Bats are blind.', false),
+      QuestionTrueFalse(
+        'The Great Wall of China is visible from space with the naked eye.',
+        false,
+      ),
+      QuestionTrueFalse('The capital of Australia is Sydney.', false),
+      QuestionTrueFalse('Humans have more than five senses.', true),
+      QuestionTrueFalse('Water boils at 100°C at sea level.', true),
+      QuestionTrueFalse('Bats are blind.', false),
+      QuestionTrueFalse(
+        'The Great Wall of China is visible from space with the naked eye.',
+        false,
+      ),
+      QuestionTrueFalse('The capital of Australia is Sydney.', false),
+      QuestionTrueFalse('Humans have more than five senses.', true),
+      QuestionTrueFalse('Water boils at 100°C at sea level.', true),
+      QuestionTrueFalse('Bats are blind.', false),
+      QuestionTrueFalse(
+        'The Great Wall of China is visible from space with the naked eye.',
+        false,
+      ),
+      QuestionTrueFalse('The capital of Australia is Sydney.', false),
+      QuestionTrueFalse('Humans have more than five senses.', true),
+      QuestionTrueFalse('Water boils at 100°C at sea level.', true),
+      QuestionTrueFalse('Bats are blind.', false),
+      QuestionTrueFalse(
+        'The Great Wall of China is visible from space with the naked eye.',
+        false,
+      ),
+    ];
+
+    QuestionTrueFalse question = questions[currentQuestion];
+
     return <Widget>[
       Padding(
         padding: padding,
-        child: OutlinedButton(
-          onPressed: () {},
-          style: style,
-          child: const Text(
-            'A) Troodon had one of the smallest brain-to-body ratios among non-avian dinosaurs, indicating it relied mainly on instinct rather than learned behavior.',
-          ),
+        child: Text(
+          '${currentQuestion + 1}. ${question.question}',
+          style: TextStyle(fontSize: 24),
+          textAlign: TextAlign.center,
         ),
       ),
       Padding(
@@ -130,14 +202,22 @@ class _QuizState extends State<Quiz> {
         child: OutlinedButton(
           onPressed: () {},
           style: style,
-          child: const Text(
-            'B) Fossilized nests attributed to Troodon suggest it laid a single egg per clutch, similar to most modern reptiles.',
-          ),
+          child: const Text('True'),
+        ),
+      ),
+      Padding(
+        padding: padding,
+        child: OutlinedButton(
+          onPressed: () {},
+          style: style,
+          child: const Text('False'),
         ),
       ),
       ElevatedButton(
         onPressed: () {
-          Navigator.pushNamed(context, '/study/quiz2');
+          setState(() {
+            currentQuestion += 1;
+          });
         },
         child: const Text('Next'),
       ),
