@@ -13,12 +13,17 @@ class Schedule extends StatefulWidget {
 
 class _ScheduleState extends State<Schedule> {
   final CalendarController _calendarController = CalendarController();
-  DateTime? startDate;
-  DateTime? endDate;
   int? _startHour = 0;
   int? _endHour = 1;
-  CalendarDataSource<Object?>? _events;
+  _AppointmentDataSource? _events;
+  final List<Appointment> appointments = [];
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    _events = _AppointmentDataSource(appointments);
+  }
 
   Future<void> _dialogBuilder(BuildContext context) {
     return showDialog<void>(
@@ -70,7 +75,6 @@ class _ScheduleState extends State<Schedule> {
                       if (value == null) {
                         return "Select an end hour";
                       } else if (value < _startHour!) {
-                        print("end hour bad");
                         return "End hour must come after start hour";
                       } else {
                         return null;
@@ -99,12 +103,13 @@ class _ScheduleState extends State<Schedule> {
                             print("Form is valid");
                           } else {
                             print("Form is invalid");
+                            // Navigator.of(context).pop();
+                            return;
                           }
 
-                          setState(() {
-                            startDate = _calendarController.selectedDate;
-                            endDate = _calendarController.selectedDate;
-                          });
+                          DateTime? startDate =
+                              _calendarController.selectedDate;
+                          DateTime? endDate = _calendarController.selectedDate;
 
                           if (startDate == null || endDate == null) {
                             // TODO: Display this error somewhere
@@ -128,7 +133,8 @@ class _ScheduleState extends State<Schedule> {
                             CalendarDataSourceAction.add,
                             <Appointment>[session],
                           );
-
+                          setState(() {});
+                          // Close the dialog menu
                           Navigator.of(context).pop();
                         },
                       ),
@@ -145,6 +151,10 @@ class _ScheduleState extends State<Schedule> {
 
   @override
   Widget build(BuildContext context) {
+    void openDialog() {
+      _dialogBuilder(context);
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -163,9 +173,9 @@ class _ScheduleState extends State<Schedule> {
                 Row(
                   children: [
                     FilledButton(
-                      onPressed: () {
-                        _dialogBuilder(context);
-                      },
+                      onPressed: _calendarController.selectedDate != null
+                          ? openDialog
+                          : null,
                       child: Text("Free Hours"),
                     ),
 
@@ -181,10 +191,14 @@ class _ScheduleState extends State<Schedule> {
             controller: _calendarController,
             showNavigationArrow: true,
             onSelectionChanged: (calendarSelectionDetails) {
-              print(calendarSelectionDetails);
+              print(calendarSelectionDetails.date);
+              setState(() {});
             },
             firstDayOfWeek: 1,
-            monthViewSettings: MonthViewSettings(numberOfWeeksInView: 1),
+            monthViewSettings: MonthViewSettings(
+              numberOfWeeksInView: 1,
+              appointmentDisplayMode: MonthAppointmentDisplayMode.appointment,
+            ),
             dataSource: _events,
           ),
         ],
@@ -193,67 +207,24 @@ class _ScheduleState extends State<Schedule> {
   }
 }
 
-List<Session> _getDataSource() {
-  final List<Session> sessions = <Session>[];
-  final DateTime today = DateTime.now();
-  final DateTime startTime = DateTime(
-    today.year,
-    today.month,
-    today.day,
-    9,
-    0,
-    0,
-  );
-  final DateTime endTime = startTime.add(const Duration(hours: 2));
-  sessions.add(
-    Session(
-      'Study Session',
-      startTime,
-      endTime,
-      const Color(0xFF0F8644),
-      false,
+_AppointmentDataSource _getCalendarDataSource() {
+  List<Appointment> appointments = <Appointment>[];
+  appointments.add(
+    Appointment(
+      startTime: DateTime.now(),
+      endTime: DateTime.now().add(Duration(minutes: 10)),
+      subject: 'Meeting',
+      color: Colors.blue,
+      startTimeZone: '',
+      endTimeZone: '',
     ),
   );
-  return sessions;
+
+  return _AppointmentDataSource(appointments);
 }
 
-class SessionDataSource extends CalendarDataSource {
-  SessionDataSource(List<Session> source) {
+class _AppointmentDataSource extends CalendarDataSource {
+  _AppointmentDataSource(List<Appointment> source) {
     appointments = source;
   }
-
-  @override
-  DateTime getStartTime(int index) {
-    return appointments![index].from;
-  }
-
-  @override
-  DateTime getEndTime(int index) {
-    return appointments![index].to;
-  }
-
-  @override
-  String getSubject(int index) {
-    return appointments![index].eventName;
-  }
-
-  @override
-  Color getColor(int index) {
-    return appointments![index].background;
-  }
-
-  @override
-  bool isAllDay(int index) {
-    return appointments![index].isAllDay;
-  }
-}
-
-class Session {
-  Session(this.eventName, this.from, this.to, this.background, this.isAllDay);
-
-  String eventName;
-  DateTime from;
-  DateTime to;
-  Color background;
-  bool isAllDay;
 }
