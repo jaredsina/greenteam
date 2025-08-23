@@ -25,6 +25,26 @@ class _QuizState extends State<Quiz> {
   );
   final EdgeInsets padding = const EdgeInsets.all(10);
 
+  List<Widget> getQuizType(QuizArguments arguments){
+    String quizType = arguments.selectedType;
+
+    if(quizType=="True/False"){
+      return makeTF(arguments);
+    }
+    else if(quizType=="Matching"){
+      return makeMatch(arguments);
+    }
+    else if(quizType=="Written Response"){
+      return makeWR(arguments);
+    }
+    else if(quizType=="Multiple Choice"){
+      return makeMultipleChoice(arguments);
+    }
+    else {
+      throw Error();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final QuizArguments data = ModalRoute.of(context)?.settings.arguments as QuizArguments;
@@ -36,7 +56,7 @@ class _QuizState extends State<Quiz> {
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: makeTF(data),
+          children: getQuizType(data),
         ),
       ),
     );
