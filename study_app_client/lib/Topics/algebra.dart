@@ -3,22 +3,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
 import 'package:http/http.dart' as http;
-import 'package:provider/provider.dart';
 import 'dart:convert'; 
 
 
 
 Future<void> createPost(BuildContext context, catagory, String notes) async {
   //blank until api link provided
-  final url = Uri.parse('http://127.0.0.1:4000/notes');
+  final url = Uri.parse('http://127.0.0.1:4000/notes/post');
   final response = await http.post(
     url,
     headers: {'Content-Type': 'application/json'},
     body: jsonEncode({
-      'Catagory': catagory,
-      'Notes' : notes,
+      'note' : notes,
       // placeholder
-      'userId': 1,
+      'user_id': 1,
     }
     )
   );
@@ -132,6 +130,10 @@ class _AlgebraState extends State<Algebra> {
         backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
         onPressed: () {
+          // what does final do?
+          final content = controller.document.toDelta();
+          final jsoncontent = jsonEncode(content.toJson());
+          createPost(context, 'algebra', jsoncontent);
                 },
        child:  Center(
         child: const Text(
