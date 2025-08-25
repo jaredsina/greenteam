@@ -2,7 +2,7 @@ from flask_pymongo import PyMongo
 
 class NoteModel:
     def __init__(self, mongo: PyMongo):
-        self.collection = mongo.cx
+        self.collection = mongo.cx["development"]["notes"]
 
     def create_note(self, user_id, note):
         note_data = {
