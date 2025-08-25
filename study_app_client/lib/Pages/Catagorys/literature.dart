@@ -1,11 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
-import 'package:study_app_client/Topics/character_development.dart';
-import 'package:study_app_client/Topics/conflict.dart';
-import 'package:study_app_client/Topics/figurative_language.dart';
-import 'package:study_app_client/Topics/setting.dart';
-import 'package:study_app_client/Topics/vocab.dart';
 
 class Literature extends StatefulWidget {
   final String title = 'Literature';

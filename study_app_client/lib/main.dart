@@ -232,7 +232,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   FilledButton(
                     // Notes Page
                     onPressed: () {
-                      Navigator.pushNamed(context, '/study');
+                      Navigator.pushNamed(context, '/notes');
                     },
                     style: ButtonStyle(
                       backgroundColor: WidgetStateProperty.all(

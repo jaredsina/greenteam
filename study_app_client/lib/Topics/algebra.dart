@@ -10,7 +10,7 @@ import 'dart:convert';
 
 Future<void> createPost(BuildContext context, catagory, String notes) async {
   //blank until api link provided
-  final url = Uri.parse('');
+  final url = Uri.parse('http://127.0.0.1:4000/notes');
   final response = await http.post(
     url,
     headers: {'Content-Type': 'application/json'},
