@@ -6,17 +6,20 @@ from models.note import NoteModel
 from bson import ObjectId
 notes_routes = Blueprint('notes_routes',__name__)
 
+@notes_routes.route('/post', methods=['POST'])
 def post_note():
     try:
         data = request.get_json()  
-        user_id = ObjectId(data['user_id'])
-        note = ObjectId(data['note'])
+        # user_id = ObjectId(data['user_id'])
+        user_id = data['user_id']
+        note = data['note']
         new_note = NoteModel(current_app.mongo)
         response = new_note.create_note(user_id, note)
 
     except Exception as e:
+        print(e)
         return jsonify({'message': 'Error posting note', 'error': str(e)}), 400
-    return jsonify(response), 200
+    return jsonify(response), 201
 # #Define route in blueprint
 # @notes_routes.route('/')
 # def get_notes():
