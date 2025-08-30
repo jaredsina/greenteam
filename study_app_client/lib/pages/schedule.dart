@@ -18,6 +18,7 @@ class _ScheduleState extends State<Schedule> {
   _AppointmentDataSource? _events;
   final List<Appointment> appointments = [];
   final _formKey = GlobalKey<FormState>();
+  String appointmentName = '';
 
   @override
   void initState() {
@@ -36,6 +37,24 @@ class _ScheduleState extends State<Schedule> {
               key: _formKey,
               child: Column(
                 children: [
+                  TextFormField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Enter a subject to study',
+                    ),
+                    validator: (String? value) {
+                      if (value?.length == 0) {
+                        return "Subject name cannot be empty";
+                      }
+                      //use state to save inputted value and use it for subject name in appointment
+                    },
+                    onChanged: (String subject) {
+                      setState(() {
+                        appointmentName = subject;
+                      });
+                    },
+                  ),
+
                   DropdownButtonFormField(
                     onChanged: (int? i) {
                       setState(() {
@@ -125,7 +144,7 @@ class _ScheduleState extends State<Schedule> {
                           final Appointment session = Appointment(
                             startTime: startTime ?? DateTime.now(),
                             endTime: endTime ?? DateTime.now(),
-                            subject: 'Add Appointment',
+                            subject: appointmentName,
                             color: Colors.blue,
                           );
                           _events?.appointments!.add(session);
@@ -179,48 +198,36 @@ class _ScheduleState extends State<Schedule> {
                       child: Text("Free Hours"),
                     ),
 
-                    FilledButton(onPressed: () {}, child: const Text('Export')),
+                    //FilledButton(onPressed: () {}, child: const Text('Export')),
                   ],
                 ),
               ],
             ),
           ),
-
-          SfCalendar(
-            view: CalendarView.month,
-            controller: _calendarController,
-            showNavigationArrow: true,
-            onSelectionChanged: (calendarSelectionDetails) {
-              print(calendarSelectionDetails.date);
-              setState(() {});
-            },
-            firstDayOfWeek: 1,
-            monthViewSettings: MonthViewSettings(
-              numberOfWeeksInView: 1,
-              appointmentDisplayMode: MonthAppointmentDisplayMode.appointment,
+          Expanded(
+            child: SfCalendar(
+              view: CalendarView.month,
+              controller: _calendarController,
+              showNavigationArrow: true,
+              onSelectionChanged: (calendarSelectionDetails) {
+                print(calendarSelectionDetails.date);
+                setState(() {});
+              },
+              firstDayOfWeek: 1,
+              monthViewSettings: MonthViewSettings(
+                //numberOfWeeksInView: 4,
+                //appointmentDisplayMode: MonthAppointmentDisplayMode.appointment,
+                showAgenda: true,
+                agendaItemHeight: 70,
+                agendaViewHeight: 350,
+              ),
+              dataSource: _events,
             ),
-            dataSource: _events,
           ),
         ],
       ),
     );
   }
-}
-
-_AppointmentDataSource _getCalendarDataSource() {
-  List<Appointment> appointments = <Appointment>[];
-  appointments.add(
-    Appointment(
-      startTime: DateTime.now(),
-      endTime: DateTime.now().add(Duration(minutes: 10)),
-      subject: 'Meeting',
-      color: Colors.blue,
-      startTimeZone: '',
-      endTimeZone: '',
-    ),
-  );
-
-  return _AppointmentDataSource(appointments);
 }
 
 class _AppointmentDataSource extends CalendarDataSource {
