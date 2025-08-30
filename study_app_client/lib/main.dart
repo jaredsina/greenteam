@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:study_app_client/pages/free_hours.dart';
 import 'package:study_app_client/pages/flashcard.dart';
 import 'package:study_app_client/pages/match.dart';
 import 'package:study_app_client/pages/quiz.dart';
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
         '/study/flashcard': (context) => const Flashcard(),
         '/study/matching': (context) => const Matching(),
         '/study/quiz': (context) => const Quiz(),
+        '/free-hours': (context) => const FreeHours(),
       },
     );
   }
@@ -191,7 +193,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ],
               ),
-
               SizedBox(height: 20),
               SizedBox(width: 20),
               Row(
