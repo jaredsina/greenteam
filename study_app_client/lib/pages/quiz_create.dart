@@ -122,7 +122,7 @@ class _CreateQuizState extends State<CreateQuiz> {
                               (e) => DropdownMenuItem(value: e, child: Text(e)),
                             )
                             .toList(),
-                            validator: (String? value) {
+                    validator: (String? value) {
                       if (selectedLength == null) {
                         return "Please choose a length.";
                       }
@@ -158,7 +158,7 @@ class _CreateQuizState extends State<CreateQuiz> {
                               (e) => DropdownMenuItem(value: e, child: Text(e)),
                             )
                             .toList(),
-                            validator: (String? value) {
+                    validator: (String? value) {
                       if (selectedType == null) {
                         return "Please choose a type.";
                       }

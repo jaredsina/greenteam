@@ -3,6 +3,7 @@ import 'package:study_app_client/pages/flashcard.dart';
 import 'package:study_app_client/pages/match.dart';
 import 'package:study_app_client/pages/quiz.dart';
 import 'package:study_app_client/pages/quiz_create.dart';
+import 'package:study_app_client/pages/quiz_end.dart';
 
 import 'pages/schedule.dart';
 
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
         '/study/flashcard': (context) => const Flashcard(),
         '/study/matching': (context) => const Matching(),
         '/study/quiz': (context) => const Quiz(),
+        '/study/quiz/end':(context) => const QuizEnd(),
 
       },
     );

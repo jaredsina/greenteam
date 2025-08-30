@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'quiz_create.dart';
 
 class QuizArguments {
   final String selectedDifficulty;
@@ -186,6 +187,19 @@ class _QuizState extends State<Quiz> {
       ),
     ];
 
+    if (data.selectedLength == '5 questions') {
+      questions = questions.sublist(0, 5);
+    }
+    if (data.selectedLength == '10 questions') {
+      questions = questions.sublist(0, 10);
+    }
+    if (data.selectedLength == '15 questions') {
+      questions = questions.sublist(0, 15);
+    }
+    if (data.selectedLength == '20 questions') {
+      questions = questions.sublist(0, 20);
+    }
+
     QuestionTrueFalse question = questions[currentQuestion];
 
     return <Widget>[
@@ -213,14 +227,18 @@ class _QuizState extends State<Quiz> {
           child: const Text('False'),
         ),
       ),
-      ElevatedButton(
-        onPressed: () {
-          setState(() {
-            currentQuestion += 1;
-          });
-        },
-        child: const Text('Next'),
-      ),
+      (currentQuestion == questions.length -1)
+          ? ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context,'/study/quiz/end');
+              },
+              child: const Text('Finish'),
+            )
+          : ElevatedButton(onPressed: () {
+                setState(() {
+                  currentQuestion += 1;
+                });
+              }, child: const Text('Next')),
     ];
   }
 
