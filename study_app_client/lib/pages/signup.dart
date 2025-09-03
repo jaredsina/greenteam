@@ -24,7 +24,7 @@ class SignUp extends StatelessWidget {
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -63,7 +63,10 @@ class SignUp extends StatelessWidget {
                     padding: EdgeInsets.all(15),
                     child: FilledButton.tonal(
                       style: ElevatedButton.styleFrom(
+<<<<<<< Updated upstream
                         fixedSize: const Size(100, 40),
+=======
+>>>>>>> Stashed changes
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
@@ -72,19 +75,17 @@ class SignUp extends StatelessWidget {
                       onPressed: () {
                         Navigator.pushNamed(context, '/home');
                       },
-                      child: Row(
-                        spacing: 5,
-                        children: [
-                          Text('Submit', style: TextStyle(fontSize: 16)),
-                        ],
-                      ),
+                      child: Text('Submit', style: TextStyle(fontSize: 16)),
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.all(25),
                     child: FilledButton.tonal(
                       style: ElevatedButton.styleFrom(
+<<<<<<< Updated upstream
                         fixedSize: const Size(100, 40),
+=======
+>>>>>>> Stashed changes
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
@@ -93,12 +94,7 @@ class SignUp extends StatelessWidget {
                       onPressed: () {
                         Navigator.pushNamed(context, '/signlog');
                       },
-                      child: Row(
-                        spacing: 5,
-                        children: [
-                          Text('Cancel', style: TextStyle(fontSize: 16)),
-                        ],
-                      ),
+                      child: Text('Cancel', style: TextStyle(fontSize: 16)),
                     ),
                   ),
                 ],

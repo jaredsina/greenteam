@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+<<<<<<< Updated upstream
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -26,11 +27,45 @@ class _MyHomePageState extends State<Home> {
         backgroundColor: Color.fromARGB(255, 44, 153, 237),
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
+=======
+void main() {
+  runApp(const Home());
+}
+
+class Home extends StatelessWidget {
+  const Home({super.key});
+
+  final String title = 'Home';
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(debugShowCheckedModeBanner: false);
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 44, 153, 237),
+>>>>>>> Stashed changes
         title: Text(widget.title),
       ),
       body: Center(
         child: Padding(
           padding: EdgeInsets.all(16),
+<<<<<<< Updated upstream
           // Center is a layout widget. It takes a single child and positions it
           // in the middle of the parent.
           child: Column(
@@ -47,6 +82,9 @@ class _MyHomePageState extends State<Home> {
             // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
             // action in the IDE, or press "p" in the console), to see the
             // wireframe for each widget.
+=======
+          child: Column(
+>>>>>>> Stashed changes
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Text("Hello, \n Nico!", style: TextStyle(fontSize: 50)),

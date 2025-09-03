@@ -411,9 +411,15 @@
     },
     {
       "name": "url_launcher_ios",
+<<<<<<< Updated upstream
       "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/url_launcher_ios-6.3.4",
       "packageUri": "lib/",
       "languageVersion": "3.7"
+=======
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/url_launcher_ios-6.3.3",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+>>>>>>> Stashed changes
     },
     {
       "name": "url_launcher_linux",
@@ -423,9 +429,15 @@
     },
     {
       "name": "url_launcher_macos",
+<<<<<<< Updated upstream
       "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/url_launcher_macos-3.2.3",
       "packageUri": "lib/",
       "languageVersion": "3.7"
+=======
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/url_launcher_macos-3.2.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+>>>>>>> Stashed changes
     },
     {
       "name": "url_launcher_platform_interface",
