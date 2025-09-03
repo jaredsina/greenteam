@@ -63,10 +63,7 @@ class SignUp extends StatelessWidget {
                     padding: EdgeInsets.all(15),
                     child: FilledButton.tonal(
                       style: ElevatedButton.styleFrom(
-<<<<<<< Updated upstream
-                        fixedSize: const Size(100, 40),
-=======
->>>>>>> Stashed changes
+                        fixedSize: const Size(80, 30),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
@@ -82,10 +79,7 @@ class SignUp extends StatelessWidget {
                     padding: EdgeInsets.all(25),
                     child: FilledButton.tonal(
                       style: ElevatedButton.styleFrom(
-<<<<<<< Updated upstream
-                        fixedSize: const Size(100, 40),
-=======
->>>>>>> Stashed changes
+                        fixedSize: const Size(80, 30),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
