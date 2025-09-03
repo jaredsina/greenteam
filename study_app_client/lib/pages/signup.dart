@@ -45,7 +45,7 @@ class SignUp extends StatelessWidget {
                 padding: const WidgetStatePropertyAll(
                   EdgeInsets.symmetric(horizontal: 16),
                 ),
-                hintText: "Enter password",
+                hintText: "Enter password", // Possibly with asterisks
               ),
 
               SizedBox(height: 35),
