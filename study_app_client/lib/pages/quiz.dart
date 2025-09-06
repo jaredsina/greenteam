@@ -63,8 +63,32 @@ class _QuizState extends State<Quiz> {
     padding: const EdgeInsets.all(10),
     fixedSize: Size(200, 100),
   );
+  final ButtonStyle multipleChoiceStyle = ElevatedButton.styleFrom(
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+    padding: const EdgeInsets.all(10),
+    minimumSize: Size(100, 100)
+  );
   final EdgeInsets padding = const EdgeInsets.all(10);
   int currentQuestion = 0;
+
+  List getNumberQuestions(List questions, QuizArguments data) {
+    if (data.selectedLength == '5 questions') {
+      return questions.sublist(0, 5);
+    } else if (data.selectedLength == '10 questions') {
+      return questions.sublist(0, 10);
+    } else if (data.selectedLength == '15 questions') {
+      return questions.sublist(0, 15);
+    } else {
+      return questions.sublist(0, 20);
+    }
+  }
+
+  List<MultipleChoiceOption> options = <MultipleChoiceOption>[
+    MultipleChoiceOption('Option A', true),
+    MultipleChoiceOption('Option B', false),
+    MultipleChoiceOption('Option C', false),
+    MultipleChoiceOption('Option D', false),
+  ];
 
   List<Widget> getQuizType(QuizArguments arguments) {
     String quizType = arguments.selectedType;
@@ -101,53 +125,107 @@ class _QuizState extends State<Quiz> {
   }
 
   List<Widget> makeMultipleChoice(QuizArguments data) {
+    List<QuestionMultipleChoice> questions = [
+      QuestionMultipleChoice('dino', options),
+      QuestionMultipleChoice('dino', options),
+      QuestionMultipleChoice('dino', options),
+      QuestionMultipleChoice('dino', options),
+      QuestionMultipleChoice('dino', options),
+      QuestionMultipleChoice('dino', options),
+      QuestionMultipleChoice('dino', options),
+      QuestionMultipleChoice('dino', options),
+      QuestionMultipleChoice('dino', options),
+      QuestionMultipleChoice('dino', options),
+      QuestionMultipleChoice('dino', options),
+      QuestionMultipleChoice('dino', options),
+      QuestionMultipleChoice('dino', options),
+      QuestionMultipleChoice('dino', options),
+      QuestionMultipleChoice('dino', options),
+      QuestionMultipleChoice('dino', options),
+      QuestionMultipleChoice('dino', options),
+      QuestionMultipleChoice('dino', options),
+      QuestionMultipleChoice('dino', options),
+      QuestionMultipleChoice('dino', options),
+    ];
+    questions =
+        getNumberQuestions(questions, data) as List<QuestionMultipleChoice>;
+    QuestionMultipleChoice question = questions[currentQuestion];
     return <Widget>[
+      Padding(padding: padding),
       Padding(
         padding: padding,
-        child: OutlinedButton(
-          onPressed: () {},
-          style: style,
-          child: const Text(
-            'A) Troodon had one of the smallest brain-to-body ratios among non-avian dinosaurs, indicating it relied mainly on instinct rather than learned behavior.',
-          ),
+        child: Text(
+          '${currentQuestion + 1}. ${question.question}',
+          style: TextStyle(fontSize: 24),
+          textAlign: TextAlign.center,
         ),
       ),
-      Padding(
-        padding: padding,
-        child: OutlinedButton(
-          onPressed: () {},
-          style: style,
-          child: const Text(
-            'B) Fossilized nests attributed to Troodon suggest it laid a single egg per clutch, similar to most modern reptiles.',
-          ),
+      Center(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Expanded(child: Padding(
+                  padding: padding,
+                  child: OutlinedButton(
+                    onPressed: () {},
+                    style: multipleChoiceStyle,
+                    child: Text(question.options[0].value),
+                  ),
+                ),),
+                Expanded(child: Padding(
+                    padding: padding,
+                    child: OutlinedButton(
+                      onPressed: () {},
+                      style: multipleChoiceStyle,
+                      child: Text(question.options[1].value),
+                    ),
+                  ),
+                )
+                
+              ],
+            ),
+            Row(
+              children: [
+                Expanded(child: Padding(
+                  padding: padding,
+                  child: OutlinedButton(
+                    onPressed: () {},
+                    style: multipleChoiceStyle,
+                    child: Text(question.options[2].value),
+                  ),
+                ),),
+                Expanded(child: Padding(
+                    padding: padding,
+                    child: OutlinedButton(
+                      onPressed: () {},
+                      style: multipleChoiceStyle,
+                      child: Text(question.options[3].value),
+                    ),
+                  ),
+                )
+                
+              ],
+            ),
+          ],
         ),
       ),
-      Padding(
-        padding: padding,
-        child: OutlinedButton(
-          onPressed: () {},
-          style: style,
-          child: const Text(
-            'C) Troodon possessed serrated teeth and stereoscopic vision, indicating it was likely an omnivore or a predator with complex hunting strategies.',
-          ),
-        ),
-      ),
-      Padding(
-        padding: padding,
-        child: OutlinedButton(
-          onPressed: () {},
-          style: style,
-          child: const Text(
-            'D) The Troodon genus is now considered entirely invalid, with all fossils reclassified under the genus Velociraptor after DNA analysis.',
-          ),
-        ),
-      ),
-      ElevatedButton(
-        onPressed: () {
-          Navigator.pushNamed(context, '/study/quiz2');
-        },
-        child: const Text('Next'),
-      ),
+
+      (currentQuestion == questions.length - 1)
+          ? ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/study/quiz/end');
+              },
+              child: const Text('Finish'),
+            )
+          : ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  currentQuestion += 1;
+                });
+              },
+              child: const Text('Next'),
+            ),
     ];
   }
 
@@ -187,18 +265,7 @@ class _QuizState extends State<Quiz> {
       ),
     ];
 
-    if (data.selectedLength == '5 questions') {
-      questions = questions.sublist(0, 5);
-    }
-    if (data.selectedLength == '10 questions') {
-      questions = questions.sublist(0, 10);
-    }
-    if (data.selectedLength == '15 questions') {
-      questions = questions.sublist(0, 15);
-    }
-    if (data.selectedLength == '20 questions') {
-      questions = questions.sublist(0, 20);
-    }
+    questions = getNumberQuestions(questions, data) as List<QuestionTrueFalse>;
 
     QuestionTrueFalse question = questions[currentQuestion];
 
@@ -227,18 +294,21 @@ class _QuizState extends State<Quiz> {
           child: const Text('False'),
         ),
       ),
-      (currentQuestion == questions.length -1)
+      (currentQuestion == questions.length - 1)
           ? ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context,'/study/quiz/end');
+                Navigator.pushNamed(context, '/study/quiz/end');
               },
               child: const Text('Finish'),
             )
-          : ElevatedButton(onPressed: () {
+          : ElevatedButton(
+              onPressed: () {
                 setState(() {
                   currentQuestion += 1;
                 });
-              }, child: const Text('Next')),
+              },
+              child: const Text('Next'),
+            ),
     ];
   }
 
