@@ -21,17 +21,20 @@ def post_note():
         return jsonify({'message': 'Error posting note', 'error': str(e)}), 400
     return jsonify(response), 201
 # #Define route in blueprint
-# @notes_routes.route('/')
-# def get_notes():
-#     try:
-#         new_Note = NoteModel(current_app.mongo)
-#         notes = new_Note.list_all_judges()
+@notes_routes.route('/')
+def get_notes():
+     try:
+         data = request.get_json()
+         note = NoteModel(current_app.mongo)
+         user_id = data['user_id']
+         catagory = data['catagory']
+         
 
-#     except Exception as e:
-#         # If exception is raised, return error message and status code 400
-#         return jsonify({'messages':'Error', 'error': str(e)}), 400
-#     # If no exceptpion is raised, return good message and status code 200
-#     return jsonify(notes), 200
+     except Exception as e:
+         # If exception is raised, return error message and status code 400
+         return jsonify({'messages':'Error', 'error': str(e)}), 400
+     # If no exceptpion is raised, return good message and status code 200
+     return jsonify(note), 200
 # @notes_routes.route('/<string:note_id>')
 # def get_note(note_id):
 #     try:
