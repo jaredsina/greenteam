@@ -1,6 +1,42 @@
 
+
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
+import 'package:http/http.dart' as http;
+import 'dart:convert'; 
+
+
+
+Future<void> createPost(BuildContext context, catagory, String notes) async {
+  //blank until api link provided
+  final url = Uri.parse('http://127.0.0.1:4000/notes/post');
+  final response = await http.post(
+    url,
+    headers: {'Content-Type': 'application/json'},
+    body: jsonEncode({
+      'note' : notes,
+      
+      // placeholder
+      'user_id': 1,
+    }
+    )
+  );
+
+  if (response.statusCode == 201) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Note created and saved.')),
+    );
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Failed to save.'))
+    );
+  }
+
+}
+
+
+
+
 
 
 class AncientCivilizations extends StatefulWidget {
@@ -9,9 +45,9 @@ class AncientCivilizations extends StatefulWidget {
   const AncientCivilizations({super.key});
 
   @override
-  _AncientCivlizationsState createState() => _AncientCivlizationsState();
+  _AncientCivilizationsState createState() => _AncientCivilizationsState();
 }
-class _AncientCivlizationsState extends State<AncientCivilizations> {
+class _AncientCivilizationsState extends State<AncientCivilizations> {
   @override
   Widget build(BuildContext context) {
     final quill.QuillController controller = quill.QuillController.basic();
@@ -28,7 +64,7 @@ class _AncientCivlizationsState extends State<AncientCivilizations> {
       children: [
         Center(
           child: Text(
-            'Ancient Civilizations',
+            'Ancient Civilization',
             style: TextStyle(fontSize: 36, fontStyle: FontStyle.italic),
           ),
         ),
@@ -57,14 +93,14 @@ class _AncientCivlizationsState extends State<AncientCivilizations> {
             ), 
             ),
           ),
-          ),
-const SizedBox(height: 20,),
-          Row(
+          ), 
+      const SizedBox(width: 20, height: 20,),
+       Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
         FilledButton.tonal(
         style: ElevatedButton.styleFrom(
-          fixedSize: const Size(180,60),
+          fixedSize: const Size(100,60),
         alignment: Alignment.bottomRight,
         shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
@@ -72,29 +108,10 @@ const SizedBox(height: 20,),
         backgroundColor: const Color.fromARGB(255, 103, 181, 250),
                 ),
         onPressed: () {
-                },
-       child:  Center(
-        child: const Text(
-                  'Add Image+',
-                  style: TextStyle(fontSize: 20),
-                  textAlign: TextAlign.center ,
-                ),
-       )
-                ),
-      const SizedBox(width: 20,),
-       Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-        FilledButton.tonal(
-        style: ElevatedButton.styleFrom(
-          fixedSize: const Size(180,60),
-        alignment: Alignment.bottomLeft,
-        shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-        backgroundColor: const Color.fromARGB(255, 103, 181, 250),
-                ),
-        onPressed: () {
+          // what does final do?
+          final content = controller.document.toDelta();
+          final jsoncontent = jsonEncode(content.toJson());
+          createPost(context, 'ancient civilizations', jsoncontent);
                 },
        child:  Center(
         child: const Text(
@@ -103,16 +120,19 @@ const SizedBox(height: 20,),
                   textAlign: TextAlign.center ,
                 ),
        )
-        )
-          ]
-       )
-          ]
-          )
-      ] 
-       )
-          
-    )
-      
+                ),
+              
+      ]
+        
+          ),
+      ]
+          ),
+    
+    
+    
+    ),
+  // ignore: dead_code
   );
-  }
-  }
+  
+}
+}

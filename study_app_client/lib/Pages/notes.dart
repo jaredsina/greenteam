@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
-import 'package:study_app_client/Pages/Catagorys/math.dart';
-import 'package:study_app_client/Pages/Catagorys/spanish.dart';
+import 'Catagorys/math.dart';
+import 'Catagorys/spanish.dart';
 import 'Catagorys/literature.dart';
 import 'Catagorys/history.dart';
 import 'Catagorys/science.dart';
@@ -22,6 +22,7 @@ class _NotesState extends State<Notes> {
   @override
     final quill.QuillController controller = quill.QuillController.basic();
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

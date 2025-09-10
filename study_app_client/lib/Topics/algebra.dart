@@ -15,6 +15,7 @@ Future<void> createPost(BuildContext context, catagory, String notes) async {
     headers: {'Content-Type': 'application/json'},
     body: jsonEncode({
       'note' : notes,
+      
       // placeholder
       'user_id': 1,
     }
@@ -93,37 +94,14 @@ class _AlgebraState extends State<Algebra> {
             ),
           ),
           ), 
-        const SizedBox(height: 20,),
-          Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-        FilledButton.tonal(
-        style: ElevatedButton.styleFrom(
-          fixedSize: const Size(180,60),
-        alignment: Alignment.bottomRight,
-        shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-        backgroundColor: const Color.fromARGB(255, 103, 181, 250),
-                ),
-        onPressed: () {
-                },
-       child:  Center(
-        child: const Text(
-                  'Add Image+',
-                  style: TextStyle(fontSize: 20),
-                  textAlign: TextAlign.center ,
-                ),
-       )
-                ),
-      const SizedBox(width: 20,),
+      const SizedBox(width: 20, height: 20,),
        Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
         FilledButton.tonal(
         style: ElevatedButton.styleFrom(
-          fixedSize: const Size(180,60),
-        alignment: Alignment.bottomLeft,
+          fixedSize: const Size(100,60),
+        alignment: Alignment.bottomRight,
         shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
@@ -150,11 +128,11 @@ class _AlgebraState extends State<Algebra> {
       ]
           ),
     
-    ]
+    
     
     ),
   // ignore: dead_code
-  )
-    );
+  );
+  
 }
 }
