@@ -22,12 +22,6 @@ class QuestionTrueFalse {
   QuestionTrueFalse(this.question, this.answer);
 }
 
-class QuestionMatching {
-  final List<Map<String, String>> pairs;
-
-  QuestionMatching(this.pairs);
-}
-
 class QuestionWrittenResponse {
   final String question;
 
@@ -95,8 +89,6 @@ class _QuizState extends State<Quiz> {
 
     if (quizType == "True/False") {
       return makeTF(arguments);
-    } else if (quizType == "Matching") {
-      return makeMatch(arguments);
     } else if (quizType == "Written Response") {
       return makeWR(arguments);
     } else if (quizType == "Multiple Choice") {
@@ -392,90 +384,4 @@ class _QuizState extends State<Quiz> {
     ];
   }
 
-  List<Widget> makeMatch(QuizArguments data) {
-    return <Widget>[
-      Padding(
-        padding: padding,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Padding(
-                  padding: padding,
-                  child: DecoratedBox(
-                    decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 163, 76, 175),
-                    ),
-                    child: const Text('Item 3'),
-                  ),
-                ),
-                Padding(
-                  padding: padding,
-                  child: DecoratedBox(
-                    decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 163, 76, 175),
-                    ),
-                    child: const Text('Item 1'),
-                  ),
-                ),
-                Padding(
-                  padding: padding,
-                  child: DecoratedBox(
-                    decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 163, 76, 175),
-                    ),
-                    child: const Text('Item 2'),
-                  ),
-                ),
-                Padding(
-                  padding: padding,
-                  child: DecoratedBox(
-                    decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 163, 76, 175),
-                    ),
-                    child: const Text('Item 4'),
-                  ),
-                ),
-              ],
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Padding(
-                  padding: padding,
-                  child: DecoratedBox(
-                    decoration: const BoxDecoration(color: Colors.green),
-                    child: const Text('Item 4'),
-                  ),
-                ),
-                Padding(
-                  padding: padding,
-                  child: DecoratedBox(
-                    decoration: const BoxDecoration(color: Colors.green),
-                    child: const Text('Item 3'),
-                  ),
-                ),
-                Padding(
-                  padding: padding,
-                  child: DecoratedBox(
-                    decoration: const BoxDecoration(color: Colors.green),
-                    child: const Text('Item 2'),
-                  ),
-                ),
-                Padding(
-                  padding: padding,
-                  child: DecoratedBox(
-                    decoration: const BoxDecoration(color: Colors.green),
-                    child: const Text('Item 1'),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    ];
-  }
 }

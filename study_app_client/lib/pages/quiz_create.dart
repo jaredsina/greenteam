@@ -150,7 +150,6 @@ class _CreateQuizState extends State<CreateQuiz> {
                     items:
                         [
                               'True/False',
-                              'Matching',
                               'Written Response',
                               'Multiple Choice',
                             ]
