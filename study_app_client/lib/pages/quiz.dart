@@ -66,7 +66,7 @@ class _QuizState extends State<Quiz> {
   final ButtonStyle multipleChoiceStyle = ElevatedButton.styleFrom(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     padding: const EdgeInsets.all(10),
-    minimumSize: Size(100, 100)
+    minimumSize: Size(100, 100),
   );
   final EdgeInsets padding = const EdgeInsets.all(10);
   int currentQuestion = 0;
@@ -165,15 +165,18 @@ class _QuizState extends State<Quiz> {
           children: [
             Row(
               children: [
-                Expanded(child: Padding(
-                  padding: padding,
-                  child: OutlinedButton(
-                    onPressed: () {},
-                    style: multipleChoiceStyle,
-                    child: Text(question.options[0].value),
+                Expanded(
+                  child: Padding(
+                    padding: padding,
+                    child: OutlinedButton(
+                      onPressed: () {},
+                      style: multipleChoiceStyle,
+                      child: Text(question.options[0].value),
+                    ),
                   ),
-                ),),
-                Expanded(child: Padding(
+                ),
+                Expanded(
+                  child: Padding(
                     padding: padding,
                     child: OutlinedButton(
                       onPressed: () {},
@@ -181,21 +184,23 @@ class _QuizState extends State<Quiz> {
                       child: Text(question.options[1].value),
                     ),
                   ),
-                )
-                
+                ),
               ],
             ),
             Row(
               children: [
-                Expanded(child: Padding(
-                  padding: padding,
-                  child: OutlinedButton(
-                    onPressed: () {},
-                    style: multipleChoiceStyle,
-                    child: Text(question.options[2].value),
+                Expanded(
+                  child: Padding(
+                    padding: padding,
+                    child: OutlinedButton(
+                      onPressed: () {},
+                      style: multipleChoiceStyle,
+                      child: Text(question.options[2].value),
+                    ),
                   ),
-                ),),
-                Expanded(child: Padding(
+                ),
+                Expanded(
+                  child: Padding(
                     padding: padding,
                     child: OutlinedButton(
                       onPressed: () {},
@@ -203,8 +208,7 @@ class _QuizState extends State<Quiz> {
                       child: Text(question.options[3].value),
                     ),
                   ),
-                )
-                
+                ),
               ],
             ),
           ],
@@ -313,22 +317,78 @@ class _QuizState extends State<Quiz> {
   }
 
   List<Widget> makeWR(QuizArguments data) {
+    List<QuestionWrittenResponse> questions = [
+      QuestionWrittenResponse('Explain why dinosaurs are extinct'),
+      QuestionWrittenResponse('Explain why triangles have 3 sides'),
+      QuestionWrittenResponse('Explain why shritan is always so late'),
+      QuestionWrittenResponse('Explain how to make a pretzel'),
+      QuestionWrittenResponse('Explain how to eat a cinnamon bun'),
+      QuestionWrittenResponse('Explain why dinosaurs are extinct'),
+      QuestionWrittenResponse('Explain why triangles have 3 sides'),
+      QuestionWrittenResponse('Explain why shritan is always so late'),
+      QuestionWrittenResponse('Explain how to make a pretzel'),
+      QuestionWrittenResponse('Explain how to eat a cinnamon bun'),
+      QuestionWrittenResponse('Explain why dinosaurs are extinct'),
+      QuestionWrittenResponse('Explain why triangles have 3 sides'),
+      QuestionWrittenResponse('Explain why shritan is always so late'),
+      QuestionWrittenResponse('Explain how to make a pretzel'),
+      QuestionWrittenResponse('Explain how to eat a cinnamon bun'),
+      QuestionWrittenResponse('Explain why dinosaurs are extinct'),
+      QuestionWrittenResponse('Explain why triangles have 3 sides'),
+      QuestionWrittenResponse('Explain why shritan is always so late'),
+      QuestionWrittenResponse('Explain how to make a pretzel'),
+      QuestionWrittenResponse('Explain how to eat a cinnamon bun'),
+    ];
+
+    questions =
+        getNumberQuestions(questions, data) as List<QuestionWrittenResponse>;
+
+    QuestionWrittenResponse question = questions[currentQuestion];
     return <Widget>[
       Padding(
         padding: padding,
-        child: const TextField(
-          decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            hintText: 'Start typing here...',
+        child: Text(
+          '${currentQuestion + 1}. ${question.question}',
+          style: TextStyle(fontSize: 24),
+          textAlign: TextAlign.center,
+        ),
+      ),
+      Expanded(
+        child: Padding(
+          padding: padding,
+          child: TextField(
+            expands: true,
+            minLines: null,
+            maxLines: null,
+            textAlignVertical: TextAlignVertical.top,
+            decoration: InputDecoration(
+              hintText: "Enter text",
+              contentPadding: const EdgeInsets.all(12),
+              border: OutlineInputBorder(
+                // <-- adds the border
+                borderRadius: BorderRadius.circular(12), // rounded corners
+                borderSide: const BorderSide(color: Colors.black, width: 2),
+              ),
+            ),
           ),
         ),
       ),
-      ElevatedButton(
-        onPressed: () {
-          Navigator.pushNamed(context, '/study/quiz2');
-        },
-        child: const Text('Next'),
-      ),
+
+      (currentQuestion == questions.length - 1)
+          ? ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/study/quiz/end');
+              },
+              child: const Text('Finish'),
+            )
+          : ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  currentQuestion += 1;
+                });
+              },
+              child: const Text('Next'),
+            ),
     ];
   }
 
