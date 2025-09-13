@@ -52,20 +52,6 @@ class _StudyState extends State<Study> {
                 child: Text('Flashcards', style: TextStyle(fontSize: 35)),
               ),
              ),
-            Padding(
-              padding: EdgeInsets.all(25),
-              child:
-              FilledButton.tonal(
-                style: ElevatedButton.styleFrom(fixedSize: const Size(250,150), 
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                backgroundColor: Color.fromARGB(255, 100, 216, 237) 
-                ),
-                onPressed: () {
-                  Navigator.pushNamed(context,'/study/match');
-                },
-                child: Text('Matching', style: TextStyle(fontSize: 35),),
-              ),
-             ),
           ],
         ),
       ),
