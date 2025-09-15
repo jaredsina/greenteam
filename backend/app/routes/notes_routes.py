@@ -13,8 +13,10 @@ def post_note():
         # user_id = ObjectId(data['user_id'])
         user_id = data['user_id']
         note = data['note']
+        catagory = data['catagory']
         new_note = NoteModel(current_app.mongo)
-        response = new_note.create_note(user_id, note)
+        response = new_note.create_note(user_id, note, catagory)
+    
 
     except Exception as e:
         print(e)

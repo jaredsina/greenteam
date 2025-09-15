@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
 import 'package:http/http.dart' as http;
@@ -15,7 +13,7 @@ Future<void> createPost(BuildContext context, catagory, String notes) async {
     headers: {'Content-Type': 'application/json'},
     body: jsonEncode({
       'note' : notes,
-      
+      'catagory': catagory,
       // placeholder
       'user_id': 1,
     }
