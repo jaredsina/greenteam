@@ -9,8 +9,8 @@ user_routes = Blueprint("user_routes", __name__)
 @user_routes.route("/create", methods=['POST'])
 def create_users():
   try:
-    username = request.form.get("username")
-    password = request.form.get("password")
+    username = data["username"]
+    password = data["password"]
 
     user_model = UserModel(current_app.mongo)
     response = user_model.create_user(

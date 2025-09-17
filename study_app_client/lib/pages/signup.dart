@@ -1,4 +1,26 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:flutter_quill/flutter_quill.dart' as quill;
+
+Future<void> createPost(BuildContext context, username, password) async {
+  final url = Uri.parse('http://127.0.0.1:4000');
+  final response = await http.post(
+    url,
+    headers: {'Content-Type': 'application/json'},
+    body: jsonEncode({'username': username, 'password': password}),
+  );
+
+  if (response.statusCode == 201) {
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text('Note created and saved.')));
+  } else {
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text('Failed to save.')));
+  }
+}
 
 void main() {
   runApp(const MyApp());
@@ -20,6 +42,7 @@ class SignUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final quill.QuillController controller = quill.QuillController.basic();
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: Center(
@@ -71,6 +94,9 @@ class SignUp extends StatelessWidget {
                       ),
                       onPressed: () {
                         Navigator.pushNamed(context, '/home');
+                        final content = controller.document.toDelta();
+                        final jsoncontent = jsonEncode(content.toJson());
+                        createPost(context, 'signup', jsoncontent);
                       },
                       child: Row(
                         spacing: 5,
