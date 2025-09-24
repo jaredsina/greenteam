@@ -1,9 +1,5 @@
 from flask import Blueprint, jsonify, current_app, request
-from app.models.judge import UserModel
-from flask_jwt_extended import jwt_required
-
-
-from bson import ObjectId
+from app.models.user import UserModel
 
 auth_routes = Blueprint("signlog_routes", __name__)
 

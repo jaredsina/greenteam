@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
 
 Future<void> createPost(BuildContext context, username, password) async {
-  final url = Uri.parse('http://127.0.0.1:4000');
+  final url = Uri.parse('http://127.0.0.1:4000/signup');
   final response = await http.post(
     url,
     headers: {'Content-Type': 'application/json'},

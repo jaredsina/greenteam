@@ -9,19 +9,19 @@
     },
     {
       "name": "async",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/async-2.13.0",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/async-2.13.0",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
     {
       "name": "boolean_selector",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/boolean_selector-2.1.2",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/boolean_selector-2.1.2",
       "packageUri": "lib/",
       "languageVersion": "3.1"
     },
     {
       "name": "characters",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/characters-1.4.0",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/characters-1.4.0",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -33,13 +33,13 @@
     },
     {
       "name": "clock",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/clock-1.1.2",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/clock-1.1.2",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
     {
       "name": "collection",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/collection-1.19.1",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/collection-1.19.1",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -90,6 +90,12 @@
       "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/file_selector_linux-0.9.3+2",
       "packageUri": "lib/",
       "languageVersion": "3.3"
+    },
+    {
+      "name": "file_selector_macos",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/file_selector_macos-0.9.4+4",
+      "packageUri": "lib/",
+      "languageVersion": "3.7"
     },
     {
       "name": "file_selector_platform_interface",
@@ -146,88 +152,22 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "file_selector_linux",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/file_selector_linux-0.9.3+2",
-      "packageUri": "lib/",
-      "languageVersion": "3.3"
-    },
-    {
-      "name": "file_selector_macos",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/file_selector_macos-0.9.4+4",
-      "packageUri": "lib/",
-      "languageVersion": "3.7"
-    },
-    {
-      "name": "file_selector_platform_interface",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/file_selector_platform_interface-2.6.2",
-      "packageUri": "lib/",
-      "languageVersion": "3.0"
-    },
-    {
-      "name": "file_selector_windows",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/file_selector_windows-0.9.3+4",
-      "packageUri": "lib/",
-      "languageVersion": "3.4"
-    },
-    {
-      "name": "flutter",
-      "rootUri": "file:///C:/Users/ruhan/dev/flutter/packages/flutter",
-      "packageUri": "lib/",
-      "languageVersion": "3.8"
-    },
-    {
-      "name": "flutter_colorpicker",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_colorpicker-1.1.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.14"
-    },
-    {
-      "name": "flutter_keyboard_visibility_linux",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_keyboard_visibility_linux-1.0.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
-      "name": "flutter_keyboard_visibility_macos",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_keyboard_visibility_macos-1.0.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
-      "name": "flutter_keyboard_visibility_platform_interface",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_keyboard_visibility_platform_interface-2.0.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
-      "name": "flutter_keyboard_visibility_temp_fork",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_keyboard_visibility_temp_fork-0.1.5",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
-      "name": "flutter_keyboard_visibility_windows",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_keyboard_visibility_windows-1.0.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "flutter_lints",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-5.0.0",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0",
       "packageUri": "lib/",
       "languageVersion": "3.5"
     },
     {
       "name": "flutter_localizations",
-      "rootUri": "file:///C:/Users/ruhan/dev/flutter/packages/flutter_localizations",
+      "rootUri": "file:///Users/shritan/flutter/flutter/packages/flutter_localizations",
       "packageUri": "lib/",
       "languageVersion": "3.8"
     },
     {
       "name": "flutter_plugin_android_lifecycle",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.30",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.30",
       "packageUri": "lib/",
-      "languageVersion": "3.8"
+      "languageVersion": "3.7"
     },
     {
       "name": "flutter_quill",
@@ -242,20 +182,8 @@
       "languageVersion": "3.0"
     },
     {
-      "name": "flutter_quill",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_quill-11.4.2",
-      "packageUri": "lib/",
-      "languageVersion": "3.0"
-    },
-    {
-      "name": "flutter_quill_delta_from_html",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_quill_delta_from_html-1.5.3",
-      "packageUri": "lib/",
-      "languageVersion": "3.0"
-    },
-    {
       "name": "flutter_test",
-      "rootUri": "file:///C:/Users/ruhan/dev/flutter/packages/flutter_test",
+      "rootUri": "file:///Users/shritan/flutter/flutter/packages/flutter_test",
       "packageUri": "lib/",
       "languageVersion": "3.8"
     },
@@ -273,67 +201,67 @@
     },
     {
       "name": "http",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/http-1.5.0",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/http-1.5.0",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
     {
       "name": "http_parser",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/http_parser-4.1.2",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/http_parser-4.1.2",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
     {
       "name": "image_picker",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker-1.2.0",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/image_picker-1.2.0",
       "packageUri": "lib/",
       "languageVersion": "3.6"
     },
     {
       "name": "image_picker_android",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_android-0.8.13+2",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/image_picker_android-0.8.13+3",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },
     {
       "name": "image_picker_for_web",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_for_web-3.1.0",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/image_picker_for_web-3.1.0",
       "packageUri": "lib/",
       "languageVersion": "3.6"
     },
     {
       "name": "image_picker_ios",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_ios-0.8.13",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.13",
       "packageUri": "lib/",
       "languageVersion": "3.6"
     },
     {
       "name": "image_picker_linux",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_linux-0.2.2",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/image_picker_linux-0.2.2",
       "packageUri": "lib/",
       "languageVersion": "3.6"
     },
     {
       "name": "image_picker_macos",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_macos-0.2.2",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/image_picker_macos-0.2.2",
       "packageUri": "lib/",
       "languageVersion": "3.6"
     },
     {
       "name": "image_picker_platform_interface",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_platform_interface-2.11.0",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/image_picker_platform_interface-2.11.0",
       "packageUri": "lib/",
       "languageVersion": "3.6"
     },
     {
       "name": "image_picker_windows",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_windows-0.2.2",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/image_picker_windows-0.2.2",
       "packageUri": "lib/",
       "languageVersion": "3.6"
     },
     {
       "name": "intl",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/intl-0.20.2",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/intl-0.20.2",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
@@ -357,7 +285,7 @@
     },
     {
       "name": "lints",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/lints-5.1.1",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/lints-5.1.1",
       "packageUri": "lib/",
       "languageVersion": "3.6"
     },
@@ -369,37 +297,37 @@
     },
     {
       "name": "matcher",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/matcher-0.12.17",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/matcher-0.12.17",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
     {
       "name": "material_color_utilities",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/material_color_utilities-0.11.1",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/material_color_utilities-0.11.1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "meta",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/meta-1.16.0",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/meta-1.16.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "mime",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/mime-2.0.0",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/mime-2.0.0",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
     {
       "name": "nested",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/nested-1.0.0",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/nested-1.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "path",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/path-1.9.1",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/path-1.9.1",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -410,8 +338,14 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "provider",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/provider-6.1.5+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "quill_native_bridge",
-      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/quill_native_bridge-11.0.1",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/quill_native_bridge-11.1.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -424,12 +358,6 @@
     {
       "name": "quill_native_bridge_ios",
       "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/quill_native_bridge_ios-0.0.1",
-      "packageUri": "lib/",
-      "languageVersion": "3.0"
-    },
-    {
-      "name": "quill_native_bridge_linux",
-      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/quill_native_bridge_linux-0.0.2",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -471,55 +399,55 @@
     },
     {
       "name": "source_span",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/source_span-1.10.1",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/source_span-1.10.1",
       "packageUri": "lib/",
       "languageVersion": "3.1"
     },
     {
       "name": "stack_trace",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/stack_trace-1.12.1",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/stack_trace-1.12.1",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
     {
       "name": "stream_channel",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/stream_channel-2.1.4",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/stream_channel-2.1.4",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
     {
       "name": "string_scanner",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/string_scanner-1.4.1",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/string_scanner-1.4.1",
       "packageUri": "lib/",
       "languageVersion": "3.1"
     },
     {
       "name": "syncfusion_flutter_calendar",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/syncfusion_flutter_calendar-30.2.7",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/syncfusion_flutter_calendar-30.2.7",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     },
     {
       "name": "syncfusion_flutter_core",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/syncfusion_flutter_core-30.2.7",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/syncfusion_flutter_core-30.2.7",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     },
     {
       "name": "syncfusion_flutter_datepicker",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/syncfusion_flutter_datepicker-30.2.7",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/syncfusion_flutter_datepicker-30.2.7",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     },
     {
       "name": "syncfusion_localizations",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/syncfusion_localizations-30.2.7",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/syncfusion_localizations-30.2.7",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     },
     {
       "name": "term_glyph",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/term_glyph-1.2.2",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/term_glyph-1.2.2",
       "packageUri": "lib/",
       "languageVersion": "3.1"
     },
@@ -531,13 +459,13 @@
     },
     {
       "name": "timezone",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/timezone-0.10.1",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/timezone-0.10.1",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
     {
       "name": "typed_data",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/typed_data-1.4.0",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/typed_data-1.4.0",
       "packageUri": "lib/",
       "languageVersion": "3.5"
     },
@@ -549,9 +477,9 @@
     },
     {
       "name": "url_launcher_android",
-      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/url_launcher_android-6.3.17",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/url_launcher_android-6.3.22",
       "packageUri": "lib/",
-      "languageVersion": "3.6"
+      "languageVersion": "3.9"
     },
     {
       "name": "url_launcher_ios",
@@ -596,44 +524,14 @@
       "languageVersion": "3.1"
     },
     {
-      "name": "url_launcher_android",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_android-6.3.21",
+      "name": "vm_service",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/vm_service-15.0.2",
       "packageUri": "lib/",
-      "languageVersion": "3.9"
+      "languageVersion": "3.5"
     },
     {
-      "name": "url_launcher_ios",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_ios-6.3.4",
-      "packageUri": "lib/",
-      "languageVersion": "3.7"
-    },
-    {
-      "name": "url_launcher_linux",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_linux-3.2.1",
-      "packageUri": "lib/",
-      "languageVersion": "3.3"
-    },
-    {
-      "name": "url_launcher_macos",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_macos-3.2.3",
-      "packageUri": "lib/",
-      "languageVersion": "3.7"
-    },
-    {
-      "name": "url_launcher_platform_interface",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_platform_interface-2.3.2",
-      "packageUri": "lib/",
-      "languageVersion": "3.1"
-    },
-    {
-      "name": "url_launcher_web",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_web-2.4.1",
-      "packageUri": "lib/",
-      "languageVersion": "3.6"
-    },
-    {
-      "name": "url_launcher_windows",
-      "rootUri": "file:///C:/Users/ruhan/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_windows-3.1.4",
+      "name": "web",
+      "rootUri": "file:///Users/shritan/.pub-cache/hosted/pub.dev/web-1.1.1",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },

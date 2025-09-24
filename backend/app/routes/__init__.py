@@ -1,10 +1,11 @@
 from .user_routes import user_routes
-def init_routes(app):
-  app.register_blueprint(user_routes, url_prefix='/signlog')
-
-
-
-
 from .notes_routes import notes_routes
+from .auth_routes import auth_routes
+
 def init_routes(app):
-    app.register_blueprint(notes_routes, url_prefix='/notes')
+  app.register_blueprint(user_routes, url_prefix='/signup')
+  app.register_blueprint(notes_routes, url_prefix='/notes')
+  app.register_blueprint(auth_routes, url_prefix='/auth_routes')
+
+
+    
