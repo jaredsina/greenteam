@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class Schedule extends StatefulWidget {
   const Schedule({super.key});
@@ -72,6 +74,26 @@ List<Session> _getDataSource() {
     ),
   );
   return sessions;
+}
+
+Future<void> createAppointment(
+  BuildContext context,
+  date,
+  time,
+  String title,
+) async {
+  final url = Uri.parse("http://127.0.0.1:4000/schedule/appointment");
+  final response = await http.post(
+    url,
+    headers: {'Content-Type': 'application/json'},
+    body: jsonEncode({
+      'user_id': 1,
+      'date': date,
+      'time': time,
+      'title': title,
+    }),
+    //Snackbar thingy add that
+  );
 }
 
 class SessionDataSource extends CalendarDataSource {
