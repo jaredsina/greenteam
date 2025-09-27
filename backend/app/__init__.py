@@ -2,6 +2,7 @@ from flask import Flask
 from .routes import init_routes
 from .config import init_config
 from flask_cors import CORS
+
 def create_app():
 
   print("Creating Flask Application")
