@@ -82,7 +82,7 @@ class MyApp extends StatelessWidget {
         '/schedule': (context) => const Schedule(),
         '/study': (context) => const Study(),
         '/signlog': (context) => const SignLog(),
-        '/signup': (context) => const SignUp(title: 'SignUp'),
+        '/signup': (context) => const Signup(),
         '/home': (context) => const Home(),
         '/login': (context) => const LogIn(title: 'LogIn'),
         '/notes': (context) => const Notes(),

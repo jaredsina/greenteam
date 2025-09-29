@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
 
 Future<void> createPost(BuildContext context, username, password) async {
-  final url = Uri.parse('http://127.0.0.1:4000/signup');
+  final url = Uri.parse('http://127.0.0.1:4000/signup/create');
   final response = await http.post(
     url,
     headers: {'Content-Type': 'application/json'},
@@ -14,7 +14,7 @@ Future<void> createPost(BuildContext context, username, password) async {
   if (response.statusCode == 201) {
     ScaffoldMessenger.of(
       context,
-    ).showSnackBar(SnackBar(content: Text('Note created and saved.')));
+    ).showSnackBar(SnackBar(content: Text('User created and saved.')));
   } else {
     ScaffoldMessenger.of(
       context,
@@ -22,23 +22,18 @@ Future<void> createPost(BuildContext context, username, password) async {
   }
 }
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Signup extends StatefulWidget {
+  const Signup({super.key});
 
   final String title = 'SignUp';
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false);
-  }
+  State<Signup> createState() => _SignupState();
 }
 
-class SignUp extends StatelessWidget {
-  const SignUp({super.key, required String title});
+class _SignupState extends State<Signup> {
+  String email = "";
+  String password = "";
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +55,11 @@ class SignUp extends StatelessWidget {
                   EdgeInsets.symmetric(horizontal: 16),
                 ),
                 hintText: "Enter Email",
+                onChanged: (value) {
+                  setState(() {
+                    email = value;
+                  });
+                },
               ),
 
               SizedBox(height: 35),
@@ -69,6 +69,11 @@ class SignUp extends StatelessWidget {
                   EdgeInsets.symmetric(horizontal: 16),
                 ),
                 hintText: "Enter password",
+                onChanged: (value) {
+                  setState(() {
+                    password = value;
+                  });
+                },
               ),
 
               SizedBox(height: 35),
@@ -94,9 +99,7 @@ class SignUp extends StatelessWidget {
                       ),
                       onPressed: () {
                         Navigator.pushNamed(context, '/home');
-                        final content = controller.document.toDelta();
-                        final jsoncontent = jsonEncode(content.toJson());
-                        createPost(context, 'signup', jsoncontent);
+                        createPost(context, email, password);
                       },
                       child: Row(
                         spacing: 5,
