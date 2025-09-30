@@ -3,8 +3,6 @@ import 'package:flutter_quill/flutter_quill.dart' as quill;
 import 'package:http/http.dart' as http;
 import 'dart:convert'; 
 
-
-
 Future<void> createPost(BuildContext context, catagory, String notes) async {
   //blank until api link provided
   final url = Uri.parse('http://127.0.0.1:4000/notes/post');
