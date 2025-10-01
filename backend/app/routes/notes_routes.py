@@ -24,13 +24,11 @@ def post_note():
     return jsonify(response), 201
 
 # #Define route in blueprint
-@notes_routes.route('/get', methods=['Get'])
-def get_notes():
-     try:
-         note = NoteModel(current_app.mongo)
-         note = note.list_all_note()
-     except Exception as e:
-         # If exception is raised, return error message and status code 400
-         return jsonify({'messages':'Error', 'error': str(e)}), 400
-     # If no exceptpion is raised, return good message and status code 200
-     return jsonify(note), 200
+@notes_routes.route('/get/<string:catagory>', methods=['GET'])
+def get_notes_by_category(catagory):
+    try:
+        note_model = NoteModel(current_app.mongo)
+        notes = note_model.list_notes_by_category(catagory)
+    except Exception as e:
+        return jsonify({'message': 'Error fetching notes', 'error': str(e)}), 400
+    return jsonify(notes), 200
