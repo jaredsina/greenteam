@@ -15,9 +15,9 @@ class Schedule(BaseModel):
     startTime: int
     endTime: int
 
-def generate_schedule(subject):
+def generate_schedule(subject, date, startTime, endTime):
     response = client.models.generate_content(
-        model="gemini-2.5-flash", contents=f"Generate a study schedule based on {subject}. Give date in the format YYYY-MM-DD.", config = {"response_mime_type": "application/json", "response_schema": list[Schedule]}
+        model="gemini-2.5-flash", contents=f"Generate a study schedule based on {subject}. The date will be {date} between {startTime} and {endTime}. Give start time and end time for each session in hours as an integer 0-24. Make each appointment one hour long", config = {"response_mime_type": "application/json", "response_schema": list[Schedule]}
     )
     print(response.text)
     return response.text
