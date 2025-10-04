@@ -26,8 +26,6 @@ def post_generate_schedule():
 # Add a body to the request so that you can input which subject it should make
 # Look into how you can personalize the response more based on other inputfrom flask import Blueprint, jsonify, current_app,request
 
-schedule_routes = Blueprint('schedule_routes', __name__)
-
 @schedule_routes.route("/create", methods=['POST','OPTIONS'])
 def create_schedule():
     if request.method == 'OPTIONS':
