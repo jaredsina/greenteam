@@ -9,10 +9,14 @@ auth_routes = Blueprint("signlog_routes", __name__)
 def post_signlog():
     try:
         data = request.get_json()
+
+        # Receives data from the phone login requests
         username = data['username']
         password = data['password']
 
-        user = UserModel(current_app.mongo)
+        user_model = UserModel(current_app.mongo)
+        response = user_model.find_user(username)
+        print(response)
 
     except Exception as e:
         # If an exception is raised, return an error message and status code 400

@@ -12,5 +12,9 @@ class UserModel:
     result = self.collection.insert_one(user_data)
     return str(result.inserted_id)
   
+
+  def find_user(self, username):
+    result = self.collection.find_one({"username": username},{"_id": {"$toString": "$_id"},"username": 1, "password": 1})
+    return result
   
 
