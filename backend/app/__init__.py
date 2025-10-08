@@ -12,7 +12,6 @@ def create_app():
   init_routes(app)
   init_config(app)
 
-
   return app
   
 
