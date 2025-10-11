@@ -7,6 +7,10 @@ build/
 coverage/
 generated_plugin_registrant.dart
 
+# Python related
+*.pyc
+__pycache__/
+
 # Android related
 **/android/**/gradle-wrapper.jar
 **/android/.gradle/

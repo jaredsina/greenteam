@@ -19,7 +19,4 @@ def post_generate_schedule():
         else:
             return generate_schedule(subject, date, startTime, endTime)
     else:
-        return jsonify({'error': 'Invalid request'}), 400
-# Push this github
-# Add a body to the request so that you can input which subject it should make
-# Look into how you can personalize the response more based on other input
+        return jsonify({'error': 'Invalid request'}), 400 

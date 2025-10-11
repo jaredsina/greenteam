@@ -18,6 +18,7 @@ class _ScheduleState extends State<Schedule> {
   final CalendarController _calendarController = CalendarController();
   int? _startHour = 0;
   int? _endHour = 1;
+  DateTime? date;
   _AppointmentDataSource? _events;
   final List<Appointment> appointments = [];
   final _formKey = GlobalKey<FormState>();
@@ -29,19 +30,52 @@ class _ScheduleState extends State<Schedule> {
     _events = _AppointmentDataSource(appointments);
   }
 
-  Future<void> fetchSchedule(String subject) async {
-    final url = Uri.parse(
-      'http://localhost:4000/schedule/generate', // change base url and port to environment variable
-    ); // Replace with your actual backend URL
+  Future<void> fetchSchedule(
+    String subject,
+    DateTime? date,
+    int? startTime,
+    int? endTime,
+  ) async {
+    final url = Uri.parse('http://localhost:4000/schedule/generate');
 
     final response = await http.post(
       url,
       headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({'subject': appointmentName}),
+      body: jsonEncode({
+        'subject': subject,
+        'date': date,
+        'startTime': startTime,
+        'endTime': endTime,
+      }),
     );
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
+
+      final List<dynamic> scheduleList = data['schedule'];
+
+      for (var item in scheduleList) {
+        final subject = item['subject'];
+        final date = DateTime.parse(item['date']);
+        final startHour = item['startTime'];
+        final endHour = item['endTime'];
+
+        final startTime = date.copyWith(hour: startHour);
+        final endTime = date.copyWith(hour: endHour);
+
+        final Appointment session = Appointment(
+          startTime: startTime,
+          endTime: endTime,
+          subject: subject,
+          color: Colors.blue,
+        );
+        _events?.appointments!.add(session);
+        _events?.notifyListeners(CalendarDataSourceAction.add, <Appointment>[
+          session,
+        ]);
+        setState(() {});
+      }
+
       print('$data');
     } else {
       print('Error');
@@ -204,7 +238,8 @@ class _ScheduleState extends State<Schedule> {
                   TextFormField(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Enter a subject to study',
+                      labelText:
+                          'Enter subjects you to study (seperate by comma)',
                     ),
                     validator: (String? value) {
                       if (value?.length == 0) {
@@ -302,13 +337,13 @@ class _ScheduleState extends State<Schedule> {
 
                           print(_calendarController.selectedDate);
 
-                          DateTime? startTime = startDate?.copyWith(
-                            hour: _startHour,
-                          );
-                          DateTime? endTime = endDate?.copyWith(hour: _endHour);
-
                           // Fetch schedule
-                          fetchSchedule(appointmentName);
+                          fetchSchedule(
+                            appointmentName,
+                            date,
+                            _startHour,
+                            _endHour,
+                          );
 
                           setState(() {});
                           // Close the dialog menu
@@ -380,7 +415,9 @@ class _ScheduleState extends State<Schedule> {
               showNavigationArrow: true,
               onSelectionChanged: (calendarSelectionDetails) {
                 print(calendarSelectionDetails.date);
-                setState(() {});
+                setState(() {
+                  date = calendarSelectionDetails.date;
+                });
               },
               firstDayOfWeek: 1,
               monthViewSettings: MonthViewSettings(
