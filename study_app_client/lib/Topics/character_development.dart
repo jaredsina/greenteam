@@ -1,11 +1,7 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
 import 'package:http/http.dart' as http;
 import 'dart:convert'; 
-
-
 
 Future<void> createPost(BuildContext context, catagory, String notes) async {
   //blank until api link provided
@@ -15,7 +11,7 @@ Future<void> createPost(BuildContext context, catagory, String notes) async {
     headers: {'Content-Type': 'application/json'},
     body: jsonEncode({
       'note' : notes,
-      
+      'catagory': catagory,
       // placeholder
       'user_id': 1,
     }
@@ -36,103 +32,147 @@ Future<void> createPost(BuildContext context, catagory, String notes) async {
 
 
 
+Future<List<dynamic>> fetchNotesList(String category) async {
+  final url = Uri.parse('http://127.0.0.1:4000/notes/get/$category');
+  final response = await http.get(url);
 
+  if (response.statusCode == 200) {
+    return jsonDecode(response.body);
+  } else {
+    throw Exception('Failed to load notes');
+  }
+}
 
 
 class CharacterDevelopment extends StatefulWidget {
-  final String title = 'CharacterDevelopment';
+  final String title = 'Character Development';
 
   const CharacterDevelopment({super.key});
 
   @override
   _CharacterDevelopmentState createState() => _CharacterDevelopmentState();
 }
+
 class _CharacterDevelopmentState extends State<CharacterDevelopment> {
+  late quill.QuillController controller;
+  String? latestNoteId;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = quill.QuillController.basic();
+    _fetchLatestNote();  
+  }
+
+  Future<void> _fetchLatestNote() async {
+    try {
+      final url = Uri.parse('http://127.0.0.1:4000/notes/get/character_development');
+      final response = await http.get(url);
+
+      if (response.statusCode == 200) {
+        final List<dynamic> notes = jsonDecode(response.body);
+
+        if (notes.isNotEmpty) {
+          final latestNote = notes.last;
+          latestNoteId = latestNote['_id'];
+
+          final noteContent = latestNote['note'];
+
+          // convert JSON back to Quill Document
+          final doc = quill.Document.fromJson(jsonDecode(noteContent));
+
+          setState(() {
+            controller = quill.QuillController(
+              document: doc,
+              selection: const TextSelection.collapsed(offset: 0),
+            );
+          });
+        }
+      } else {
+        print("Error fetching notes: ${response.body}");
+      }
+    } catch (e) {
+      print("Error fetching notes: $e");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final quill.QuillController controller = quill.QuillController.basic();
     return Scaffold(
-  appBar: AppBar(
-    backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-    title: Text(widget.title),
-    centerTitle: true,
-  ),
-  body: SingleChildScrollView(
-    padding: const EdgeInsets.all(16.0),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Center(
-          child: Text(
-            'Character Development',
-            style: TextStyle(fontSize: 36, fontStyle: FontStyle.italic),
-          ),
-        ),
-        const SizedBox(height: 40),
-          quill.QuillSimpleToolbar(
-            controller: controller
-          ),
-          Container(
-            decoration: const BoxDecoration(
-            border: Border(
-             top: BorderSide(color: Color(0xFF000000)),
-             bottom: BorderSide(color: Colors.black),
-             left: BorderSide(color: Colors.black),
-             right: BorderSide(color: Colors.black)
-             ),
-            ),
-          child: SizedBox(
-            height: 200,
-            child:quill.QuillEditor(
-            focusNode: FocusNode(), 
-            scrollController: ScrollController(), 
-            controller: controller,
-            config: quill.QuillEditorConfig(
-              placeholder: 'write words',
-    
-            ), 
-            ),
-          ),
-          ), 
-      const SizedBox(width: 20, height: 20,),
-       Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-        FilledButton.tonal(
-        style: ElevatedButton.styleFrom(
-          fixedSize: const Size(100,60),
-        alignment: Alignment.bottomRight,
-        shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text(widget.title),
+        centerTitle: true,
       ),
-        backgroundColor: const Color.fromARGB(255, 103, 181, 250),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Center(
+              child: Text(
+                'Character Development',
+                style: TextStyle(fontSize: 36, fontStyle: FontStyle.italic),
+              ),
+            ),
+            const SizedBox(height: 40),
+
+            quill.QuillSimpleToolbar(controller: controller),
+            Container(
+              decoration: const BoxDecoration(
+                border: Border(
+                  top: BorderSide(color: Color(0xFF000000)),
+                  bottom: BorderSide(color: Colors.black),
+                  left: BorderSide(color: Colors.black),
+                  right: BorderSide(color: Colors.black),
                 ),
-        onPressed: () {
-          // what does final do?
-          final content = controller.document.toDelta();
-          final jsoncontent = jsonEncode(content.toJson());
-          createPost(context, 'character development', jsoncontent);
-                },
-       child:  Center(
-        child: const Text(
-                  'Save',
-                  style: TextStyle(fontSize: 20),
-                  textAlign: TextAlign.center ,
+              ),
+              child: SizedBox(
+                height: 200,
+                child: quill.QuillEditor(
+                  focusNode: FocusNode(),
+                  scrollController: ScrollController(),
+                  controller: controller,
+                  config: const quill.QuillEditorConfig(
+                    placeholder: 'write words',
+                  ),
                 ),
-       )
+              ),
+            ),
+
+            const SizedBox(width: 20, height: 20),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                FilledButton.tonal(
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: const Size(100, 60),
+                    alignment: Alignment.bottomRight,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    backgroundColor:
+                        const Color.fromARGB(255, 103, 181, 250),
+                  ),
+                  onPressed: () {
+                    final content = controller.document.toDelta();
+                    final jsoncontent = jsonEncode(content.toJson());
+                    createPost(context, 'character_development', jsoncontent);
+                  },
+                  child: const Center(
+                    child: Text(
+                      'Save',
+                      style: TextStyle(fontSize: 20),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
                 ),
-              
-      ]
-        
-          ),
-      ]
-          ),
-    
-    
-    
-    ),
-  // ignore: dead_code
-  );
-  
-}
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

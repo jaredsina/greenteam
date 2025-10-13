@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:study_app_client/Topics/algebra.dart';
-import 'package:study_app_client/Topics/geometry.dart';
 import 'package:study_app_client/Topics/calculus.dart';
+import 'package:study_app_client/Topics/geometry.dart';
 import 'package:study_app_client/Topics/pre_calculus.dart';
-import 'package:study_app_client/Topics/statistics.dart';
 import 'package:study_app_client/Topics/generic_note_page.dart';
+import 'package:study_app_client/Topics/statistics.dart';
 
 class Math extends StatefulWidget {
   final String title = 'Math';
@@ -20,8 +20,8 @@ class _MathState extends State<Math> {
     'Algebra',
     'Geometry',
     'Calculus',
-    'Pre Calculus',
     'Statistics',
+    'Pre Calculus',
   ];
 
   bool _deleteMode = false;
@@ -31,8 +31,8 @@ class _MathState extends State<Math> {
     'Algebra': const Algebra(),
     'Geometry': const Geometry(),
     'Calculus': const Calculus(),
-    'Pre Calculus': const PreCalculus(),
     'Statistics': const Statistics(),
+    'Pre Calculus': const PreCalculus(),
   };
 
   @override
