@@ -29,6 +29,7 @@ def get_notes_by_category(catagory):
     try:
         note_model = NoteModel(current_app.mongo)
         notes = note_model.list_notes_by_category(catagory)
+        print(notes)
     except Exception as e:
         return jsonify({'message': 'Error fetching notes', 'error': str(e)}), 400
     return jsonify(notes), 200

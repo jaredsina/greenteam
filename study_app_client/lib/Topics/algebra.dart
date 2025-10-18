@@ -61,7 +61,7 @@ class _AlgebraState extends State<Algebra> {
   void initState() {
     super.initState();
     controller = quill.QuillController.basic();
-    _fetchLatestNote();  // load latest note on startup
+    _fetchLatestNote();  
   }
 
   Future<void> _fetchLatestNote() async {
@@ -81,7 +81,6 @@ class _AlgebraState extends State<Algebra> {
           // convert JSON back to Quill Document
           final doc = quill.Document.fromJson(jsonDecode(noteContent));
 
-          // 🔹 update controller inside setState so UI rebuilds
           setState(() {
             controller = quill.QuillController(
               document: doc,
@@ -118,7 +117,6 @@ class _AlgebraState extends State<Algebra> {
             ),
             const SizedBox(height: 40),
 
-            // 🔹 Use the controller that gets updated by fetch
             quill.QuillSimpleToolbar(controller: controller),
             Container(
               decoration: const BoxDecoration(

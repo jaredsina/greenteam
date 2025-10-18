@@ -17,5 +17,5 @@ class NoteModel:
     def list_notes_by_category(self, catagory):
         notes = list(self.collection.find({'catagory': catagory}))
         for n in notes:
-            n['_id'] = str(n['_id'])  # make ObjectId JSON serializable
+            n['_id'] = str(n['_id'])
         return notes
