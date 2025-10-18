@@ -3,43 +3,41 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-import 'dart:convert';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
-import 'package:http/http.dart' as http;
 
-
-Future<void> createPost(BuildContext context,String schedule,String date,String freeHours,String subject) async {
+Future<void> createPost(
+  BuildContext context,
+  String schedule,
+  String date,
+  String freeHours,
+  String subject,
+) async {
   //blank until api link provided
   final url = Uri.parse('http://127.0.0.1:4000/schedule/create');
   final response = await http.post(
     url,
     headers: {'Content-Type': 'application/json'},
     body: jsonEncode({
-      'schedule' : schedule,
+      'schedule': schedule,
       'date': date,
       'free_hours': freeHours,
-      'subject':subject,
-      
+      'subject': subject,
+
       // placeholder
       'user_id': 1,
-
-    }
-    )
+    }),
   );
 
   if (response.statusCode == 201) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Scheudle created and saved.')),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text('Scheudle created and saved.')));
   } else {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Failed to save.'))
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text('Failed to save.')));
   }
-
 }
-
-
 
 class Schedule extends StatefulWidget {
   const Schedule({super.key});
@@ -179,20 +177,23 @@ class _ScheduleState extends State<Schedule> {
                         child: const Text('Enter'),
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            DateTime? selectedDate = _calendarController.selectedDate;
+                            DateTime? selectedDate =
+                                _calendarController.selectedDate;
                             if (selectedDate == null) {
                               print("Pick a date.");
                               return;
                             }
-                            String formattedDate = "${selectedDate.year}-${selectedDate.month}-${selectedDate.day}";
-                            String freeHoursRange = "${_startHour}:00 - ${_endHour}:00";
+                            String formattedDate =
+                                "${selectedDate.year}-${selectedDate.month}-${selectedDate.day}";
+                            String freeHoursRange =
+                                "${_startHour}:00 - ${_endHour}:00";
 
                             createPost(
                               context,
-                              "schedule",          // schedule tag
-                              freeHoursRange,      // free hours
-                              formattedDate,       // date
-                              appointmentName,     // subject
+                              "schedule", // schedule tag
+                              freeHoursRange, // free hours
+                              formattedDate, // date
+                              appointmentName, // subject
                             );
 
                             print("Form is valid");
@@ -279,7 +280,7 @@ class _ScheduleState extends State<Schedule> {
                         _startHour = i;
                       });
                     },
-                    initialValue: _startHour,
+                    // initialValue: _startHour,
                     items: [
                       for (var i = 0; i <= 24; i++)
                         DropdownMenuItem(value: i, child: Text("$i")),
@@ -303,7 +304,7 @@ class _ScheduleState extends State<Schedule> {
                         _endHour = i;
                       });
                     },
-                    initialValue: _endHour,
+                    // initialValue: _endHour,
                     items: [
                       for (var i = 0; i <= 24; i++)
                         DropdownMenuItem(value: i, child: Text("$i")),

@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'quiz_create.dart';
 
 class QuizArguments {
@@ -63,7 +66,51 @@ class _QuizState extends State<Quiz> {
     minimumSize: Size(100, 100),
   );
   final EdgeInsets padding = const EdgeInsets.all(10);
+
+  // State Variables
   int currentQuestion = 0;
+  dynamic quizData;
+  bool _loading = true;
+  QuizArguments? _quizArgs;
+
+  Future<void> fetchQuiz(QuizArguments? data) async {
+    if (quizData != null || data == null) {
+      print("Exit early");
+      return;
+    }
+    setState(() {
+      _loading = true;
+    });
+    print("Fetching data...");
+    final url = Uri.parse(
+      'http://localhost:4000/quiz/generate', // change base url and port to environment variable
+    ); // Replace with your actual backend URL
+
+    final response = await http.post(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        "difficulty": data.selectedDifficulty,
+        "length": data.selectedLength,
+        "type": data.selectedType,
+        "topic": data.topic,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      print("Quiz Generated");
+      final data = jsonDecode(response.body);
+      print(data);
+      setState(() {
+        quizData = data;
+      });
+    } else {
+      print('Error');
+    }
+    setState(() {
+      _loading = false;
+    });
+  }
 
   List getNumberQuestions(List questions, QuizArguments data) {
     if (data.selectedLength == '5 questions') {
@@ -84,61 +131,72 @@ class _QuizState extends State<Quiz> {
     MultipleChoiceOption('Option D', false),
   ];
 
-  List<Widget> getQuizType(QuizArguments arguments) {
+  List<Widget> getQuizType(QuizArguments arguments, dynamic QuizData) {
     String quizType = arguments.selectedType;
 
     if (quizType == "True/False") {
-      return makeTF(arguments);
+      return makeTF(arguments, QuizData);
     } else if (quizType == "Written Response") {
-      return makeWR(arguments);
+      return makeWR(arguments, QuizData);
     } else if (quizType == "Multiple Choice") {
-      return makeMultipleChoice(arguments);
+      return makeMultipleChoice(arguments, QuizData);
     } else {
       throw Error();
     }
+  }
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   if (_quizArgs != null) {
+  //     print("here");
+  //     fetchQuiz(_quizArgs);
+  //   }
+  // }
+  //fetchQuiz();
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final QuizArguments data =
+        ModalRoute.of(context)?.settings.arguments as QuizArguments;
+    print("here");
+    fetchQuiz(data);
   }
 
   @override
   Widget build(BuildContext context) {
     final QuizArguments data =
         ModalRoute.of(context)?.settings.arguments as QuizArguments;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.topic?.toString() ?? 'Quiz'),
       ),
-      body: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: getQuizType(data),
-        ),
-      ),
+      body: !_loading
+          ? Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: getQuizType(data, quizData),
+              ),
+            )
+          : Center(child: Text("Loading")),
     );
   }
 
-  List<Widget> makeMultipleChoice(QuizArguments data) {
-    List<QuestionMultipleChoice> questions = [
-      QuestionMultipleChoice('dino', options),
-      QuestionMultipleChoice('dino', options),
-      QuestionMultipleChoice('dino', options),
-      QuestionMultipleChoice('dino', options),
-      QuestionMultipleChoice('dino', options),
-      QuestionMultipleChoice('dino', options),
-      QuestionMultipleChoice('dino', options),
-      QuestionMultipleChoice('dino', options),
-      QuestionMultipleChoice('dino', options),
-      QuestionMultipleChoice('dino', options),
-      QuestionMultipleChoice('dino', options),
-      QuestionMultipleChoice('dino', options),
-      QuestionMultipleChoice('dino', options),
-      QuestionMultipleChoice('dino', options),
-      QuestionMultipleChoice('dino', options),
-      QuestionMultipleChoice('dino', options),
-      QuestionMultipleChoice('dino', options),
-      QuestionMultipleChoice('dino', options),
-      QuestionMultipleChoice('dino', options),
-      QuestionMultipleChoice('dino', options),
-    ];
+  List<Widget> makeMultipleChoice(QuizArguments data, dynamic QuizData) {
+    List<dynamic> dataQuestions = QuizData['questions'];
+    List<QuestionMultipleChoice> questions = dataQuestions.map((question) {
+      List<dynamic> dataOptions = question["option"];
+      List<MultipleChoiceOption> options = dataOptions
+          .map(
+            (option) =>
+                MultipleChoiceOption(option['value'], option['isCorrect']),
+          )
+          .toList();
+      return QuestionMultipleChoice(question["question"], options);
+    }).toList();
     questions =
         getNumberQuestions(questions, data) as List<QuestionMultipleChoice>;
     QuestionMultipleChoice question = questions[currentQuestion];
@@ -225,41 +283,14 @@ class _QuizState extends State<Quiz> {
     ];
   }
 
-  List<Widget> makeTF(QuizArguments data) {
-    List<QuestionTrueFalse> questions = [
-      QuestionTrueFalse('The capital of Australia is Sydney.', false),
-      QuestionTrueFalse('Humans have more than five senses.', true),
-      QuestionTrueFalse('Water boils at 100°C at sea level.', true),
-      QuestionTrueFalse('Bats are blind.', false),
-      QuestionTrueFalse(
-        'The Great Wall of China is visible from space with the naked eye.',
-        false,
-      ),
-      QuestionTrueFalse('The capital of Australia is Sydney.', false),
-      QuestionTrueFalse('Humans have more than five senses.', true),
-      QuestionTrueFalse('Water boils at 100°C at sea level.', true),
-      QuestionTrueFalse('Bats are blind.', false),
-      QuestionTrueFalse(
-        'The Great Wall of China is visible from space with the naked eye.',
-        false,
-      ),
-      QuestionTrueFalse('The capital of Australia is Sydney.', false),
-      QuestionTrueFalse('Humans have more than five senses.', true),
-      QuestionTrueFalse('Water boils at 100°C at sea level.', true),
-      QuestionTrueFalse('Bats are blind.', false),
-      QuestionTrueFalse(
-        'The Great Wall of China is visible from space with the naked eye.',
-        false,
-      ),
-      QuestionTrueFalse('The capital of Australia is Sydney.', false),
-      QuestionTrueFalse('Humans have more than five senses.', true),
-      QuestionTrueFalse('Water boils at 100°C at sea level.', true),
-      QuestionTrueFalse('Bats are blind.', false),
-      QuestionTrueFalse(
-        'The Great Wall of China is visible from space with the naked eye.',
-        false,
-      ),
-    ];
+  List<Widget> makeTF(QuizArguments data, dynamic QuizData) {
+    List<dynamic> dataQuestions = QuizData['questions'];
+    List<QuestionTrueFalse> questions = dataQuestions
+        .map(
+          (question) =>
+              QuestionTrueFalse(question['question'], question['answer']),
+        )
+        .toList();
 
     questions = getNumberQuestions(questions, data) as List<QuestionTrueFalse>;
 
@@ -308,29 +339,11 @@ class _QuizState extends State<Quiz> {
     ];
   }
 
-  List<Widget> makeWR(QuizArguments data) {
-    List<QuestionWrittenResponse> questions = [
-      QuestionWrittenResponse('Explain why dinosaurs are extinct'),
-      QuestionWrittenResponse('Explain why triangles have 3 sides'),
-      QuestionWrittenResponse('Explain why shritan is always so late'),
-      QuestionWrittenResponse('Explain how to make a pretzel'),
-      QuestionWrittenResponse('Explain how to eat a cinnamon bun'),
-      QuestionWrittenResponse('Explain why dinosaurs are extinct'),
-      QuestionWrittenResponse('Explain why triangles have 3 sides'),
-      QuestionWrittenResponse('Explain why shritan is always so late'),
-      QuestionWrittenResponse('Explain how to make a pretzel'),
-      QuestionWrittenResponse('Explain how to eat a cinnamon bun'),
-      QuestionWrittenResponse('Explain why dinosaurs are extinct'),
-      QuestionWrittenResponse('Explain why triangles have 3 sides'),
-      QuestionWrittenResponse('Explain why shritan is always so late'),
-      QuestionWrittenResponse('Explain how to make a pretzel'),
-      QuestionWrittenResponse('Explain how to eat a cinnamon bun'),
-      QuestionWrittenResponse('Explain why dinosaurs are extinct'),
-      QuestionWrittenResponse('Explain why triangles have 3 sides'),
-      QuestionWrittenResponse('Explain why shritan is always so late'),
-      QuestionWrittenResponse('Explain how to make a pretzel'),
-      QuestionWrittenResponse('Explain how to eat a cinnamon bun'),
-    ];
+  List<Widget> makeWR(QuizArguments data, dynamic QuizData) {
+    List<dynamic> dataQuestions = QuizData['questions'];
+    List<QuestionWrittenResponse> questions = dataQuestions
+        .map((question) => QuestionWrittenResponse(question["question"]))
+        .toList();
 
     questions =
         getNumberQuestions(questions, data) as List<QuestionWrittenResponse>;
@@ -383,5 +396,4 @@ class _QuizState extends State<Quiz> {
             ),
     ];
   }
-
 }
