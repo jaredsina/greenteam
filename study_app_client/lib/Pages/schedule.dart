@@ -43,7 +43,7 @@ class _ScheduleState extends State<Schedule> {
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
         'subject': subject,
-        'date': date,
+        'date': date.toString(),
         'startTime': startTime,
         'endTime': endTime,
       }),
@@ -52,13 +52,15 @@ class _ScheduleState extends State<Schedule> {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
 
-      final List<dynamic> scheduleList = data['schedule'];
+      print(data);
 
-      for (var item in scheduleList) {
-        final subject = item['subject'];
-        final date = DateTime.parse(item['date']);
-        final startHour = item['startTime'];
-        final endHour = item['endTime'];
+      for (var item in data) {
+        print(item);
+        print(item['title']);
+        final String subject = item['title'];
+        final DateTime date = DateTime.parse(item['date']);
+        final int startHour = item['startTime'];
+        final int endHour = item['endTime'];
 
         final startTime = date.copyWith(hour: startHour);
         final endTime = date.copyWith(hour: endHour);
