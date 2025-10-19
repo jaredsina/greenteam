@@ -93,9 +93,9 @@
     },
     {
       "name": "file_selector_macos",
-      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/file_selector_macos-0.9.4+4",
+      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/file_selector_macos-0.9.4+5",
       "packageUri": "lib/",
-      "languageVersion": "3.7"
+      "languageVersion": "3.9"
     },
     {
       "name": "file_selector_platform_interface",
@@ -113,8 +113,7 @@
       "name": "flutter",
       "rootUri": "file:///C:/Users/nicob/OneDrive/Documents/GitHub/FlutterSDK/flutter/packages/flutter",
       "packageUri": "lib/",
-      "languageVersion": "3.7"
-      "languageVersion": "3.7"
+      "languageVersion": "3.8"
     },
     {
       "name": "flutter_colorpicker",
@@ -154,26 +153,25 @@
     },
     {
       "name": "flutter_lints",
-      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-5.0.0",
+      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-6.0.0",
       "packageUri": "lib/",
-      "languageVersion": "3.5"
+      "languageVersion": "3.8"
     },
     {
       "name": "flutter_localizations",
       "rootUri": "file:///C:/Users/nicob/OneDrive/Documents/GitHub/FlutterSDK/flutter/packages/flutter_localizations",
       "packageUri": "lib/",
-      "languageVersion": "3.7"
-      "languageVersion": "3.7"
+      "languageVersion": "3.8"
     },
     {
       "name": "flutter_plugin_android_lifecycle",
-      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.31",
+      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.32",
       "packageUri": "lib/",
-      "languageVersion": "3.7"
+      "languageVersion": "3.9"
     },
     {
       "name": "flutter_quill",
-      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_quill-11.4.2",
+      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_quill-11.5.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -187,15 +185,13 @@
       "name": "flutter_test",
       "rootUri": "file:///C:/Users/nicob/OneDrive/Documents/GitHub/FlutterSDK/flutter/packages/flutter_test",
       "packageUri": "lib/",
-      "languageVersion": "3.7"
-      "languageVersion": "3.7"
+      "languageVersion": "3.8"
     },
     {
       "name": "flutter_web_plugins",
       "rootUri": "file:///C:/Users/nicob/OneDrive/Documents/GitHub/FlutterSDK/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
-      "languageVersion": "3.7"
-      "languageVersion": "3.7"
+      "languageVersion": "3.8"
     },
     {
       "name": "html",
@@ -223,9 +219,9 @@
     },
     {
       "name": "image_picker_android",
-      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_android-0.8.13+4",
+      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_android-0.8.13+5",
       "packageUri": "lib/",
-      "languageVersion": "3.7"
+      "languageVersion": "3.9"
     },
     {
       "name": "image_picker_for_web",
@@ -235,9 +231,9 @@
     },
     {
       "name": "image_picker_ios",
-      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_ios-0.8.13",
+      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_ios-0.8.13+1",
       "packageUri": "lib/",
-      "languageVersion": "3.6"
+      "languageVersion": "3.9"
     },
     {
       "name": "image_picker_linux",
@@ -247,9 +243,9 @@
     },
     {
       "name": "image_picker_macos",
-      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_macos-0.2.2",
+      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_macos-0.2.2+1",
       "packageUri": "lib/",
-      "languageVersion": "3.6"
+      "languageVersion": "3.9"
     },
     {
       "name": "image_picker_platform_interface",
@@ -289,9 +285,9 @@
     },
     {
       "name": "lints",
-      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/lints-5.1.1",
+      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/lints-6.0.0",
       "packageUri": "lib/",
-      "languageVersion": "3.6"
+      "languageVersion": "3.8"
     },
     {
       "name": "markdown",
@@ -399,8 +395,7 @@
       "name": "sky_engine",
       "rootUri": "file:///C:/Users/nicob/OneDrive/Documents/GitHub/FlutterSDK/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
-      "languageVersion": "3.7"
-      "languageVersion": "3.7"
+      "languageVersion": "3.8"
     },
     {
       "name": "source_span",
@@ -428,25 +423,25 @@
     },
     {
       "name": "syncfusion_flutter_calendar",
-      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/syncfusion_flutter_calendar-30.2.7",
+      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/syncfusion_flutter_calendar-31.2.2",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     },
     {
       "name": "syncfusion_flutter_core",
-      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/syncfusion_flutter_core-30.2.7",
+      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/syncfusion_flutter_core-31.2.2",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     },
     {
       "name": "syncfusion_flutter_datepicker",
-      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/syncfusion_flutter_datepicker-30.2.7",
+      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/syncfusion_flutter_datepicker-31.2.2",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     },
     {
       "name": "syncfusion_localizations",
-      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/syncfusion_localizations-30.2.7",
+      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/syncfusion_localizations-31.2.2",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     },
@@ -484,13 +479,13 @@
       "name": "url_launcher_android",
       "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_android-6.3.24",
       "packageUri": "lib/",
-      "languageVersion": "3.7"
+      "languageVersion": "3.9"
     },
     {
       "name": "url_launcher_ios",
-      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_ios-6.3.4",
+      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_ios-6.3.5",
       "packageUri": "lib/",
-      "languageVersion": "3.7"
+      "languageVersion": "3.9"
     },
     {
       "name": "url_launcher_linux",
@@ -500,9 +495,9 @@
     },
     {
       "name": "url_launcher_macos",
-      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_macos-3.2.3",
+      "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_macos-3.2.4",
       "packageUri": "lib/",
-      "languageVersion": "3.7"
+      "languageVersion": "3.9"
     },
     {
       "name": "url_launcher_platform_interface",
@@ -526,15 +521,13 @@
       "name": "vector_math",
       "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/vector_math-2.2.0",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
-      "languageVersion": "2.14"
+      "languageVersion": "3.1"
     },
     {
       "name": "vm_service",
       "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/vm_service-15.0.2",
       "packageUri": "lib/",
-      "languageVersion": "3.3"
-      "languageVersion": "3.3"
+      "languageVersion": "3.5"
     },
     {
       "name": "web",
@@ -558,6 +551,6 @@
   "generator": "pub",
   "generatorVersion": "3.9.2",
   "flutterRoot": "file:///C:/Users/nicob/OneDrive/Documents/GitHub/FlutterSDK/flutter",
-  "flutterVersion": "3.35.3",
+  "flutterVersion": "3.35.6",
   "pubCache": "file:///C:/Users/nicob/AppData/Local/Pub/Cache"
 }
