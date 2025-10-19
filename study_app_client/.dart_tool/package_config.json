@@ -113,7 +113,8 @@
       "name": "flutter",
       "rootUri": "file:///C:/Users/nicob/OneDrive/Documents/GitHub/FlutterSDK/flutter/packages/flutter",
       "packageUri": "lib/",
-      "languageVersion": "3.8"
+      "languageVersion": "3.7"
+      "languageVersion": "3.7"
     },
     {
       "name": "flutter_colorpicker",
@@ -161,7 +162,8 @@
       "name": "flutter_localizations",
       "rootUri": "file:///C:/Users/nicob/OneDrive/Documents/GitHub/FlutterSDK/flutter/packages/flutter_localizations",
       "packageUri": "lib/",
-      "languageVersion": "3.8"
+      "languageVersion": "3.7"
+      "languageVersion": "3.7"
     },
     {
       "name": "flutter_plugin_android_lifecycle",
@@ -185,13 +187,15 @@
       "name": "flutter_test",
       "rootUri": "file:///C:/Users/nicob/OneDrive/Documents/GitHub/FlutterSDK/flutter/packages/flutter_test",
       "packageUri": "lib/",
-      "languageVersion": "3.8"
+      "languageVersion": "3.7"
+      "languageVersion": "3.7"
     },
     {
       "name": "flutter_web_plugins",
       "rootUri": "file:///C:/Users/nicob/OneDrive/Documents/GitHub/FlutterSDK/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
-      "languageVersion": "3.8"
+      "languageVersion": "3.7"
+      "languageVersion": "3.7"
     },
     {
       "name": "html",
@@ -221,7 +225,7 @@
       "name": "image_picker_android",
       "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_android-0.8.13+4",
       "packageUri": "lib/",
-      "languageVersion": "3.9"
+      "languageVersion": "3.7"
     },
     {
       "name": "image_picker_for_web",
@@ -395,7 +399,8 @@
       "name": "sky_engine",
       "rootUri": "file:///C:/Users/nicob/OneDrive/Documents/GitHub/FlutterSDK/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
-      "languageVersion": "3.8"
+      "languageVersion": "3.7"
+      "languageVersion": "3.7"
     },
     {
       "name": "source_span",
@@ -479,7 +484,7 @@
       "name": "url_launcher_android",
       "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_android-6.3.24",
       "packageUri": "lib/",
-      "languageVersion": "3.9"
+      "languageVersion": "3.7"
     },
     {
       "name": "url_launcher_ios",
@@ -521,13 +526,15 @@
       "name": "vector_math",
       "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/vector_math-2.2.0",
       "packageUri": "lib/",
-      "languageVersion": "3.1"
+      "languageVersion": "2.14"
+      "languageVersion": "2.14"
     },
     {
       "name": "vm_service",
       "rootUri": "file:///C:/Users/nicob/AppData/Local/Pub/Cache/hosted/pub.dev/vm_service-15.0.2",
       "packageUri": "lib/",
-      "languageVersion": "3.5"
+      "languageVersion": "3.3"
+      "languageVersion": "3.3"
     },
     {
       "name": "web",
