@@ -9,6 +9,7 @@ import 'package:study_app_client/pages/flashcard.dart';
 import 'package:study_app_client/pages/match.dart';
 import 'package:study_app_client/pages/quiz.dart';
 import 'package:study_app_client/pages/quiz_create.dart';
+import 'package:study_app_client/pages/quiz_end.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'Topics/ancient_civilizations.dart';
 import 'pages/notes.dart';
@@ -49,7 +50,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -78,7 +78,6 @@ class MyApp extends StatelessWidget {
       ),
       home: const SignLog(),
       routes: {
-        // ADD YOUR ROUTES HERE
         '/schedule': (context) => const Schedule(),
         '/study': (context) => const Study(),
         '/signlog': (context) => const SignLog(),
@@ -120,6 +119,7 @@ class MyApp extends StatelessWidget {
         '/study/flashcard': (context) => const Flashcard(),
         '/study/matching': (context) => const Matching(),
         '/study/quiz': (context) => const Quiz(),
+        '/study/quiz/end': (context) => const QuizEnd(),
       },
     );
   }
