@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:study_app_client/pages/quiz_button.dart';
 import 'quiz_create.dart';
 
 class QuizArguments {
@@ -216,48 +217,20 @@ class _QuizState extends State<Quiz> {
             Row(
               children: [
                 Expanded(
-                  child: Padding(
-                    padding: padding,
-                    child: OutlinedButton(
-                      onPressed: () {},
-                      style: multipleChoiceStyle,
-                      child: Text(question.options[0].value),
-                    ),
-                  ),
+                  child: QuizButton(child: Text(question.options[0].value)),
                 ),
                 Expanded(
-                  child: Padding(
-                    padding: padding,
-                    child: OutlinedButton(
-                      onPressed: () {},
-                      style: multipleChoiceStyle,
-                      child: Text(question.options[1].value),
-                    ),
-                  ),
+                  child: QuizButton(child: Text(question.options[1].value)),
                 ),
               ],
             ),
             Row(
               children: [
                 Expanded(
-                  child: Padding(
-                    padding: padding,
-                    child: OutlinedButton(
-                      onPressed: () {},
-                      style: multipleChoiceStyle,
-                      child: Text(question.options[2].value),
-                    ),
-                  ),
+                  child: QuizButton(child: Text(question.options[2].value)),
                 ),
                 Expanded(
-                  child: Padding(
-                    padding: padding,
-                    child: OutlinedButton(
-                      onPressed: () {},
-                      style: multipleChoiceStyle,
-                      child: Text(question.options[3].value),
-                    ),
-                  ),
+                  child:QuizButton(child: Text(question.options[3].value)),
                 ),
               ],
             ),
@@ -305,22 +278,8 @@ class _QuizState extends State<Quiz> {
           textAlign: TextAlign.center,
         ),
       ),
-      Padding(
-        padding: padding,
-        child: OutlinedButton(
-          onPressed: () {},
-          style: style,
-          child: const Text('True'),
-        ),
-      ),
-      Padding(
-        padding: padding,
-        child: OutlinedButton(
-          onPressed: () {},
-          style: style,
-          child: const Text('False'),
-        ),
-      ),
+      QuizButton(child:Text("True")),
+      QuizButton(child: Text("False")),
       (currentQuestion == questions.length - 1)
           ? ElevatedButton(
               onPressed: () {
