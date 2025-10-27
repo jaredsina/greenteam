@@ -2,15 +2,16 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-Future<void> loggingIn(BuildContext context, username, password) async {
-  final url = Uri.parse('http://127.0.0.1:4000/login/post');
+Future<void> sendLogin(BuildContext context, username, password) async {
+  final url = Uri.parse('http://127.0.0.1:4000/auth_routes/post');
   final response = await http.post(
     url,
     headers: {'Content-Type': 'application/json'},
     body: jsonEncode({'username': username, 'password': password}),
   );
 
-  if (response.statusCode == 201) {
+  if (response.statusCode == 200) {
+    Navigator.pushNamed(context, '/home');
     ScaffoldMessenger.of(
       context,
     ).showSnackBar(SnackBar(content: Text('User found and brought.')));
@@ -22,22 +23,21 @@ Future<void> loggingIn(BuildContext context, username, password) async {
 }
 
 void main() {
-  runApp(const MyApp());
+  runApp(const Login());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
 
   final String title = 'LogIn';
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false);
-  }
+  State<Login> createState() => _LogInState();
 }
 
-class LogIn extends StatelessWidget {
-  const LogIn({super.key, required String title});
+class _LogInState extends State<Login> {
+  String username = "";
+  String password = "";
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +59,11 @@ class LogIn extends StatelessWidget {
                   EdgeInsets.symmetric(horizontal: 16),
                 ),
                 hintText: "Enter username",
+                onChanged: (value) {
+                  setState(() {
+                    username = value;
+                  });
+                },
               ),
 
               SizedBox(height: 35),
@@ -68,6 +73,11 @@ class LogIn extends StatelessWidget {
                   EdgeInsets.symmetric(horizontal: 16),
                 ),
                 hintText: "Enter password",
+                onChanged: (value) {
+                  setState(() {
+                    password = value;
+                  });
+                },
               ),
               SizedBox(height: 40),
               Row(
@@ -83,7 +93,7 @@ class LogIn extends StatelessWidget {
                         backgroundColor: Color.fromARGB(255, 0, 174, 255),
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/home');
+                        sendLogin(context, username, password);
                       },
                       child: Row(
                         spacing: 5,
