@@ -83,7 +83,7 @@ class MyApp extends StatelessWidget {
         '/signlog': (context) => const SignLog(),
         '/signup': (context) => const Signup(),
         '/home': (context) => const Home(),
-        '/login': (context) => const LogIn(title: 'LogIn'),
+        '/login': (context) => const Login(),
         '/notes': (context) => const Notes(),
         '/literature': (context) => const Literature(),
         '/history': (context) => const History(),
