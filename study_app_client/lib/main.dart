@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'pages/home.dart';
+import 'pages/schedule.dart';
+import 'pages/study_tools.dart';
+import 'pages/signup_login.dart';
+import 'pages/signup.dart';
+import 'pages/login.dart';
 import 'package:study_app_client/pages/flashcard.dart';
 import 'package:study_app_client/pages/match.dart';
 import 'package:study_app_client/pages/quiz.dart';
@@ -6,17 +12,15 @@ import 'package:study_app_client/pages/quiz_create.dart';
 import 'package:study_app_client/pages/quiz_end.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'Topics/ancient_civilizations.dart';
-import 'Pages/notes.dart';
+import 'pages/notes.dart';
 import 'Topics/algebra.dart';
 import 'Topics/calculus.dart';
 import 'Topics/european_history.dart';
-import 'Pages/schedule.dart';
-import 'Pages/Catagorys/literature.dart';
-import 'Pages/Catagorys/history.dart';
-import 'Pages/Catagorys/math.dart';
-import 'Pages/Catagorys/science.dart';
-import 'Pages/Catagorys/spanish.dart';
-import 'Pages/study_tools.dart';
+import 'pages/Catagorys/literature.dart';
+import 'pages/Catagorys/history.dart';
+import 'pages/Catagorys/math.dart';
+import 'pages/Catagorys/science.dart';
+import 'pages/Catagorys/spanish.dart';
 import 'Topics/american_history.dart';
 import 'Topics/character_development.dart';
 import 'Topics/cold_war.dart';
@@ -39,7 +43,6 @@ import 'Topics/directions.dart';
 import 'Topics/clothing.dart';
 import 'Topics/verbs.dart';
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -51,14 +54,36 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      localizationsDelegates: const [
-        FlutterQuillLocalizations.delegate
-      ],
-      theme: ThemeData(),
-      home: const MyHomePage(title: 'StudyHackAI'),
+      localizationsDelegates: const [FlutterQuillLocalizations.delegate],
+      theme: ThemeData(
+        // This is the theme of your application.
+        //
+        // TRY THIS: Try running your application with "flutter run". You'll see
+        // the application has a purple toolbar. Then, without quitting the app,
+        // try changing the seedColor in the colorScheme below to Colors.green
+        // and then invoke "hot reload" (save your changes or press the "hot
+        // reload" button in a Flutter-supported IDE, or press "r" if you used
+        // the command line to start the app).
+        //
+        // Notice that the counter didn't reset back to zero; the application
+        // state is not lost during the reload. To reset the state, use hot
+        // restart instead.
+        //
+        // This works for code too, not just values: Most code changes can be
+        // tested with just a hot reload.
+
+        // colorScheme: ColorScheme.fromSeed(
+        //   seedColor: const Color.fromARGB(100, 106, 173, 249),
+        // ),
+      ),
+      home: const SignLog(),
       routes: {
         '/schedule': (context) => const Schedule(),
         '/study': (context) => const Study(),
+        '/signlog': (context) => const SignLog(),
+        '/signup': (context) => const Signup(),
+        '/home': (context) => const Home(),
+        '/login': (context) => const LogIn(title: 'LogIn'),
         '/notes': (context) => const Notes(),
         '/literature': (context) => const Literature(),
         '/history': (context) => const History(),
@@ -94,159 +119,8 @@ class MyApp extends StatelessWidget {
         '/study/flashcard': (context) => const Flashcard(),
         '/study/matching': (context) => const Matching(),
         '/study/quiz': (context) => const Quiz(),
-        '/study/quiz/end':(context) => const QuizEnd(),
-
+        '/study/quiz/end': (context) => const QuizEnd(),
       },
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 44, 153, 237),
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Padding(
-          padding: EdgeInsets.all(16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Text("Hello,\nJanav!", style: TextStyle(fontSize: 50)),
-              SizedBox(height: 20),
-              SearchBar(
-                leading: const Icon(Icons.search),
-                padding: const WidgetStatePropertyAll(
-                  EdgeInsets.symmetric(horizontal: 16),
-                ),
-              ),
-              SizedBox(height: 60),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  FilledButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/schedule');
-                    },
-                    style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(
-                        Color.fromARGB(255, 38, 0, 255),
-                      ),
-                      minimumSize: WidgetStateProperty.all(Size(150, 150)),
-                      shape: WidgetStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                      ),
-                    ),
-                    child: Column(
-                      spacing: 12,
-                      children: [
-                        Text('Schedule', style: TextStyle(fontSize: 20)),
-                        const Icon(Icons.schedule, size: 28),
-                      ],
-                    ),
-                  ),
-                  FilledButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/notes');
-                    },
-                    style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(
-                        Color.fromARGB(255, 18, 12, 96),
-                      ),
-                      minimumSize: WidgetStateProperty.all(Size(150, 150)),
-                      shape: WidgetStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                      ),
-                    ),
-                    child: Column(
-                      spacing: 12,
-                      children: [
-                        Text('Notes', style: TextStyle(fontSize: 25)),
-                        const Icon(Icons.auto_stories, size: 28),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  FilledButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/study');
-                    },
-                    style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(
-                        Color.fromARGB(255, 0, 166, 237),
-                      ),
-                      minimumSize: WidgetStateProperty.all(Size(150, 150)),
-                      shape: WidgetStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                      ),
-                    ),
-                    child: Column(
-                      spacing: 12,
-                      children: [
-                        Text('Study Tools', style: TextStyle(fontSize: 16)),
-                        const Icon(Icons.design_services, size: 28),
-                      ],
-                    ),
-                  ),
-                  FilledButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/study');
-                    },
-                    style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(
-                        Color.fromARGB(255, 0, 103, 182),
-                      ),
-                      minimumSize: WidgetStateProperty.all(Size(150, 150)),
-                      shape: WidgetStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                      ),
-                    ),
-                    child: Column(
-                      spacing: 12,
-                      children: [
-                        Text('AI Helper', style: TextStyle(fontSize: 25)),
-                        const Icon(Icons.smart_toy, size: 28),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }

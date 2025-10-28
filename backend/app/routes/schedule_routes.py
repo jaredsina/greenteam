@@ -36,11 +36,23 @@ def create_schedule():
         user_id = data['user_id']
         date = data['date']
         free_hours = data['free_hours']
+        start_time = data['start_time']
+        end_time = data["end_time"]
         subject = data['subject']
         new_schedule = ScheduleModel(current_app.mongo)
-        response = new_schedule.create_schedule(user_id,date,free_hours,subject)
+        response = new_schedule.create_schedule(user_id,date,free_hours,subject,start_time,end_time)
 
     except Exception as e:
         print(e)
         return jsonify({'message': "Error posting schedule", 'error': str(e)})
     return jsonify(response), 201
+
+@schedule_routes.route('/<string:user_id>', methods=['GET'])
+def get_schedule_by_user_id(user_id):
+    try:
+        schedule_model = ScheduleModel(current_app.mongo)
+        schedules = schedule_model.list_schedules_by_user_id(user_id)
+    except Exception as e:
+        return jsonify({'message': 'Error fetching schedule', 'error': str(e)}), 400
+    return jsonify(schedules), 200
+

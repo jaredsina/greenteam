@@ -1,3 +1,7 @@
+//import 'dart:ffi';
+
+import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -5,14 +9,8 @@ import 'package:http/http.dart' as http;
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
 
-Future<void> createPost(
-  BuildContext context,
-  String schedule,
-  String date,
-  String freeHours,
-  String subject,
-) async {
-  //blank until api link provided
+Future<void> createPost(BuildContext context, String schedule, String date, String freeHours,
+    String subject, int? start_time, int? end_time) async {
   final url = Uri.parse('http://127.0.0.1:4000/schedule/create');
   final response = await http.post(
     url,
@@ -22,22 +20,34 @@ Future<void> createPost(
       'date': date,
       'free_hours': freeHours,
       'subject': subject,
-
-      // placeholder
+      'start_time': start_time,
+      'end_time': end_time,
       'user_id': 1,
     }),
   );
 
   if (response.statusCode == 201) {
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text('Scheudle created and saved.')));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Schedule created and saved.')),
+    );
   } else {
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text('Failed to save.')));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Failed to save.')),
+    );
   }
 }
+
+Future<List<dynamic>> fetchScheduleList(String user_id) async {
+  final url = Uri.parse('http://127.0.0.1:4000/schedule/$user_id');
+  final response = await http.get(url);
+  if (response.statusCode == 200) {
+    final schedules_database = jsonDecode(response.body);
+    return schedules_database;
+  } else {
+    throw Exception('Failed to load schedules');
+  }
+}
+
 
 class Schedule extends StatefulWidget {
   const Schedule({super.key});
@@ -45,12 +55,11 @@ class Schedule extends StatefulWidget {
   final String title = 'Schedule';
 
   @override
-  // ignore: library_private_types_in_public_api
   _ScheduleState createState() => _ScheduleState();
 }
 
 class _ScheduleState extends State<Schedule> {
-  final quill.QuillController controller = quill.QuillController.basic();
+  late quill.QuillController controller = quill.QuillController.basic();
   final CalendarController _calendarController = CalendarController();
   int? _startHour = 0;
   int? _endHour = 1;
@@ -59,10 +68,93 @@ class _ScheduleState extends State<Schedule> {
   final _formKey = GlobalKey<FormState>();
   String appointmentName = '';
 
+  // 🟦 ADDED: To store fetched schedules
+  List<dynamic> fetchedSchedules = [];
+
   @override
   void initState() {
     super.initState();
     _events = _AppointmentDataSource(appointments);
+
+// fetch schedules and populate both fetchedSchedules and _events appointments
+fetchScheduleList("1").then((data) {
+  setState(() {
+    fetchedSchedules = data;
+    // create appointments from the fetched schedules and add them to _events
+    for (var sched in data) {
+      // parse date string from backend (expected "YYYY-M-D" or ISO)
+      DateTime? date;
+      try {
+        // try ISO parse first
+        if (sched['date'] != null) {
+          date = DateTime.tryParse(sched['date'].toString());
+        }
+        // fallback to manual split if parse failed
+        if (date == null && sched['date'] != null) {
+          final parts = sched['date'].toString().split('-');
+          if (parts.length == 3) {
+            final y = int.tryParse(parts[0]) ?? DateTime.now().year;
+            final m = int.tryParse(parts[1]) ?? DateTime.now().month;
+            final d = int.tryParse(parts[2]) ?? DateTime.now().day;
+            date = DateTime(y, m, d);
+          }
+        }
+      } catch (_) {
+        date = DateTime.now();
+      }
+
+      // get start/end hours if present, else fallback to 0/1
+      final int startHour = (sched['start_time'] is int) ? sched['start_time'] : (int.tryParse('${sched['start_time']}') ?? 0);
+      final int endHour = (sched['end_time'] is int) ? sched['end_time'] : (int.tryParse('${sched['end_time']}') ?? (startHour + 1));
+
+      final DateTime startTime = date?.add(Duration(hours: startHour)) ?? DateTime.now();
+      final DateTime endTime = date?.add(Duration(hours: endHour)) ?? startTime.add(const Duration(hours: 1));
+
+      final Appointment session = Appointment(
+        startTime: startTime,
+        endTime: endTime,
+        subject: sched['subject'] ?? '',
+        color: Colors.blue,
+      );
+
+      _events?.appointments!.add(session);
+    }
+
+    // notify once after adding all appointments
+    _events?.notifyListeners(CalendarDataSourceAction.add, _events!.appointments!);
+  });
+}).catchError((e) {
+  print('Error fetching schedules in initState: $e');
+});
+
+  }
+
+  Future<void> _fetchLatestSchedule() async {
+    try {
+      final url = Uri.parse('http://127.0.0.1:4000/schedule/');
+      final response = await http.get(url);
+
+      if (response.statusCode == 200) {
+        final List<dynamic> schedules = jsonDecode(response.body);
+        print(schedules);
+        if (schedules.isNotEmpty) {
+          final latestSchedule = schedules.last;
+          final scheduleContent = latestSchedule['schedule'];
+          final doc = quill.Document.fromJson(jsonDecode(scheduleContent));
+
+          setState(() {
+            controller = quill.QuillController(
+              document: doc,
+              selection: const TextSelection.collapsed(offset: 0),
+            );
+          });
+        }
+      } else {
+        print("Error fetching schedule: ${response.body}");
+      }
+    } catch (e) {
+      print("Error fetching schedule: $e");
+    }
   }
 
   Future<void> fetchSchedule(String subject) async {
@@ -104,7 +196,6 @@ class _ScheduleState extends State<Schedule> {
                       if (value?.length == 0) {
                         return "Subject name cannot be empty";
                       }
-                      //use state to save inputted value and use it for subject name in appointment
                     },
                     onChanged: (String subject) {
                       setState(() {
@@ -112,7 +203,6 @@ class _ScheduleState extends State<Schedule> {
                       });
                     },
                   ),
-
                   DropdownButtonFormField(
                     onChanged: (int? i) {
                       setState(() {
@@ -134,9 +224,7 @@ class _ScheduleState extends State<Schedule> {
                       }
                     },
                   ),
-
                   Text('to', style: TextStyle(fontSize: 18)),
-
                   DropdownButtonFormField(
                     onChanged: (int? i) {
                       setState(() {
@@ -190,16 +278,17 @@ class _ScheduleState extends State<Schedule> {
 
                             createPost(
                               context,
-                              "schedule", // schedule tag
-                              freeHoursRange, // free hours
-                              formattedDate, // date
-                              appointmentName, // subject
+                              "schedule",
+                              freeHoursRange,
+                              formattedDate,
+                              appointmentName,
+                              _startHour,
+                              _endHour,
                             );
 
                             print("Form is valid");
                           } else {
                             print("Form is invalid");
-                            // Navigator.of(context).pop();
                             return;
                           }
 
@@ -208,15 +297,14 @@ class _ScheduleState extends State<Schedule> {
                           DateTime? endDate = _calendarController.selectedDate;
 
                           if (startDate == null || endDate == null) {
-                            // TODO: Display this error somewhere
                             print("Pick a date.");
                             return;
                           }
 
-                          DateTime? startTime = startDate?.copyWith(
-                            hour: _startHour,
-                          );
-                          DateTime? endTime = endDate?.copyWith(hour: _endHour);
+                          DateTime? startTime =
+                              startDate?.copyWith(hour: _startHour);
+                          DateTime? endTime =
+                              endDate?.copyWith(hour: _endHour);
 
                           final Appointment session = Appointment(
                             startTime: startTime ?? DateTime.now(),
@@ -230,7 +318,6 @@ class _ScheduleState extends State<Schedule> {
                             <Appointment>[session],
                           );
                           setState(() {});
-                          // Close the dialog menu
                           Navigator.of(context).pop();
                         },
                       ),
@@ -394,10 +481,8 @@ class _ScheduleState extends State<Schedule> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-
         title: Text(widget.title),
       ),
-
       body: Column(
         children: <Widget>[
           Padding(
@@ -421,13 +506,51 @@ class _ScheduleState extends State<Schedule> {
                           : null,
                       child: Text("Generate"),
                     ),
-
-                    //FilledButton(onPressed: () {}, child: const Text('Export')),
                   ],
                 ),
               ],
             ),
           ),
+
+          if (fetchedSchedules.isNotEmpty)
+            SizedBox(
+              height: 150,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: fetchedSchedules.length,
+                itemBuilder: (context, index) {
+                  final sched = fetchedSchedules[index];
+                  return Container(
+                    width: 250,
+                    margin: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 103, 181, 250),
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          blurRadius: 5,
+                          offset: const Offset(2, 2),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Subject: ${sched['subject'] ?? 'N/A'}",
+                            style: const TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)),
+                        const SizedBox(height: 6),
+                        Text("Date: ${sched['date'] ?? 'N/A'}"),
+                        Text("Free Hours: ${sched['free_hours'] ?? 'N/A'}"),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+
           Expanded(
             child: SfCalendar(
               view: CalendarView.month,
@@ -439,11 +562,9 @@ class _ScheduleState extends State<Schedule> {
               },
               firstDayOfWeek: 1,
               monthViewSettings: MonthViewSettings(
-                //numberOfWeeksInView: 4,
-                //appointmentDisplayMode: MonthAppointmentDisplayMode.appointment,
                 showAgenda: true,
-                agendaItemHeight: 70,
-                agendaViewHeight: 350,
+                agendaItemHeight: 40,
+                agendaViewHeight: 150,
               ),
               dataSource: _events,
             ),
