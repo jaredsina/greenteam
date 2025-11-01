@@ -1,7 +1,8 @@
 from .user_routes import user_routes
+from .schedule_routes import schedule_routes
 from .notes_routes import notes_routes
 from .auth_routes import auth_routes
-from .schedule_routes import  schedule_routes
+from .quiz_routes import quiz_routes
 def init_routes(app):
   app.register_blueprint(user_routes, url_prefix='/signup')
   app.register_blueprint(notes_routes, url_prefix='/notes')
@@ -10,3 +11,5 @@ def init_routes(app):
 
 
     
+
+    app.register_blueprint(quiz_routes, url_prefix='/quiz')
