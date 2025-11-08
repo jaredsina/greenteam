@@ -1,4 +1,6 @@
+from unicodedata import category
 from flask import Blueprint, jsonify, current_app,request
+from models.note import NoteModel
 
 from ai.main import generate_schedule
 
@@ -14,12 +16,23 @@ def post_generate_schedule():
         date = data.get('date')
         startTime = data.get('startTime')
         endTime = data.get('endTime')
+        note_model = NoteModel(current_app.mongo)
+        
+
+        # subject might have multiple subjects, seperated by commas
+        subjectList = subject.split(",")
+        notes = []
+        for category in subjectList:
+            category_notes = note_model.list_notes_by_category(category.strip().lower().replace(" ", "_"))
+            notes.append(category_notes)
+
         if not subject or not date or not startTime or not endTime:
             return jsonify({'error': 'Missing required data'}), 400
         else:
-            return generate_schedule(subject, date, startTime, endTime)
+            return generate_schedule(subject, date, startTime, endTime, notes)
     else:
         return jsonify({'error': 'Invalid request'}), 400 
+    
 #from app.models.judge import 
 from flask_jwt_extended import jwt_required
 from models.schedule import ScheduleModel
