@@ -29,3 +29,50 @@ def generate_schedule(subject, date, startTime, endTime, notes):
     )
     print(response.text)
     return response.text
+
+class Quiz(BaseModel):
+  difficulty:str
+  length: int
+  type:str
+  topic: str
+
+class QuestionTrueFalse(BaseModel):
+  question: str
+  answer: bool
+
+class TrueFalseQuiz(Quiz):
+  questions: list[QuestionTrueFalse]
+
+def generate_quiz(schema, difficulty,length,type,topic):
+    response = client.models.generate_content(
+        model="gemini-2.5-flash", contents=f"Generate a {type} quiz with a difficulty of {difficulty}, a length of {length}, and this topic {topic}",
+        config = {"response_mime_type": "application/json", "response_schema": schema}
+    )
+    print(response.text)
+    return response.text
+
+def generate_true_false_quiz(difficulty,length,type,topic):
+    return generate_quiz(TrueFalseQuiz,difficulty,length,type,topic)
+
+class QuestionWrittenResponse(BaseModel):
+  question:str
+
+class WrittenResponseQuiz(Quiz):
+   questions: list[QuestionWrittenResponse]
+
+def generate_written_response_quiz(difficulty,length,type,topic):
+    return generate_quiz(WrittenResponseQuiz,difficulty,length,type,topic)
+
+class MultipleChoiceOption(BaseModel):
+  value:str
+  isCorrect:bool
+
+class QuestionMultipleChoice(BaseModel):
+   question: str
+   option: list[MultipleChoiceOption]
+
+class MultipleChoiceQuiz(Quiz):
+   questions: list[QuestionMultipleChoice]
+
+def generate_multiple_choice_quiz(difficulty,length,type,topic):
+    return generate_quiz(MultipleChoiceQuiz,difficulty,length,type,topic)

@@ -1,12 +1,10 @@
-import 'dart:convert';
 //import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-import 'dart:convert';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
-import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 Future<void> createPost(
   BuildContext context,
@@ -420,7 +418,7 @@ class _ScheduleState extends State<Schedule> {
                         _startHour = i;
                       });
                     },
-                    initialValue: _startHour,
+                    // initialValue: _startHour,
                     items: [
                       for (var i = 0; i <= 24; i++)
                         DropdownMenuItem(value: i, child: Text("$i")),
@@ -444,7 +442,7 @@ class _ScheduleState extends State<Schedule> {
                         _endHour = i;
                       });
                     },
-                    initialValue: _endHour,
+                    // initialValue: _endHour,
                     items: [
                       for (var i = 0; i <= 24; i++)
                         DropdownMenuItem(value: i, child: Text("$i")),

@@ -2,9 +2,12 @@ from unicodedata import category
 from flask import Blueprint, jsonify, current_app,request
 from models.note import NoteModel
 
+#from app.models.judge import 
+from flask_jwt_extended import jwt_required
+from models.schedule import ScheduleModel
+# used to convert string to ObjectId
+from bson import ObjectId
 from ai.main import generate_schedule
-
-
 
 schedule_routes = Blueprint('schedule_routes',__name__)
 
@@ -31,13 +34,10 @@ def post_generate_schedule():
         else:
             return generate_schedule(subject, date, startTime, endTime, notes)
     else:
-        return jsonify({'error': 'Invalid request'}), 400 
-    
-#from app.models.judge import 
-from flask_jwt_extended import jwt_required
-from models.schedule import ScheduleModel
-# used to convert string to ObjectId
-from bson import ObjectId
+        return jsonify({'error': 'Invalid request'}), 400
+# Push this github
+# Add a body to the request so that you can input which subject it should make
+# Look into how you can personalize the response more based on other inputfrom flask import Blueprint, jsonify, current_app,request
 
 @schedule_routes.route("/create", methods=['POST','OPTIONS'])
 def create_schedule():
